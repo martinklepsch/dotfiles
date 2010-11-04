@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#
+# Cherry-pick a commit from GitHub URLs like:
+# http://github.com/adamv/dotfiles/commit/2f8c64fb6bd69787943b691212d8a80d42de0614
+#
+
+my_name=`basename $0`
+
+url=$1
+if [[ -z $url ]]; then
+  echo "Usage:"
+  echo "    $my_name <URL-for-GitHub-commit>"
+  exit 99
+fi
+
+url_re="http://github.com/([^/]*)/([^/]*)/commit/(.*)"
+if [[ ! $url =~ $url_re ]]; then
+  echo "Usage:"
+  echo "    $my_name <URL-for-GitHub-commit>"
+  exit 99
+fi
+
+username=${BASH_REMATCH[1]}
+repo=${BASH_REMATCH[2]}
+commit=${BASH_REMATCH[3]}
+
+echo "Remote: $username"
+echo "Repo: $repo"
+echo "Commit: $commit"
+
+github_url=git://github.com/$username/$repo.git
+echo $github_url
+
+# Should we add the remote?
+(git remote | grep -q $username) || git remote add $username $github_url
+git fetch $username
+git cherry-pick -s $commit

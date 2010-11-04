@@ -1,0 +1,544 @@
+#  -*- coding: utf-8 -*- #####################################################
+#
+# dma147.theme for irssi
+#
+# $Id: dma147.theme,v 1.19 2005/12/14 09:44:03 dma147 Exp $
+#
+# Copyright 2005 Alexander 'dma147' Mieland
+# Contact: #gentoo-anfaenger, #linux-stats @ irc.freenode.net
+#
+# This theme is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This theme is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this theme; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+#
+##############################################################################
+
+# default foreground color ()%N - -1 is the "default terminal color"
+default_color = "-1";
+
+# print timestamp/servertag at the end of line, not at beginning
+info_eol = "false";
+
+abstracts = {
+  ##
+  ## generic
+  ##
+
+  # any kind of text that needs hilighting, default is to bold
+  hilight = "%9$*%_";
+
+  # any kind of error message, default is bright red
+  error = "%R$*%n";
+
+  # french quotation marks, adjustable here for different charsets
+  # ISO-8859-*
+  #fq = "«$*»";
+  # UTF-8
+  fq = "[$*]";
+
+  ##
+  ## statusbar
+  ##
+
+  # default background for all statusbars. You can also give
+  # the default foreground color for statusbar items.
+  sb_background = "%0%W";
+
+  # default backround for "default" statusbar group
+  #sb_default_bg = "%4";
+  # background for prompt / input line
+  sb_prompt_bg = "%n";
+  # background for info statusbar
+  sb_info_bg = "%8";
+  # background for topicbar (same default)
+  #sb_topic_bg = "%4";
+
+  # text at the beginning of statusbars. sb-item already puts
+  # space there,so we don't use anything by default.
+  sbstart = " ";
+  topicsbstart = "{sbstart $*}";
+  # text at the end of statusbars. Use space so that it's never
+  # used for anything.
+  sbend = " ";
+  topicsbend = "{sbend $*}";
+
+  prompt = "[$*] ";
+
+  sb = "%Y[%n$*%Y]%n ";
+  sbmode = " ($*)";
+  sbaway = " (%RAWAY)%N";
+  sbservertag = ":$0 (^X)";
+  sbnickmode = "$0";
+
+  # activity in statusbar
+
+  # ',' separator
+  sb_act_sep = "%Y$*";
+  # normal text
+  sb_act_text = "%w$*";
+  # public message
+  sb_act_msg = "%G$*";
+  # hilight
+  sb_act_hilight = "%R$*";
+  # hilight with specified color, $0 = color, $1 = text
+  sb_act_hilight_color = "$0$1-%n";
+
+  # theme_indent settings
+  indent_default = "                 ";
+};
+formats = {
+  "fe-text" = {
+    lastlog_too_long = "    %B{fq Lastlog}%n %B/LASTLOG would print $0 lines. Use the -force option to print all of them.";
+    lastlog_count = "    %B{fq Lastlog}%n %B$0 lines";
+    lastlog_start = "            %C{fq Lastlog}%n %CBeginning of lastlog:";
+    lastlog_end = "            %C{fq Lastlog}%n %CEnd of lastlog";
+    lastlog_separator = "            %C{fq Lastlog}%n %C---";
+    refnum_not_found = "      %B{fq Error}%n %BWindow number {hilight $0} does not exist";
+    window_too_small = "      %B{fq Error}%n %BNot enough room to resize this window";
+    cant_hide_last = "      %B{fq Error}%n %BYou can't hide the last window";
+    cant_hide_sticky_windows = "      %B{fq Error}%n %BYou can't hide sticky windows";
+    cant_show_sticky_windows = "      %B{fq Error}%n %BYou can't show sticky windows";
+    window_not_sticky = "     %B{fq Window}%n %BWindow is not sticky";
+    window_set_sticky = "     %B{fq Window}%n %BWindow set sticky";
+    window_unset_sticky = "     %B{fq Window}%n %BWindow set not sticky";
+    window_info_sticky = " %B{fq WindowInfo}%n %BSticky  : $0";
+    window_info_scroll = " %B{fq WindowInfo}%n %BScroll  : $0";
+    window_scroll = "     %B{fq Window}%n %BWindow scroll mode is now $0";
+    window_scroll_unknown = "      %B{fq Error}%n %BUnknown scroll mode {hilight $0}, must be 'ON', 'OFF' or 'DEFAULT'";
+    statusbar_list_header = "  %B{fq Statusbar}%n %B%#Name                      Type   Placement Position Visible";
+    statusbar_list_footer = "";
+    statusbar_list = "  %B{fq Statusbar}%n %B%#$[25]0 $[6]1 $[9]2 $[8]3 $4";
+    statusbar_info_name = "  %B{fq Statusbar}%n %BName     : {hilight $0}";
+    statusbar_info_type = "  %B{fq Statusbar}%n %BType     : $0";
+    statusbar_info_placement = "  %B{fq Statusbar}%n %BPlacement: $0";
+    statusbar_info_position = "  %B{fq Statusbar}%n %BPosition : $0";
+    statusbar_info_visible = "  %B{fq Statusbar}%n %BVisible  : $0";
+    statusbar_info_item_header = "  %B{fq Statusbar}%n %#Items    : %BName                      Alignment Priority";
+    statusbar_info_item_footer = "";
+    statusbar_info_item_name = "  %B{fq Statusbar}%n %B%#           $[25]0 $[9]2 $1";
+    statusbar_not_found = "  %B{fq Statusbar}%n %BStatusbar {hilight $0} does not exist";
+    statusbar_item_not_found = "  %B{fq Statusbar}%n %BStatusbar item {hilight $0} does not exist";
+    statusbar_unknown_command = "      %B{fq Error}%n %BUnknown statusbar command {hilight $0}";
+    statusbar_unknown_type = "      %B{fq Error}%n %BStatusbar type must be 'window' or 'root'";
+    statusbar_unknown_placement = "      %B{fq Error}%n %BStatusbar placement must be 'top' or 'bottom'";
+    statusbar_unknown_visibility = "      %B{fq Error}%n %BStatusbar visibility must be 'always', 'active' or 'inactive'";
+    paste_warning = "      %B{fq Error}%n %BTrying to paste $0 lines to $1.";
+    paste_prompt = "Press Ctrl-K to continue, Ctrl-C to abort.";
+  };
+  "fe-common/irc" = {
+    netsplit = "   %r{fq Netsplit}%n %r$0 <-> $1 quits: $2";
+    netsplit_more = "   %r{fq Netsplit}%n %r$0 <-> $1 quits: $2 (+$3 more)";
+    netsplit_join = "    %g{fq Netjoin}%n %gJoins: $0";
+    netsplit_join_more = "    %g{fq Netjoin}%n %gJoins: $0 (+$1 more)";
+    no_netsplits = "   %B{fq Netsplit}%n %BThere are no net splits";
+    netsplits_header = "   %B{fq Netsplit}%n %B%#Nick            Channel    Server               Splitted server";
+    netsplits_line = "   %B{fq Netsplit}%n %B%#$[15]0 $[10]1 $[20]2 $[20]3";
+    netsplits_footer = "";
+    ircnet_added = "      %B{fq Irssi}%n %BIrcnet {hilight $0} saved";
+    ircnet_removed = "      %B{fq Irssi}%n %BIrcnet {hilight $0} removed";
+    ircnet_not_found = "      %B{fq Irssi}%n %BIrcnet {hilight $0} does not exist";
+    ircnet_header = "    %B{fq NetList}%n %B%#Ircnets:";
+    ircnet_line = "    %B{fq NetList}%n %B%#$0: $1";
+    ircnet_footer = "";
+    setupserver_header = " %B{fq ServerList}%n %B%#Server               Port  Network    Settings";
+    setupserver_line = " %B{fq ServerList}%n %B%#$[!20]0 $[5]1 $[10]2 $3";
+    setupserver_footer = "";
+    joinerror_toomany = "      %B{fq Error}%n %BCannot join channel $0 (You have joined to too many channels)";
+    joinerror_full = "      %B{fq Error}%n %BCannot join channel $0 (Channel is full)";
+    joinerror_invite = "      %B{fq Error}%n %BCannot join channel $0 (Channel is invite only)";
+    joinerror_banned = "      %B{fq Error}%n %BCannot join channel $0 (You are banned)";
+    joinerror_bad_key = "      %B{fq Error}%n %BCannot join channel $0 (Channel is keyword protected)";
+    joinerror_bad_mask = "      %B{fq Error}%n %BCannot join channel $0 (Bad channel mask)";
+    joinerror_unavail = "      %B{fq Error}%n %BCannot join channel $0 (Channel is temporarily unavailable)";
+    joinerror_duplicate = "      %B{fq Error}%n %BCannot create channel $0, it already exists";
+    channel_rejoin = "      %B{fq Error}%n %BChannel $0 is temporarily unavailable. Trying to rejoin automatically, use /RMREJOINS to abort.";
+    inviting = "     %B{fq Invite}%n %BInviting $0 to channel $1";
+    channel_created = "       %B{fq Mode}%n %BChannel $0 was created on $1";
+    url = "        %B{fq URL}%n %BHome page for channel $0 is at $1";
+    topic = "      %B{fq Topic}%n %BTopic for channel $0 is $1";
+    no_topic = "      %B{fq Topic}%n %BNo topic set for channel $0";
+    topic_info = "      %B{fq Topic}%n %BTopic has been set by $0 on $1";
+    chanmode_change = "       %B{fq Mode}%n %B$2 changes mode $0 $1";
+    server_chanmode_change = "       %B{fq Mode}%n %B$2 changes mode $0 $1";
+    channel_mode = "       %B{fq Mode}%n %BCurrent modes for $0: $1";
+    bantype = "        %B{fq Ban}%n %BBan type set to $0";
+    no_bans = "    %B{fq BanList}%n %BNo bans set in channel $0";
+    banlist = "    %B{fq BanList}%n %B$[-2]0. $1: $2";
+    banlist_long = "    %B{fq BanList}%n %B$[-2]0. $1: $2 (set by $3 $4 secs ago)";
+    ebanlist = " %B{fq ExceptList}%n %B$0: $1";
+    ebanlist_long = " %B{fq ExceptList}%n %B$0: $1 (set by $2 $3 secs ago)";
+    no_invitelist = " %B{fq InviteList}%n %BNo invites set in channel $0";
+    invitelist = " %B{fq InviteList}%n %B$0: $1";
+    no_such_channel = "      %B{fq Error}%n %B$0: No such channel";
+    channel_synced = "      %B{fq Irssi}%n %BJoin to $0 was synced in $1 seconds";
+    usermode_change = "   %B{fq UserMode}%n %B$1 changes user mode $0";
+    user_mode = "   %B{fq UserMode}%n %BYour user mode is $0";
+    away = "       %B{fq Away}%n %BYou have been marked as being away";
+    unaway = "       %B{fq Away}%n %BYou are no longer marked as being away";
+    nick_away = "       %B{fq Away}%n %B$0 is away: $1";
+    no_such_nick = "      %B{fq Error}%n %B{hilight $0}: No such nick/channel";
+    nick_in_use = "       %B{fq Nick}%n %BNick $0 is already in use";
+    nick_unavailable = "       %B{fq Nick}%n %BNick $0 is temporarily unavailable";
+    your_nick_owned = "       %B{fq Nick}%n %BYour nick is owned by $3 ($1@$2)%B";
+    whois = "      %B{fq Whois}%n %BUser: $0 ($1%N%B@$2): $3";
+    whowas = "     %B{fq Whowas}%n %BNick $0 was $1%N%B@$2: $3";
+    whois_idle = "      %B{fq Whois}%n %BIdle: $1 days $2 hours $3 mins $4 secs";
+    whois_idle_signon = "      %B{fq Whois}%n %BIdle: $1 days $2 hours $3 mins $4 secs%n%:      %B{fq Whois}%n %BSignon: $5";
+    whois_server = "      %B{fq Whois}%n %BServer: $1 ($2)";
+    whois_oper = "      %B{fq Whois}%n %BOper: $0 is an $1";
+    whois_registered = "      %B{fq Whois}%n %BNickServ: $0 has registered this nick";
+    whois_help = "      %B{fq Whois}%n %BHelp: $0 is available for help";
+    whois_modes = "      %B{fq Whois}%n %BModes: $0 $1-";
+    whois_realhost = "      %B{fq Whois}%n %BRealhost: $0 has real host $1 ($2)";
+    whois_usermode = "      %B{fq Whois}%n %BUsermode: $0 $1";
+    whois_channels = "      %B{fq Whois}%n %BChannels: $1";
+    whois_away = "      %B{fq Whois}%n %B$0 is away: $1";
+    whois_special = "      %B{fq Whois}%n %B$0 $1";
+    whois_extra = "      %B{fq Whois}%n %BAuth: $0 $1";
+    end_of_whois = "      %B{fq Whois}%n %BEnd of WHOIS list";
+    end_of_whowas = "     %B{fq Whowas}%n %BEnd of WHOWAS";
+    whois_not_found = "      %B{fq Error}%n %B{hilight $0}: No such nick";
+    who = "        %B{fq Who}%n %B$1: $4@$5 ($6) on $0 mode $2 [Server: $7, $3 Hops]";
+    end_of_who = "        %B{fq Who}%n %BEnd of WHO list";
+    own_notice = "%m%}$[-11]0%{%n %m$1";
+    own_action = "            * $0 $1";
+    own_action_target = "%m>$[-9]2< *%n %m$0 $1";
+    own_ctcp = "       %Y{fq CTCP}%n %YSending CTCP $1%N%Y to $0: $2";
+    notice_server = "     %m{fq Server}%n %m[$0] $1";
+    notice_public = "-$[-11]{0}- $2";
+    notice_private = "%m-$[-11]{0}-%n %m$2";
+    action_private = "            %m*%n %m$0 $2";
+    action_private_query = "            %m*%n %m$0 $2";
+    action_public = "            * $0 $1";
+    action_public_channel = "            * %B[$1]%n $0 $2";
+    ctcp_reply = "       %Y{fq CTCP}%n %YGot $0%N%Y reply from $1: $2";
+    ctcp_reply_channel = "       %Y{fq CTCP}%n %YGot $0%N%Y reply from $1 in channel $3: $2";
+    ctcp_ping_reply = "       %Y{fq Pong}%n %YGot PING response from $0: $1.$[-3.0]2 seconds";
+    ctcp_requested = "       %Y{fq CTCP}%n %YGot $2%N%Y request from $0 ($1%N%Y) to $4: $3";
+    ctcp_requested_unknown = "       %Y{fq CTCP}%n %YGot unknown $2%N%Y request from $0 ($1%N%Y) to $4: $3";
+    pong = "       %Y{fq Pong}%n %YGot PONG from $0: $1";
+    online = "       %B{fq IsOn}%n %BUsers online: $0";
+    wallops = "     {fq Wallop} <$0> $1";
+    action_wallops = "     {fq Wallop} * $0 $1";
+    kill = "       %B{fq Kill}%n %BYou were killed by $0 ($1): $2 (Path: $3)";
+    kill_server = "       %B{fq Kill}%n %BYou were killed by $0: $1 (Path: $2)";
+    error = "      %B{fq Error}%n %B$0";
+    unknown_mode = "      %B{fq Error}%n %BUnknown mode flag $0";
+    default_event = "     %B{fq Server}%n %B$2: $1";
+    default_event_server = "     %B{fq Server}%n %B[$0] $2: $1";
+    silenced = "    %B{fq Silence}%n %BSilenced $0";
+    unsilenced = "    %B{fq Silence}%n %BUnsilenced $0";
+    silence_line = "    %B{fq Silence}%n %B$0: silence $1";
+    ask_oper_pass = "Operator password: ";
+  };
+  "fe-common/perl" = {
+    script_not_found = "       %r{fq Perl}%n %rScript {hilight $0} not found";
+    script_not_loaded = "       %B{fq Perl}%n %BScript {hilight $0} is not loaded";
+    script_loaded = "       %B{fq Perl}%n %BLoaded script {hilight $0}";
+    script_unloaded = "       %B{fq Perl}%n %BUnloaded script {hilight $0}";
+    no_scripts_loaded = "       %B{fq Perl}%n %BNo scripts are loaded";
+    script_list_header = "       %B{fq Perl}%n %B%#Script               Path";
+    script_list_line = "       %B{fq Perl}%n %B%#$[!20]0 $1";
+    script_list_footer = "";
+    script_error = "       %r{fq Perl}%n %rError in script {hilight $0}:";
+  };
+  "fe-common/core" = {
+    line_start = "";
+    line_start_irssi = "";
+    timestamp = "[$Z] ";
+    servertag = "[$0] ";
+    daychange = "[00:00]       %B{fq Irssi}%n %BDay changed to %%d %%B %%Y";
+    talking_with = "      %B{fq Irssi}%n %BYou are now talking with $0";
+    refnum_too_low = "      %B{fq Error}%n %BWindow number must be greater than 1";
+    error_server_sticky = "      %B{fq Error}%n %BWindow's server is sticky, use -unsticky option to change";
+    set_server_sticky = "     %B{fq Window}%n %BWindow's server set sticky";
+    unset_server_sticky = "     %B{fq Window}%n %BWindow's server set not sticky";
+    window_name_not_unique = "      %B{fq Error}%n %BWindow names must be unique";
+    window_level = "     %B{fq Window}%n %BWindow level is now $0";
+    window_set_immortal = "     %B{fq Window}%n %BWindow set immortal";
+    window_unset_immortal = "     %B{fq Window}%n %BWindow set not immortal";
+    window_immortal_error = "      %B{fq Error}%n %BWindow is immortal";
+    windowlist_header = " %B{fq WindowList}%n %B%#Ref Name                 Active item     Server          Level";
+    windowlist_line = " %B{fq WindowList}%n %B%#$[3]0 %|$[20]1 $[15]2 $[15]3 $4";
+    windowlist_footer = "";
+    windows_layout_saved = "     %B{fq Layout}%n %BLayout of windows saved";
+    windows_layout_reset = "     %B{fq Layout}%n %BLayout of windows reset to defaults";
+    window_info_header = "";
+    window_info_footer = "";
+    window_info_refnum = " %B{fq WindowInfo}%n %BWindow  : $0";
+    window_info_refnum_sticky = " %B{fq WindowInfo}%n %BWindow  : {hilight #$0 (sticky)}";
+    window_info_name = " %B{fq WindowInfo}%n %BName    : $0";
+    window_info_history = " %B{fq WindowInfo}%n %BHistory : $0";
+    window_info_immortal = " %B{fq WindowInfo}%n %BImmortal: yes";
+    window_info_size = " %B{fq WindowInfo}%n %BSize    : $0x$1";
+    window_info_level = " %B{fq WindowInfo}%n %BLevel   : $0";
+    window_info_server = " %B{fq WindowInfo}%n %BServer  : $0";
+    window_info_server_sticky = " %B{fq WindowInfo}%n %BServer  : $0 (sticky)";
+    window_info_theme = " %B{fq WindowInfo}%n %BTheme   : $0$1";
+    window_info_bound_items_header = " %B{fq BoundItems}%n %B%#Bounds  : {hilight Name                           Server tag}";
+    window_info_bound_item = " %B{fq BoundItems}%n %B%#        : $[!30]0 $[!15]1 $2";
+    window_info_bound_items_footer = "";
+    window_info_items_header = "%B{fq WindowItems}%n %B%#Items   : {hilight Name                           Server tag}";
+    window_info_item = "%B{fq WindowItems}%n %B%# $[7]0: $[!30]1 $2";
+    window_info_items_footer = "";
+    looking_up = "    %B{fq Connect}%n %BLooking up host $0";
+    connecting = "    %B{fq Connect}%n %BConnecting to $0 ($1) on port $2";
+    connection_established = "    %B{fq Connect}%n %BConnection to $0 established";
+    cant_connect = "   %B{fq NetError}%n %BUnable to connect to $0 on port $1 ($2)";
+    connection_lost = "    %B{fq Connect}%n %BConnection lost to $0";
+    lag_disconnected = "    %B{fq Connect}%n %BNo PONG reply from server $0 in $1 seconds, disconnecting";
+    disconnected = "    %B{fq Connect}%n %BDisconnected from $0 ($1)";
+    server_quit = "    %B{fq Connect}%n %BDisconnecting from server $0: $1";
+    server_changed = "      %B{fq Irssi}%n %BChanged to {hilight $2} server $1";
+    unknown_server_tag = "      %B{fq Error}%n %BServer tag $0 not found";
+    no_connected_servers = "      %B{fq Error}%n %BNot connected to any servers";
+    server_list = "    %B{fq Servers}%n %B$0: $1:$2 ($3)";
+    server_lookup_list = "    %B{fq Servers}%n %B$0: $1:$2 ($3) (connecting...)";
+    server_reconnect_list = "    %B{fq Servers}%n %B$0: $1:$2 ($3) ($5 left before reconnecting)";
+    server_reconnect_removed = "    %B{fq Connect}%n %BRemoved reconnection to server $0 port $1";
+    server_reconnect_not_found = "    %B{fq Connect}%n %BReconnection tag {hilight $0} does not exist";
+    setupserver_added = "     %B{fq Server}%n %BServer {hilight $0} saved";
+    setupserver_removed = "     %B{fq Server}%n %BServer {hilight $0} removed";
+    setupserver_not_found = "      %B{fq Error}%n %BServer {hilight $0} does not exist";
+    your_nick = "       %B{fq Nick}%n %BYour nickname is $0";
+    join = "          %B-->%n %B$0 ($1)%N%B has joined $2";
+    part = "          %B<--%n %B$0 ($1)%N%B has left $2 ($3)%N%B";
+    kick = "       %R{fq Kick}%n %R$0 has been kicked out of $1 by $2: $3";
+    quit = "          %B<--%n %B$0 ($1)%N%B has signed off ($2)%N%B";
+    quit_once = "          %B<--%n %B$0 ($1)%N%B has signed off $3 ($2)%N%B";
+    invite = "     %R{fq Invite}%n %R$0 invites you to channel $1";
+    not_invited = "     %B{fq Invite}%n %BYou have not been invited to a channel!";
+    new_topic = "      %B{fq Topic}%n %B$0 sets topic for channel $1 to \"$2\"";
+    topic_unset = "      %B{fq Topic}%n %BTopic for channel $1 unset by $0";
+    your_nick_changed = "       %B{fq Nick}%n %BYou're now known as $1";
+    nick_changed = "       %B{fq Nick}%n %B$0 is now known as $1";
+    talking_in = "      %B{fq Irssi}%n %BYou are now talking in $0";
+    not_in_channels = "   %B{fq Channels}%n %BYou are not on any channels";
+    current_channel = "   %B{fq Channels}%n %BCurrent channel $0";
+    names = "      %B{fq Users}%n %BUsers on $0:";
+    names_prefix = "      %B{fq Users}%n ";
+    names_nick_op = "%G$0%n$1- ";
+    names_nick_halfop = "%g$0%n$1- ";
+    names_nick_voice = "%Y$0%n$1- ";
+    names_nick = "$0$1 ";
+    endofnames = "      %B{fq Users}%n %B$1 nicks ($2 ops, $3 halfops, $4 voices, $5 normal";
+    chanlist_header = "   %B{fq Channels}%n %BYou are on the following channels:";
+    chanlist_line = "   %B{fq Channels}%n %B%#{hilight $0} (+$1) [$2]: $3";
+    chansetup_not_found = "      %B{fq Error}%n %BChannel {hilight $0} does not exist";
+    chansetup_added = "    %B{fq Channel}%n %BChannel {hilight $0} saved";
+    chansetup_removed = "    %B{fq Channel}%n %BChannel {hilight $0} removed";
+    chansetup_header = "%B{fq ChannelList}%n %B%#Channel         Network    Password   Settings";
+    chansetup_line = "%B{fq ChannelList}%n %B%#{hilight $[15]0} $[10]1 $[10]2 $3";
+    chansetup_footer = "";
+
+
+
+    ### Own msgs
+    own_msg = "%w<$2$[-10]0>%n %w$1";
+    own_msg_channel = "%w<$[-9]1>%n %w$2";
+    own_msg_private = "%w<$[-9]0>%n %ww$1";
+    own_msg_private_query = "%w<$[-11]2>%n %w$1";
+
+
+    ### Hilights
+    pubmsg_me = "%R<%R$2%R$[-10]0%R> %R$1";
+    pubmsg_me_channel = "%R<%R$3%R$[-10]0%R>%R %B[$1] %R$2";
+    pubmsg_hilight = "%R<%R$3%R$0%R$[-10]1%R> %R$0%R$2";
+    pubmsg_hilight_channel = "%R<%R$4%R$0%R$[-10]1%R> %B[$2] %R$0%R$3";
+
+
+    ### normal msgs
+    pubmsg = "<$2$[-10]0> $1";
+    pubmsg_channel = "<$3$[-10]0 %B[$1]>%n $2";
+
+
+
+
+    msg_private = "%m*$[-9]0*%n %m$2";
+    msg_private_query = "%m*$[-9]0*%n %m$2";
+    no_msgs_got = "      %B{fq Error}%n %BYou have not received a message from anyone yet";
+    no_msgs_sent = "      %B{fq Error}%n %BYou have not sent a message to anyone yet";
+    query_start = "      %B{fq Query}%n %BStarting query with $0 on $1";
+    query_stop = "      %B{fq Query}%n %BClosing query with $0";
+    no_query = "      %B{fq Error}%n %BNo query with $0";
+    query_server_changed = "      %B{fq Irssi}%n %BQuery with $0 changed to $1";
+    hilight_header = "";
+    hilight_line = "  %B{fq Highlight}%R %B%#$[-4]0 $1 $2 $3$4";
+    hilight_footer = "";
+    hilight_not_found = "  %B{fq Highlight}%n %BHighlight item {hilight $0} does not exist";
+    hilight_removed = "  %B{fq Highlight}%n %BHighlight item {hilight $0} removed";
+    alias_added = "      %B{fq Alias}%n %BAlias {hilight $0} added";
+    alias_removed = "      %B{fq Alias}%n %BAlias {hilight $0} removed";
+    alias_not_found = "      %B{fq Alias}%n %BAlias {hilight $0} does not exist";
+    aliaslist_header = "";
+    aliaslist_line = "      %B{fq Alias}%n %B%#$[10]0 $1";
+    aliaslist_footer = "";
+    log_opened = "        %B{fq Log}%n %BLog file {hilight $0} opened";
+    log_closed = "        %B{fq Log}%n %BLog file {hilight $0} closed";
+    log_create_failed = "        %B{fq Log}%n %BCouldn't create log file {hilight $0}: $1";
+    log_locked = "        %B{fq Log}%n %BLog file {hilight $0} is locked, probably by another running Irssi";
+    log_not_open = "        %B{fq Log}%n %BLog file {hilight $0} is not open";
+    log_started = "        %B{fq Log}%n %BStarted logging to file {hilight $0}";
+    log_stopped = "        %B{fq Log}%n %BStopped logging to file {hilight $0}";
+    log_list_header = "";
+    log_list = "        %B{fq Log}%n %B%#$0 $1: $2 $3$4";
+    log_list_footer = "";
+    windowlog_file = "        %B{fq Log}%n %BWindow LOGFILE set to {hilight $0}";
+    windowlog_file_logging = "        %B{fq Log}%n %BCan't change window's logfile while log is on";
+    no_away_msgs = "    %B{fq AwayLog}%n %BYou have no messages waiting";
+    away_msgs = "    %B{fq AwayLog}%n %BYou have $1 messages waiting:";
+    module_header = "     %B{fq Module}%n %B%#Module               Type    Submodules";
+    module_line = "     %B{fq Module}%n %B%#$[!20]0 $[7]1 $2";
+    module_footer = "";
+    module_already_loaded = "     %B{fq Module}%n %BModule {hilight $0/$1} already loaded";
+    module_not_loaded = "     %B{fq Module}%n %BModule {hilight $0/$1} is not loaded";
+    module_load_error = "     %r{fq Module}%n %rError loading module {hilight $0/$1}: $2";
+    module_invalid = "     %r{fq Module}%n %r{hilight $0/$1} is not an Irssi module";
+    module_loaded = "     %B{fq Module}%n %BLoaded module {hilight $0/$1}";
+    module_unloaded = "     %B{fq Module}%n %BUnloaded module {hilight $0/$1}";
+    command_unknown = "      %B{fq Error}%n %BUnknown command {hilight $0}";
+    command_ambiguous = "      %B{fq Error}%n %BAmbiguous command {hilight $0}";
+    option_unknown = "      %B{fq Error}%n %BUnknown option {hilight $0}";
+    option_ambiguous = "      %B{fq Error}%n %BAmbiguous option {hilight $0}";
+    option_missing_arg = "      %B{fq Error}%n %BMissing required argument for {hilight $0}";
+    not_enough_params = "      %B{fq Error}%n %BNot enough parameters given";
+    not_connected = "      %B{fq Error}%n %BNot connected to server";
+    not_joined = "      %B{fq Error}%n %BNot joined to any channel";
+    chan_not_found = "      %B{fq Error}%n %BNot joined to this channel";
+    chan_not_synced = "      %B{fq Error}%n %BChannel not fully synchronized yet, try again after a while";
+    illegal_proto = "      %B{fq Error}%n %BCommand isn't designed for the chat protocol of the active server";
+    not_good_idea = "      %B{fq Error}%n %BDoing this is not a good idea. Add -YES if you really mean it";
+    invalid_time = "        %r{fq Set}%n %rInvalid timestamp";
+    invalid_level = "        %r{fq Set}%n %rInvalid message level";
+    invalid_size = "        %r{fq Set}%n %rInvalid size";
+    theme_saved = "      %B{fq Theme}%n %BTheme saved to $0";
+    theme_save_failed = "      %r{fq Theme}%n %rError saving theme to $0: $1";
+    theme_not_found = "      %r{fq Theme}%n %rTheme {hilight $0} not found";
+    theme_changed = "      %B{fq Theme}%n %BNow using theme {hilight $0} ($1)";
+    window_theme = "      %B{fq Theme}%n %BUsing theme {hilight $0} in this window";
+    window_theme_default = "      %B{fq Theme}%n %BNo theme is set for this window";
+    window_theme_changed = "      %B{fq Theme}%n %BUsing now theme {hilight $0} ($1) in this window";
+    window_theme_removed = "      %B{fq Theme}%n %BRemoved theme from this window";
+    format_title = "     %B{fq Format}%n %B{hilight $0}%n%:     %B{fq Format}%n %B {hilight $1}";
+    format_subtitle = "     %B{fq Format}%n %B {hilight $0}";
+    format_item = "     %B{fq Format}%n %B  $0 = \"$1\";";
+    ignored = "     %B{fq Ignore}%n %BIgnoring {hilight $1} from {nick $0}";
+    ignored_options = "     %B{fq Ignore}%n %BIgnoring {hilight $1} from {nick $0} ($2)";
+    unignored = "     %B{fq Ignore}%n %BUnignored {nick $0}";
+    ignore_not_found = "     %B{fq Ignore}%n %B{nick $0} is not being ignored";
+    ignore_no_ignores = "     %B{fq Ignore}%n %BThere are no ignores";
+    ignore_header = "     %B{fq Ignore}%n %B%# Num Mask                             Type       Options";
+    ignore_line = "     %B{fq Ignore}%n %B%#$[-4]0 $[32]1 $[10]2 $3 $4";
+    ignore_footer = "";
+    unknown_chat_protocol = "      %B{fq Error}%n %BUnknown chat protocol {hilight $0}";
+    unknown_chatnet = "      %B{fq Error}%n %BUnknown chat network {hilight $0}";
+    perl_error = "       %R{fq Perl}%n %RPerl error: $0";
+    bind_unknown_id = "       %B{fq Bind}%n %BUnknown bind action {hilight $0}";
+    config_saved = "      %B{fq Irssi}%n %BSaved configuration to file $0";
+    config_reloaded = "      %B{fq Irssi}%n %BReloaded configuration";
+    config_modified = "      %B{fq Irssi}%n %BConfiguration file was modified since irssi was last started - do you want to overwrite the possible changes?";
+    glib_error = "      %R{fq Error}%n %RGLib $0 $1";
+    overwrite_config = "Overwrite config (y/N)? ";
+    set_title = "        %B{fq Set}%n %B{hilight $0}:";
+    set_item = "        %B{fq Set}%n %B  $0 = $1";
+    set_unknown = "        %B{fq Set}%n %BUnknown setting {hilight $0}";
+    set_not_boolean = "      %B{fq Error}%n %BSetting {hilight $0} is not boolean, use /SET";
+    not_toggle = "      %B{fq Error}%n %BValue must be either ON, OFF or TOGGLE";
+    translation_not_found = "      %r{fq Error}%n %rError opening translation table file {hilight $0}: $1";
+    translation_file_error = "      %r{fq Error}%n %rError parsing translation table file {hilight $0}";
+    bind_header = "       %B{fq Bind}%n %B%#Key              Action";
+    bind_list = "       %B{fq Bind}%n %B%#$[!16]0 $1 $2";
+    bind_footer = "";
+    no_completions = " %B{fq Completion}%n %BThere are no completions";
+    completion_removed = " %B{fq Completion}%n %BRemoved completion $0";
+    completion_header = " %B{fq Completion}%n %B%#Key        Value                                    Auto";
+    completion_line = " %B{fq Completion}%n %B%#$[10]0 $[!40]1 $2";
+    completion_footer = "";
+  };
+  "fe-common/irc/dcc" = {
+    own_dcc = "%m)$[-11]1(%n %m$2";
+    own_dcc_action = "            %m*%n %m$0 $1 $2";
+    own_dcc_action_query = "            %m*%n %m$0 $2";
+    own_dcc_ctcp = "   %Y{fq DCC CTCP}%n %YSending DCC CTCP $1 to $0: $2";
+    dcc_msg = "%m($[-11]0)%n %m$1";
+    action_dcc = "            %m*%n %m$0 $1";
+    action_dcc_query = "            %m*%n %m$0 $1";
+    own_dcc_query = "%m)$[-11]1(%n %m$2";
+    dcc_msg_query = "%m($[-11]0)%n %m$1";
+    dcc_ctcp = "   %Y{fq DCC CTCP}%n %YGot $1 %Yrequest from $0: $2";
+    dcc_chat = "        %m{fq DCC}%n %mGot DCC CHAT request from $0 ($1:$2)";
+    dcc_chat_channel = "        %m{fq DCC}%n %mGot DCC CHAT request from $0 ($1:$2) to $3";
+    dcc_chat_not_found = "      %B{fq Error}%n %BNo DCC CHAT connection open to {hilight $0}";
+    dcc_chat_connected = "        %m{fq DCC}%n %mEstablished DCC CHAT connection to $0 ($1:$2)";
+    dcc_chat_disconnected = "        %m{fq DCC}%n %mLost DCC CHAT connection to $0";
+    dcc_send = "        %m{fq DCC}%n %mGot DCC SEND request from $0 ($1:$2): \"$3\", $4 bytes";
+    dcc_send_channel = "        %m{fq DCC}%n %mGot DCC SEND request from $0 ($1:$2) to $5: \"$3\", $4 bytes";
+    dcc_send_exists = "      %B{fq Error}%n %BAlready sending file \"$0\" to $1";
+    dcc_send_no_route = "      %B{fq Error}%n %BNo route to $0 when trying to send file \"$1\"";
+    dcc_send_not_found = "      %B{fq Error}%n %BNo active DCC SEND offer of file \"$1\" to $0 found";
+    dcc_send_file_open_error = "        %m{fq DCC}%n %mCan't open file \"$0\": $1";
+    dcc_send_connected = "        %m{fq DCC}%n %mStarting DCC SEND of file \"$0\" to $1 ($2:$3)";
+    dcc_send_complete = "        %m{fq DCC}%n %mDCC SEND of file \"$0\" to $2 complete, $1 kB in $3 secs, $4 kB/s";
+    dcc_send_aborted = "        %m{fq DCC}%n %mAborted DCC SEND of file \"$0\" to $1";
+    dcc_get_not_found = "      %B{fq Error}%n %BNo pending DCC SEND offers from {hilight $0}";
+    dcc_get_connected = "        %m{fq DCC}%n %mStarting receive of file \"$0\" from $1 ($2:$3)";
+    dcc_get_complete = "        %m{fq DCC}%n %mReceive of file \"$0\" from $2 completed, $1 kB in $3 secs, $4 kB/s";
+    dcc_get_aborted = "        %m{fq DCC}%n %mAborted receive of file \"$0\" from $1";
+    dcc_get_write_error = "      %B{fq Error}%n %BError writing to file \"$0\": $1";
+    dcc_unknown_ctcp = "   %Y{fq DCC CTCP}%n %YGot unknown $1 %Yrequest from $0: $2";
+    dcc_unknown_reply = "        %m{fq DCC}%n %mGot unknown DCC reply $0%N%Y from $1 ($2%N%Y)";
+    dcc_unknown_type = "      %B{fq Error}%n %BUnknown DCC type {hilight $0}";
+    dcc_invalid_ctcp = "   %Y{fq DCC CTCP}%n %YGot invalid $1 %Yrequest from $0: $2";
+    dcc_connect_error = "        %m{fq DCC}%n %mCan't connect to $0:$1";
+    dcc_cant_create = "      %B{fq Error}%n %BCan't create file \"$0\": $1";
+    dcc_rejected = "        %m{fq DCC}%n %mDCC $0 was rejected by $1 ($2)";
+    dcc_request_send = "        %m{fq DCC}%n %mSending DCC $0 request to $1: $2";
+    dcc_close = "        %m{fq DCC}%n %mAborting DCC $0 to $1 ($2)";
+    dcc_lowport = "        %r{fq DCC}%n %rWarning: Port $0 ($1) sent with DCC request is a privileged port.";
+    dcc_list_header = "        %m{fq DCC}%n %mDCC connections:";
+    dcc_list_line_chat = "        %m{fq DCC}%n %m%#$0 $1";
+    dcc_list_line_file = "        %m{fq DCC}%n %m%#$0 $1: $2 of $3 ($4%%) - $5kB/s - ETA $7 - $6";
+    dcc_list_line_queued_send = "        %m{fq DCC}%n %m%#$0 SEND: (queued) - $2";
+    dcc_list_footer = "";
+    dcc_list_line_server = "        %m{fq DCC}%n %m%#$0: Port $[-5]1 - Send $[-3]2 - Chat $[-3]3 - Fserve $[-3]4";
+    dcc_server_started = "        %m{fq DCC}%n %mDCC SERVER started on port $0";
+    dcc_server_closed = "        %m{fq DCC}%n %mDCC SERVER on port $0 closed";
+  };
+  "fe-common/irc/notifylist" = {
+    notify_join = "     %B{fq Notify}%n %B{hilight $0} ($1%N%B@$2) [$3] has connected to $4";
+    notify_part = "     %B{fq Notify}%n %B{hilight $0} has disconnected from $4";
+    notify_away = "     %B{fq Notify}%n %B{hilight $0} [$5] ($1%N%B@$2) [$3] is now away: $4";
+    notify_unaway = "     %B{fq Notify}%n %B{hilight $0} ($1%N%B@$2) [$3] is no longer away on $4";
+    notify_unidle = "     %B{fq Notify}%n %B{hilight $0} ($1%N%B@$2) [$3] just stopped idling on $5";
+    notify_online = "     %B{fq Notify}%n %BOn $0: {hilight $1}";
+    notify_offline = "     %B{fq Notify}%n %BOffline: $0";
+    notify_list = "     %B{fq Notify}%n %B%#$0: $1 $2 $3";
+    notify_list_empty = "     %B{fq Notify}%n %BThe notify list is empty";
+  };
+  "fe-common/icq" = {
+    mode_change = "        %B{fq ICQ}%n %B{hilight $0} changed mode to $1";
+    nosuchnick = "       %B{fq ICQ}%n %BNo such nick";
+  };
+  "core/recode" = {
+    recode_not_channel_or_query = "      %B{fq Error}%n %BThe current window is not a channel or query window";
+    recode_error = "      %B{fq Error}%n %BError converting \"$0\" from $2 to $3: $1";
+    recode_added = "     %B{fq Recode}%n %BAdded {hilight $0} with {hilight $1} encoding";
+    recode_removed = "     %B{fq Recode}%n %BRemoved recoding target {hilight $0}";
+    recode_not_found = "      %B{fq Error}%n %BRecoding target {hilight $0} does not exist";
+    recode_list_header = " %B{fq RecodeList}%n %B%#Target                         Character set";
+    recode_entry = " %B{fq RecodeList}%n %B%#%|$[!30]0 $1";
+  };
+  "Irssi::Script::uptime" = {
+    uptime = "     %B{fq Uptime}%n %BIrssi Uptime: $0 ($1)";
+  };
+};
