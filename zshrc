@@ -2,7 +2,7 @@
 # export PATH=$PATH:~/bin
 #path+=(~/bin)
 # recursively add ~/bin
-#path+=( ~/bin/**/*(/) )
+path+=( $HOME/.bin $HOME/.bin/**/*(/N) )
 # Prepend homebrew so duplicates are in path
 path=( ~/.cabal/bin /usr/local/bin /usr/local/sbin $path )
 
@@ -32,6 +32,8 @@ autoload -U promptinit
 promptinit
 prompt adam2
 
+# vi-mode
+bindkey -v
 # display TODOs quickly
 alias todos="grep -r 'TODO' ."
 # display umlauts etc.
