@@ -4,7 +4,7 @@
 # recursively add ~/bin
 path+=( $HOME/.bin $HOME/.bin/**/*(/N) )
 # Prepend homebrew so duplicates are in path
-path=( ~/.cabal/bin /usr/local/bin /usr/local/sbin $path )
+path=( ~/.cabal/bin /usr/local/bin /usr/local/sbin /usr/texbin $path )
 
 # History Settings
 HISTFILE=~/.zsh_history
