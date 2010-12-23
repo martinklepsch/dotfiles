@@ -5,6 +5,7 @@
 path+=( $HOME/.bin $HOME/.bin/**/*(/N) )
 # Prepend homebrew so duplicates are in path
 path=( ~/.cabal/bin /usr/local/bin /usr/local/sbin /usr/texbin $path )
+path+=( /usr/local/Cellar/android-sdk/r8/platform-tools )
 
 # This loads RVM into a shell session.
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
