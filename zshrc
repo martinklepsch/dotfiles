@@ -44,11 +44,9 @@ prompt adam2
 bindkey -v
 # display TODOs quickly
 alias todos="grep -r 'TODO' ."
-# display umlauts etc.
-#setopt combining
-setopt combining_chars
 
 #colors
+autoload colors ; colors
 export CLICOLOR=1
 export LS_COLORS="exfxcxdxbxegedabagacad"
 alias ls='ls -G -F'
