@@ -1,9 +1,0 @@
-#!/bin/bash
-mkdir /tmp/chromedownload
-cd /tmp/chromedownload 
-curl http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/LATEST -o /tmp/chromedownload/LATEST --silent
-LATEST=`cat /tmp/chromedownload/LATEST` 
-curl --progress-bar http://build.chromium.org/f/chromium/snapshots/chromium-rel-mac/$LATEST/chrome-mac.zip -o /tmp/chromedownload/chrome-mac.zip 
-unzip -qq /tmp/chromedownload/chrome-mac.zip 
-cp -R /tmp/chromedownload/chrome-mac/Chromium.app /Applications
-rm -rf /tmp/chromedownload
