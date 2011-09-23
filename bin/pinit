@@ -6,12 +6,11 @@ rm -rf $configdir
 
 #
 # This script is used to install my configs on new systems.
-# There might be a version that does not require git.
-# Also arguments could specify the configs that should be installed.
 #
 
 git clone git://github.com/mklappstuhl/dotfiles.git $configdir 2&>1 >/dev/null
 
+# IF .gitmodules exists...
 # load vim, zsh and dot-files submodules
 cd $configdir
 print -n  "$fg[green]Cloning configs..."
