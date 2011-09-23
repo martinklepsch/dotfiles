@@ -1,52 +1,26 @@
-# # Include user bin
-# export PATH=$PATH:~/bin
-#path+=(~/bin)
-# recursively add ~/bin
-path+=( $HOME/.bin $HOME/.bin/**/*(/N) )
-# Prepend homebrew so duplicates are in path
-path=( ~/.cabal/bin /usr/local/bin /usr/local/sbin /usr/texbin $path )
-path+=( /usr/local/Cellar/android-sdk/r8/platform-tools )
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
 
-# This loads RVM into a shell session.
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-source "$HOME/.rvm/scripts/rvm"
+# Set to the name theme to load.
+# Look in ~/.oh-my-zsh/themes/
+export ZSH_THEME="mklappstuhl"
 
+# Set to this to use case-sensitive completion
+# export CASE_SENSITIVE="true"
 
-# History Settings
-HISTFILE=~/.zsh_history
-HISTSIZE=50000
-SAVEHIST=50000
+# Comment this out to disable weekly auto-update checks
+# export DISABLE_AUTO_UPDATE="true"
 
-# Aliases
-alias v=vim
-#TERM for TMUX
-if [[ -n $TMUX ]]; then
-	TERM=screen-256color
-fi
+# Uncomment following line if you want to disable colors in ls
+# export DISABLE_LS_COLORS="true"
 
-#if [[ -z $TMUX ]] ; then 
-	#tmux attach; 
-#fi
+# Uncomment following line if you want to disable autosetting terminal title.
+# export DISABLE_AUTO_TITLE="true"
 
-#nohup ~/.zsh/scripts/pbcopy_server.zsh &
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git vi-mode vagrant)
 
-source ~/.zsh/custom/z-zsh/z.sh
-function precmd () {
-	z --add "$(pwd -P)"
-}
+source $ZSH/oh-my-zsh.sh
 
-# load prompts
-autoload -U promptinit
-promptinit
-prompt adam2
-
-# vi-mode
-bindkey -v
-# display TODOs quickly
-alias todos="grep -r 'TODO' ."
-
-#colors
-autoload colors ; colors
-export CLICOLOR=1
-export LS_COLORS="exfxcxdxbxegedabagacad"
-alias ls='ls -G -F'
+# Customize to your needs...
