@@ -1,6 +1,7 @@
 !!URXVT related things
 urxvt*scrollBar:false
-urxvt*font: xft:inconsolata:size=11
+urxvt*font: xft:DejaVu Sans Mono:size=10
+URxvt*saveLines: 12000
 !!urxvt*font: -*-profont-*-*-*-*-12-*-*-*-*-*-iso8859-1
 
 !! drop in Solarized colorscheme for Xresources/Xdefaults
