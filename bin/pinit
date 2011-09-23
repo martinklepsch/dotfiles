@@ -8,21 +8,21 @@ rm -rf $configdir
 # This script is used to install my configs on new systems.
 #
 
-git clone git://github.com/mklappstuhl/dotfiles.git $configdir 2&>1 >/dev/null
+git clone git://github.com/mklappstuhl/dotfiles.git $configdir
 
 # IF .gitmodules exists...
 # load vim, zsh and dot-files submodules
 cd $configdir
 print -n  "$fg[green]Cloning configs..."
-git submodule init 2&>1 >/dev/null
-git submodule update 2&>1 >/dev/null
+git submodule init
+git submodule update
 print " Done.$fg[white]"
 
 # load vim submodules a.k.a. bundles
 cd $configdir/vim
 print -n "$fg[green]Cloning vim bundles..."
-git submodule init 2&>1 >/dev/null
-git submodule update 2&>1 >/dev/null
+git submodule init
+git submodule update
 print " Done.$fg[white]"
 
 cd $configdir/bin/dot-files
