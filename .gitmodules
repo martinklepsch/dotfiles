@@ -6,4 +6,4 @@
 	url = git://github.com/mklappstuhl/dot-files.git
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
-	url = git://github.com/robbyrussell/oh-my-zsh.git
+	url = git://github.com/mklappstuhl/oh-my-zsh.git
