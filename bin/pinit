@@ -26,11 +26,15 @@ if [ $? != "0" ];
 print " Done.$fg[white]"
 
 # load vim submodules a.k.a. bundles
-#cd $configdir/vim
-#print -n "$fg[green]Cloning vim bundles..."
-#git submodule init
-#git submodule update
-#print " Done.$fg[white]"
+cd $configdir/vim
+print -n "$fg[green]Cloning vim bundles...$fg[white]"
+git submodule init
+if [ $? != "0" ];
+  then print -n  "$fg[red]VIM: Submodule initialization failed...$fg[white]"; exit 1; fi
+git submodule update
+if [ $? != "0" ];
+  then print -n  "$fg[red]VIM: Submodule update failed...$fg[white]"; exit 1; fi
+print "$fg[green]Done.$fg[white]"
 
 cd $configdir/bin/dot-files
 chmod +x dot-files
