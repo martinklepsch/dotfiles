@@ -19,8 +19,24 @@ export ZSH_THEME="mklappstuhl"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode vagrant)
+plugins=(git vi-mode vagrant zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# Aliases
+alias r="ranger"
+alias vawesome="vim ~/.config/awesome/rc.lua"
+alias alert="vlc ~/Music/Parov\ Stelar/Parov_Stelar-Coco/210-parov_stelar-monster_\(original_version\).mp3 &"
+alias rake="noglob rake"
+alias movie="xset s off -dpms"
+
+# SSH Key Management
+eval `keychain --eval github_mklappstuhl cct_mklepsch`
+
+# Include user bin recursively
+path+=( $HOME/.bin $HOME/.bin/**/*(/N) )
+# Include rbenv binaries
+path+=( $HOME/.rbenv/bin )
+eval "$(rbenv init -)"
