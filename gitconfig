@@ -1,0 +1,43 @@
+[gui]
+
+[core]
+	editor = vim
+	excludesfile = /Users/martin/.gitignore
+
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+	ui = auto
+
+[user]
+	name = Martin Klepsch
+	email = martinklepsch@gmail.com
+
+[github]
+	user = mklappstuhl
+
+[diff]
+	tool = vimdiff
+[pager]
+	diff =
+[difftool]
+	prompt = false
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = martinklepsch@googlemail.com
+
+[alias]
+	l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  currentbranch = !git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2
+  root = rev-parse --show-toplevel
+  st = status
+  pr = pull --rebase
+  ds = diff --staged
+  cm = commit -m
+  co = checkout
+
+[push]
+	default = simple
