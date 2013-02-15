@@ -20,7 +20,7 @@
 [diff]
 	tool = vimdiff
 [pager]
-	diff =
+	diff = less
 [difftool]
 	prompt = false
 [sendemail]
@@ -38,6 +38,7 @@
   ds = diff --staged
   cm = commit -m
   co = checkout
-
+  d = diff
+  duff = diff
 [push]
-	default = simple
+  default = tracking
