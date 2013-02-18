@@ -40,5 +40,8 @@
   co = checkout
   d = diff
   duff = diff
+  puff = pull --ff --ff-only
 [push]
   default = tracking
+[merge]
+  ff = false
