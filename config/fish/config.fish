@@ -21,8 +21,9 @@ set PATH "/usr/local/sbin" $PATH
 set PATH "/usr/sbin" $PATH
 set PATH "/sbin" $PATH
 # Ruby Stuff
-set PATH "$HOME/.rbenv/shims" $PATH
-set PATH "$HOME/.rbenv/bin" $PATH
+set PATH $HOME/.rbenv/bin $PATH
+set PATH $HOME/.rbenv/shims $PATH
+rbenv rehash >/dev/null ^&1
 # Perl Stuff
 set PATH "/usr/bin/vendor_perl" $PATH
 set PATH "/usr/bin/core_perl" $PATH
@@ -30,8 +31,6 @@ set PATH "/usr/bin/core_perl" $PATH
 
 #[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] &&
 # . $HOME/.tmuxinator/scripts/tmuxinator
-
-
 
 set -g -x fish_greeting ''
 set -g -x EDITOR vim
