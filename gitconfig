@@ -34,13 +34,17 @@
   currentbranch = !git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2
   root = rev-parse --show-toplevel
   st = status
+  sync = "!git stash; git pr; git p; git stash pop"
   pr = pull --rebase
+  p = push
+  ps = push staging master:new_mgmt_stuff
   ds = diff --staged
   cm = commit -m
   co = checkout
   d = diff
   duff = diff
   puff = pull --ff --ff-only
+  ap = add -p
 [push]
   default = tracking
 [merge]
