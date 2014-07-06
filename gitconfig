@@ -12,7 +12,7 @@
 
 [user]
   name = Martin Klepsch
-  email = martinklepsch@gmail.com
+  email = martinklepsch@googlemail.com
 
 [github]
   user = mklappstuhl
@@ -31,17 +31,18 @@
 
 [alias]
   l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  report = "!git l --since='7 days ago'"
   currentbranch = !git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2
   root = rev-parse --show-toplevel
   st = status
   sync = "!git stash; git pr; git p; git stash pop"
   pr = pull --rebase
   p = push
-  ps = push staging master:new_mgmt_stuff
   ds = diff --staged
   cm = commit -m
   co = checkout
   d = diff
+  dp = "!git fetch production; git l production/master..master"
   duff = diff
   puff = pull --ff --ff-only
   ap = add -p
@@ -50,3 +51,6 @@
   default = tracking
 [merge]
   ff = false
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
