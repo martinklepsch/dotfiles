@@ -14,31 +14,19 @@ alias et 'vim ~/.tmux.conf'
 alias ev 'vim ~/.vim/vimrc'
 alias be 'bundle exec'
 
-# }}}
-# Environment variables {{{
+alias tma 'tmux attach -t'
+alias tmn 'tmux new -s'
 
-set PATH "/usr/local/sbin" $PATH
-set PATH "/usr/sbin" $PATH
-set PATH "/sbin" $PATH
-# Ruby Stuff
-set PATH $HOME/.rbenv/bin $PATH
-set PATH $HOME/.rbenv/shims $PATH
-rbenv rehash >/dev/null ^&1
-# Perl Stuff
-set PATH "/usr/bin/vendor_perl" $PATH
-set PATH "/usr/bin/core_perl" $PATH
+alias ovd 'overcast digitalocean'
+alias ovr 'overcast run'
 
-
-#[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] &&
-# . $HOME/.tmuxinator/scripts/tmuxinator
-
+# USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
 set -g -x fish_greeting ''
 set -g -x EDITOR vim
 set -g -x XDG_CONFIG_HOME ~/.config
 set -g -x COMMAND_MODE unix2003
 set -g -x RUBYOPT rubygems
-# TODO MKL Actual thing here
-# set -g -x CLASSPATH "$CLASSPATH:/usr/local/Cellar/clojure-contrib/1.2.0/clojure-contrib.jar"
+set -g -x DOCKER_HOST tcp://localhost:4243
 
 
 alias ...   'cd ../..'
@@ -62,23 +50,25 @@ set normal (set_color normal)
 set magenta (set_color magenta)
 set yellow (set_color yellow)
 set green (set_color green)
+set red (set_color red)
 set gray (set_color -o black)
 
 # Fish git prompt
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showstashstate 'yes'
+# set __fish_git_prompt_showdirtystate 'yes'
+# set __fish_git_prompt_showstashstate 'yes'
 # set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showupstream 'yes'
 set __fish_git_prompt_color_branch yellow
-#set __fish_git_prompt_color_upstream green
+set __fish_git_prompt_color_upstream_ahead green
+set __fish_git_prompt_color_upstream_behind red
 
 # Status Chars
 set __fish_git_prompt_char_dirtystate '⚡'
 set __fish_git_prompt_char_stagedstate '→'
 # set __fish_git_prompt_char_untrackedfiles '☡'
 set __fish_git_prompt_char_stashstate '↩'
-set __fish_git_prompt_char_upstream_ahead '↑'
-set __fish_git_prompt_char_upstream_behind '↓'
+set __fish_git_prompt_char_upstream_ahead '+'
+set __fish_git_prompt_char_upstream_behind '-'
 
 
 function fish_prompt
@@ -105,4 +95,4 @@ function fish_prompt
   set_color normal
 end
 
-
+overcast aliases  | .
