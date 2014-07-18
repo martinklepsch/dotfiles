@@ -103,6 +103,7 @@
 
 (require 'recentf)
 (recentf-mode 1)
+
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
   (interactive)
@@ -157,13 +158,14 @@
 (eval-after-load "paredit"
   '(progn (require 'evil-paredit)
           (add-hook 'paredit-mode-hook 'evil-paredit-mode)))
-(add-hook 'clojure-mode-hook (lambda () (paredit-mode 1)))
+
+(add-to-list 'git-gutter:update-hooks 'after-save-hook)
+(add-hook 'clojure-mode-hook    (lambda () (paredit-mode 1)))
 (add-hook 'cider-repl-mode-hook (lambda () (paredit-mode 1)))
 (add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode 1)))
 
 (require 'git-gutter)
 (global-git-gutter-mode t)
-
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
