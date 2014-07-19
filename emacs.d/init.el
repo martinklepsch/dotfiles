@@ -4,9 +4,8 @@
                      clojure-mode
                      evil
                      evil-leader
-                     evil-paredit
-                     paredit
                      exec-path-from-shell
+                     smartparens
                      flx-ido
                      projectile
                      rainbow-delimiters
@@ -153,16 +152,8 @@
 
 (require 'icomplete)
 
-(require 'paredit)
-;; Load evil-paredit along with paredit.
-(eval-after-load "paredit"
-  '(progn (require 'evil-paredit)
-          (add-hook 'paredit-mode-hook 'evil-paredit-mode)))
-
-(add-to-list 'git-gutter:update-hooks 'after-save-hook)
-(add-hook 'clojure-mode-hook    (lambda () (paredit-mode 1)))
-(add-hook 'cider-repl-mode-hook (lambda () (paredit-mode 1)))
-(add-hook 'emacs-lisp-mode-hook (lambda () (paredit-mode 1)))
+(smartparens-global-mode t)
+; https://github.com/Fuco1/smartparens/wiki/Example-configuration
 
 (require 'git-gutter)
 (global-git-gutter-mode t)
