@@ -2,6 +2,7 @@
 ; list the packages you want
 (setq package-list '(cider
                      clojure-mode
+                     markdown-mode
                      evil
                      evil-leader
                      exec-path-from-shell
@@ -11,8 +12,13 @@
                      rainbow-delimiters
                      magit
                      git-gutter
+                     gist
                      solarized-theme
                      zenburn-theme))
+
+; things to try
+; flash sexp-eval: https://github.com/samaaron/nrepl-eval-sexp-fu
+; M-x ido:         https://github.com/nonsequitur/smex
 
 ; list the repositories containing them
 (add-to-list 'package-archives
