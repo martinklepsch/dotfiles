@@ -59,40 +59,18 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (unless (display-graphic-p) (menu-bar-mode -1))
-(load-theme 'solarized-dark t)
-(set-default-font "Monaco-13")
-
-; Make sure $PATH is the one in user shell
-; (file-name-nondirectory (getenv "SHELL"))
-(require 'exec-path-from-shell)
-(setq exec-path-from-shell-arguments (delete "-i" exec-path-from-shell-arguments))
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-
-; (defun -interpose (sep list)
-;   "Returns a new list of all elements in LIST separated by SEP."
-;   (let (result)
-;     (when list
-;       (setq result (cons (car list) result))
-;       (setq list (cdr list)))
-;     (while list
-;       (setq result (cons (car list) (cons sep result)))
-;       (setq list (cdr list)))
-;     (nreverse result)))
-
-; (when (eq system-type 'darwin)
-;   (exec-path-from-shell-initialize)
-;   (when (equal (file-name-nondirectory (getenv "SHELL")) "fish")
-;     (setq exec-path (split-string (car exec-path) " "))
-;     (let ((fixed-path (apply 'concat (-interpose ":" (split-string (getenv "PATH") " ")))))
-;          (setenv "PATH" fixed-path)
-;          (setq eshell-path-env fixed-path))))
-
-;; scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
 (setq scroll-step 1)
+
+(load-theme 'solarized-dark t)
+(set-default-font "Monaco-13")
+
+(require 'exec-path-from-shell)
+(setq exec-path-from-shell-arguments (delete "-i" exec-path-from-shell-arguments))
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 (require 'projectile)
 (projectile-global-mode)
