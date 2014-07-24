@@ -6,12 +6,14 @@ alias paththis 'set PATH (pwd) $PATH'
 
 # shorten often used commands
 alias g 'git'
+alias e 'emacsclient -c -a ""'
 
-alias ef 'vim ~/.config/fish/config.fish'
-alias ea 'vim ~/.config/awesome/rc.lua'
-alias eg 'vim ~/.gitconfig'
-alias et 'vim ~/.tmux.conf'
-alias ev 'vim ~/.vim/vimrc'
+alias ef 'e ~/.config/fish/config.fish'
+alias ea 'e ~/.config/awesome/rc.lua'
+alias eg 'e ~/.gitconfig'
+alias et 'e ~/.tmux.conf'
+alias ev 'e ~/.vim/vimrc'
+alias ee 'e ~/.emacs.d/init.el'
 alias be 'bundle exec'
 
 alias tma 'tmux attach -t'
