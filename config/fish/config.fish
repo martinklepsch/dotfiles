@@ -6,7 +6,10 @@ alias paththis 'set PATH (pwd) $PATH'
 
 # shorten often used commands
 alias g 'git'
-alias e 'emacsclient -c -a ""'
+function e
+  /Applications/Emacs.app/Contents/MacOS/bin-x86_64-10.9/emacsclient -a "" -n $argv
+end
+# alias e 'emacsclient -a "" -c'
 
 alias ef 'e ~/.config/fish/config.fish'
 alias ea 'e ~/.config/awesome/rc.lua'
