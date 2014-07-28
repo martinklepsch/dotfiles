@@ -130,9 +130,16 @@
 (setq evil-want-C-u-scroll t
       evil-want-C-w-in-emacs-state t)
 
+(defun my-move-key (keymap-from keymap-to key)
+     "Moves key binding from one keymap to another, deleting from the old location. "
+     (define-key keymap-to key (lookup-key keymap-from key))
+     (define-key keymap-from key nil))
+
 (require 'evil)
 (evil-mode t)
 
+(my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
+(my-move-key evil-motion-state-map evil-normal-state-map " ")
 (define-key evil-insert-state-map "k" #'cofi/maybe-exit)
 
 (evil-define-command cofi/maybe-exit ()
