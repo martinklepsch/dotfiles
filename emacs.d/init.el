@@ -49,6 +49,12 @@
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq dotfiles-dir (file-name-directory
+                    (or (buffer-file-name) load-file-name)))
+;; Write backup files to own directory
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name (concat dotfiles-dir "bak")))))
+
 ; General UI stuff
 (global-linum-mode t)
 (global-hl-line-mode t)
