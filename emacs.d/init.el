@@ -10,11 +10,13 @@
                      smartparens
                      flx-ido
                      smex
+                     direx
                      projectile
                      rainbow-delimiters
                      magit
                      git-gutter
                      gist
+                     golden-ratio
                      noctilux-theme
                      solarized-theme
                      zenburn-theme))
@@ -70,16 +72,31 @@
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
 (setq scroll-step 1)
-(server-start)
+
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+(setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
 
 (setq-default show-trailing-whitespace t)
-(setq whitespace-style '(face trailing))
+(add-hook 'term-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 (setq-default visible-bell 'top-bottom)
 (setq-default default-tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-(load-theme 'noctilux t)
-(set-default-font "M+ 1mn-14")
+(load-theme 'solarized-dark t)
+(set-default-font "M+ 1mn-15")
+
+;; See http://www.delorie.com/gnu/docs/elisp-manual-21/elisp_620.html
+;; and http://www.gnu.org/software/emacs/manual/elisp.pdf
+;; disable line wrap
+(setq default-truncate-lines t)
+;; make side by side buffers function the same as the main window
+(setq truncate-partial-width-windows nil)
+;; Add F12 to toggle line wrap
+;; TODO REBIND THIS (global-set-key [f12] 'toggle-truncate-lines)
+
+(require 'golden-ratio)
 
 (require 'exec-path-from-shell)
 (setq exec-path-from-shell-arguments
@@ -87,10 +104,9 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(require 'smex) ; Not needed if you use package.el
+(require 'smex)   ; Not needed if you use package.el
 (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
                   ; when Smex is auto-initialized on its first run.
-
 (global-set-key (kbd "M-x") 'smex)
 
 (require 'projectile)
@@ -118,25 +134,27 @@
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key
+  "." 'eval-buffer
   "r" 'recentf-ido-find-file
   "," 'projectile-find-file
+  "t" 'direx:jump-to-directory
   "c" 'comment-or-uncomment-region
+  "g" 'golden-ratio
   "w" 'save-buffer
   "b" 'switch-to-buffer
   "k" 'kill-buffer
   ">" 'sp-slurp-hybrid-sexp) ; TODO paredit keybindings
 
-
-(setq evil-want-C-u-scroll t
+(setq evil-want-C-u-scroll         t
       evil-want-C-w-in-emacs-state t)
+
+(require 'evil)
+(evil-mode t)
 
 (defun my-move-key (keymap-from keymap-to key)
      "Moves key binding from one keymap to another, deleting from the old location. "
      (define-key keymap-to key (lookup-key keymap-from key))
      (define-key keymap-from key nil))
-
-(require 'evil)
-(evil-mode t)
 
 (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (my-move-key evil-motion-state-map evil-normal-state-map " ")
