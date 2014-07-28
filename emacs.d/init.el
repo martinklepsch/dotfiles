@@ -3,16 +3,19 @@
 (setq package-list '(cider
                      clojure-mode
                      markdown-mode
+                     sass-mode
                      evil
                      evil-leader
                      exec-path-from-shell
                      smartparens
                      flx-ido
+                     smex
                      projectile
                      rainbow-delimiters
                      magit
                      git-gutter
                      gist
+                     noctilux-theme
                      solarized-theme
                      zenburn-theme))
 
@@ -58,9 +61,7 @@
 ; General UI stuff
 (global-linum-mode t)
 (global-hl-line-mode t)
-(setq default-tab-width 2)
 (setq inhibit-startup-message t)
-(setq visible-bell 'top-bottom)
 (setq x-underline-at-descent-line t)
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -69,14 +70,28 @@
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
 (setq scroll-step 1)
+(server-start)
 
-(load-theme 'solarized-dark t)
-(set-default-font "Monaco-13")
+(setq-default show-trailing-whitespace t)
+(setq whitespace-style '(face trailing))
+(setq-default visible-bell 'top-bottom)
+(setq-default default-tab-width 2)
+(setq-default indent-tabs-mode nil)
+
+(load-theme 'noctilux t)
+(set-default-font "M+ 1mn-14")
 
 (require 'exec-path-from-shell)
-(setq exec-path-from-shell-arguments (delete "-i" exec-path-from-shell-arguments))
+(setq exec-path-from-shell-arguments
+  (delete "-i" exec-path-from-shell-arguments))
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+(require 'smex) ; Not needed if you use package.el
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                  ; when Smex is auto-initialized on its first run.
+
+(global-set-key (kbd "M-x") 'smex)
 
 (require 'projectile)
 (projectile-global-mode)
@@ -85,8 +100,7 @@
 (require 'flx-ido)
 (ido-mode 1)
 (ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
+(flx-ido-mode 1) ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 
@@ -100,7 +114,6 @@
     (when file
       (find-file file))))
 
-;; Making Emacs better
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
@@ -110,7 +123,8 @@
   "c" 'comment-or-uncomment-region
   "w" 'save-buffer
   "b" 'switch-to-buffer
-  "k" 'kill-buffer)
+  "k" 'kill-buffer
+  ">" 'sp-slurp-hybrid-sexp) ; TODO paredit keybindings
 
 
 (setq evil-want-C-u-scroll t
@@ -138,7 +152,7 @@
                                                (list evt))))))))
 
 (require 'rainbow-delimiters nil)
-(rainbow-delimiters-mode 1)
+(global-rainbow-delimiters-mode t)
 
 (require 'icomplete)
 
@@ -146,7 +160,10 @@
 ; https://github.com/Fuco1/smartparens/wiki/Example-configuration
 
 (require 'git-gutter)
-(global-git-gutter-mode t)
+(git-gutter:linum-setup)
+(global-git-gutter-mode +1)
+(add-to-list 'git-gutter:update-hooks 'after-save-hook) ; this should be unnecessary
+; staging via git-gutter not working?
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
