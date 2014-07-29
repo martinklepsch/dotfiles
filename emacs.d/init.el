@@ -130,6 +130,9 @@
     (when file
       (find-file file))))
 
+(setq evil-want-C-w-in-emacs-state t)
+(setq evil-want-C-u-scroll t)
+
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
@@ -145,9 +148,6 @@
   "k" 'kill-buffer
   ">" 'sp-slurp-hybrid-sexp) ; TODO paredit keybindings
 
-(setq evil-want-C-u-scroll         t
-      evil-want-C-w-in-emacs-state t)
-
 (require 'evil)
 (evil-mode t)
 
@@ -158,6 +158,10 @@
 
 (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 (my-move-key evil-motion-state-map evil-normal-state-map " ")
+
+(global-set-key (kbd "C-k") (lambda () (interactive) (previous-line 10)))
+(global-set-key (kbd "C-j") (lambda () (interactive) (next-line 10)))
+
 (define-key evil-insert-state-map "k" #'cofi/maybe-exit)
 
 (evil-define-command cofi/maybe-exit ()
