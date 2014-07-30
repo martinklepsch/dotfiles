@@ -111,7 +111,7 @@
 
 (require 'projectile)
 (projectile-global-mode)
-(setq projectile-enable-caching 0)
+(setq projectile-enable-caching nil)
 
 (require 'flx-ido)
 (ido-mode 1)
