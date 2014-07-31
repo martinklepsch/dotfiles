@@ -1,0 +1,21 @@
+#! /bin/sh
+function e() {
+    if [ -z `pgrep Emacs` ]; then
+        env LANG=C open -a Emacs "$@"
+        echo "emacs started"
+        return
+    fi
+
+    echo "emacs running"
+    local client="/usr/local/bin/emacsclient"
+    local uid=`id -u`
+    local socket="$TMPDIR"/emacs"$uid"/server
+
+    if [ ! -e "$socket" ]; then
+        socket=`getconf DARWIN_USER_TEMP_DIR`emacs"$uid"/server
+    fi
+
+    $client -n -s $socket "$@"
+}
+
+e $1
