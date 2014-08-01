@@ -72,11 +72,12 @@
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
 (setq scroll-step 1)
+(setq column-number-mode t)
+(setq ns-pop-up-frames nil)
 
 (require 'server)
 (unless (server-running-p)
   (server-start))
-(setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
 
 (setq-default show-trailing-whitespace t)
 (add-hook 'term-mode-hook (lambda () (setq show-trailing-whitespace nil)))
