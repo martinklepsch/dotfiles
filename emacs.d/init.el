@@ -152,13 +152,17 @@
 (require 'evil)
 (evil-mode t)
 
-(defun my-move-key (keymap-from keymap-to key)
-     "Moves key binding from one keymap to another, deleting from the old location. "
-     (define-key keymap-to key (lookup-key keymap-from key))
-     (define-key keymap-from key nil))
+(evil-declare-key 'normal direx:direx-mode-map (kbd "r")   'direx:refresh-whole-tree)
+(evil-declare-key 'normal direx:direx-mode-map (kbd "o")   'direx:find-item-other-window)
+(evil-declare-key 'normal direx:direx-mode-map (kbd "f")   'direx:find-item)
+(evil-declare-key 'normal direx:direx-mode-map (kbd "RET") 'direx:maybe-find-item)
+(evil-declare-key 'normal direx:direx-mode-map (kbd "V")   'direx:view-item-other-window)
+(evil-declare-key 'normal direx:direx-mode-map (kbd "v")   'direx:view-item)
+(evil-declare-key 'normal direx:direx-mode-map (kbd "g")   'direx:refresh-whole-tree)
+(evil-declare-key 'normal direx:file-map       (kbd "+")   'direx:create-directory)
 
-(my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
-(my-move-key evil-motion-state-map evil-normal-state-map " ")
+(evil-declare-key 'normal cider-mode-map (kbd "cpp") 'cider-eval-defun-at-point)
+(evil-declare-key 'motion cider-mode-map (kbd "cpp") 'cider-eval-defun-at-point)
 
 (global-set-key (kbd "C-k") (lambda () (interactive) (previous-line 10)))
 (global-set-key (kbd "C-j") (lambda () (interactive) (next-line 10)))
