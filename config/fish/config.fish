@@ -23,6 +23,17 @@ alias ovd 'overcast digitalocean'
 alias ovr 'overcast run'
 
 # USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
+set PATH "/usr/local/sbin" $PATH
+set PATH "/usr/sbin" $PATH
+set PATH "/sbin" $PATH
+# Ruby Stuff
+set PATH $HOME/.rbenv/bin $PATH
+set PATH $HOME/.rbenv/shims $PATH
+rbenv rehash >/dev/null ^&1
+# Perl Stuff
+set PATH "/usr/bin/vendor_perl" $PATH
+set PATH "/usr/bin/core_perl" $PATH
+
 set -g -x fish_greeting ''
 set -g -x EDITOR vim
 set -g -x XDG_CONFIG_HOME ~/.config
