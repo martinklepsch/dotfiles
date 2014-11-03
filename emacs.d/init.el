@@ -121,16 +121,6 @@
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
 
-(require 'recentf)
-(recentf-mode 1)
-
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-
 (setq evil-want-C-w-in-emacs-state t)
 (setq evil-want-C-u-scroll t)
 
@@ -139,7 +129,7 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "." 'eval-buffer
-  "r" 'recentf-ido-find-file
+  "r" 'helm-recentf
   "," 'projectile-find-file
   "t" 'direx:jump-to-directory
   "c" 'comment-or-uncomment-region
