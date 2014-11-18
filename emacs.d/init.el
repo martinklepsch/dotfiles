@@ -123,6 +123,14 @@
 
 (setq evil-want-C-w-in-emacs-state t)
 (setq evil-want-C-u-scroll t)
+(setq evil-want-C-i-jump nil)
+
+(defun nrepl-reset ()
+  (interactive)
+  (save-some-buffers)
+  (cider-switch-to-relevant-repl-buffer)
+  (insert "(user/reset)")
+  (cider-repl-return))
 
 (require 'evil-leader)
 (global-evil-leader-mode)
