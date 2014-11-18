@@ -4,6 +4,10 @@ alias c 'clear'
 alias hl 'less -R'
 alias paththis 'set PATH (pwd) $PATH'
 
+alias hide-desktop 'defaults write com.apple.finder CreateDesktop false; killall Finder'
+alias show-desktop 'defaults write com.apple.finder CreateDesktop true; killall Finder'
+
+
 # shorten often used commands
 alias g 'git'
 
