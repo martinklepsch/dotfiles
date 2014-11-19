@@ -3,6 +3,7 @@
 (setq package-list '(cider
                      clojure-mode
                      markdown-mode
+                     php-mode
                      sass-mode
                      evil
                      evil-leader
