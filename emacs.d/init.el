@@ -1,16 +1,27 @@
 (require 'package)
+(package-initialize)
+
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 ; list the packages you want
 (setq package-list '(cider
+                     company
+                     geiser ;racket
+                     lua-mode
                      clojure-mode
                      markdown-mode
                      php-mode
                      sass-mode
+                     key-chord
                      evil
                      evil-leader
                      exec-path-from-shell
                      smartparens
                      flx-ido
-                     smex
+                     helm
+                     helm-ag
+                     helm-projectile
                      direx
                      projectile
                      rainbow-delimiters
@@ -18,20 +29,13 @@
                      git-gutter
                      gist
                      golden-ratio
+                     grandshell-theme
+                     cyberpunk-theme
+                     tronesque-theme
                      noctilux-theme
                      solarized-theme
-                     zenburn-theme))
-
-; things to try
-; flash sexp-eval: https://github.com/samaaron/nrepl-eval-sexp-fu
-; M-x ido:         https://github.com/nonsequitur/smex
-
-; list the repositories containing them
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-; activate all the packages (in particular autoloads)
-(package-initialize)
+                     zenburn-theme
+                     color-theme-sanityinc-tomorrow))
 
 ; fetch the list of packages available
 (unless package-archive-contents
@@ -60,9 +64,11 @@
 ;; Write backup files to own directory
 (setq backup-directory-alist
       `(("." . ,(expand-file-name (concat dotfiles-dir "bak")))))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ; General UI stuff
-(global-linum-mode t)
+(global-linum-mode -1)
 (global-hl-line-mode t)
 (setq inhibit-startup-message t)
 (setq x-underline-at-descent-line t)
@@ -72,9 +78,14 @@
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
 (setq mouse-wheel-follow-mouse 't)
+; make em-dashes and tilde stuff work
+(setq mac-option-key-is-meta t)
+(setq mac-right-option-modifier nil)
+
 (setq scroll-step 1)
 (setq column-number-mode t)
 (setq ns-pop-up-frames nil)
+(global-set-key (kbd "M-RET") 'toggle-frame-fullscreen)
 
 (require 'server)
 (unless (server-running-p)
@@ -86,8 +97,14 @@
 (setq-default default-tab-width 2)
 (setq-default indent-tabs-mode nil)
 
+(set-frame-font "M+ 1mn-15")
+(setq solarized-use-variable-pitch nil)
+(setq solarized-height-minus-1 1.0)
+(setq solarized-height-plus-1 1.0)
+(setq solarized-height-plus-2 1.0)
+(setq solarized-height-plus-3 1.0)
+(setq solarized-height-plus-4 1.0)
 (load-theme 'solarized-dark t)
-(set-default-font "M+ 1mn-15")
 
 ;; See http://www.delorie.com/gnu/docs/elisp-manual-21/elisp_620.html
 ;; and http://www.gnu.org/software/emacs/manual/elisp.pdf
@@ -100,20 +117,33 @@
 
 (require 'golden-ratio)
 
-(require 'exec-path-from-shell)
-(setq exec-path-from-shell-arguments
-  (delete "-i" exec-path-from-shell-arguments))
+(require 'exec-path-from-shell) ;deprecated?
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-(require 'smex)   ; Not needed if you use package.el
-(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
-(global-set-key (kbd "M-x") 'smex)
+(require 'helm-config)
+(helm-mode 1)
+(setq helm-quick-update                     t ; do not display invisible candidates
+      helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+      helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
+      helm-ff-file-name-history-use-recentf t)
+
+
+(global-set-key (kbd "M-x") 'helm-M-x)
 
 (require 'projectile)
 (projectile-global-mode)
-(setq projectile-enable-caching nil)
+(setq projectile-enable-caching t)
+(setq projectile-indexing-method 'alien)
+(setq projectile-completon-system 'helm)
+(require 'helm-projectile)
+(helm-projectile-on)
+
+(require 'helm-ag)
+(defun helm-projectile-ag ()
+  (interactive)
+  (helm-do-ag (projectile-project-root)))
+
 
 (require 'flx-ido)
 (ido-mode 1)
@@ -133,18 +163,28 @@
   (insert "(user/reset)")
   (cider-repl-return))
 
+(defun switch-to-previous-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+;; (global-set-key (kbd "C-6") 'switch-to-previous-buffer)
+
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "." 'eval-buffer
-  "r" 'helm-recentf
-  "," 'projectile-find-file
-  "t" 'direx:jump-to-directory
+  "r" 'nrepl-reset
+  "a" 'helm-projectile-ag
+  "," 'helm-projectile-find-file
+  "p" 'helm-projectile-switch-project
+  "t" 'direx-project:jump-to-project-root
   "c" 'comment-or-uncomment-region
+  "x" 'org-capture
+  "l" 'cider-jump-to-var
   "g" 'golden-ratio
   "w" 'save-buffer
-  "b" 'switch-to-buffer
+  "b" 'helm-mini
   "k" 'kill-buffer
   ">" 'sp-slurp-hybrid-sexp) ; TODO paredit keybindings
 
@@ -160,50 +200,78 @@
 (evil-declare-key 'normal direx:direx-mode-map (kbd "g")   'direx:refresh-whole-tree)
 (evil-declare-key 'normal direx:file-map       (kbd "+")   'direx:create-directory)
 
-(evil-declare-key 'normal cider-mode-map (kbd "cpp") 'cider-eval-defun-at-point)
-(evil-declare-key 'motion cider-mode-map (kbd "cpp") 'cider-eval-defun-at-point)
+(global-set-key (kbd "C-k") (lambda () (interactive) (evil-previous-line 10)))
+(global-set-key (kbd "C-j") (lambda () (interactive) (evil-next-line 10)))
 
-(global-set-key (kbd "C-k") (lambda () (interactive) (previous-line 10)))
-(global-set-key (kbd "C-j") (lambda () (interactive) (next-line 10)))
+(add-hook 'after-init-hook 'global-company-mode)
 
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
-
-(evil-define-command cofi/maybe-exit ()
-  :repeat change
-  (interactive)
-  (let ((modified (buffer-modified-p)))
-    (insert "k")
-    (let ((evt (read-event (format "Insert %c to exit insert state" ?k)
-                           nil 0.5)))
-      (cond
-        ((null evt) (message ""))
-        ((and (integerp evt) (char-equal evt ?j))
-         (delete-char -1)
-         (set-buffer-modified-p modified)
-         (push 'escape unread-command-events))
-        (t (setq unread-command-events (append unread-command-events
-                                               (list evt))))))))
+(require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
 (require 'rainbow-delimiters nil)
-(global-rainbow-delimiters-mode t)
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
 
 (require 'icomplete)
 
 (smartparens-global-mode t)
+(sp-pair "'" nil :actions :rem)
 ; https://github.com/Fuco1/smartparens/wiki/Example-configuration
 
 (require 'git-gutter)
-(git-gutter:linum-setup)
 (global-git-gutter-mode +1)
-(add-to-list 'git-gutter:update-hooks 'after-save-hook) ; this should be unnecessary
-; staging via git-gutter not working?
+
+(setq org-startup-indented t)
+(setq org-default-notes-file "~/testing.org");(concat org-directory "/notes.org"))
+(setq org-capture-templates
+  '(("j" "Journal Entry"
+         entry (file+datetree "~/journal.org")
+         "* %?")
+    ("t" "Todo"
+         entry (file+headline "~/gtd.org" "Tasks")
+         "* TODO %?")))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default))))
+ '(column-number-mode t)
+ '(compilation-message-face (quote default))
+ '(cua-global-mark-cursor-color "#2aa198")
+ '(cua-normal-cursor-color "#839496")
+ '(cua-overwrite-cursor-color "#b58900")
+ '(cua-read-only-cursor-color "#859900")
+ '(custom-safe-themes
+   (quote
+    ("442c946bc5c40902e11b0a56bd12edc4d00d7e1c982233545979968e02deb2bc" "0c311fb22e6197daba9123f43da98f273d2bfaeeaeb653007ad1ee77f0003037" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "f0a99f53cbf7b004ba0c1760aa14fd70f2eabafe4e62a2b3cf5cabae8203113b" "ee6081af57dd389d9c94be45d49cf75d7d737c4a78970325165c7d8cb6eb9e34" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+ '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
+ '(highlight-symbol-colors
+   (--map
+    (solarized-color-blend it "#002b36" 0.25)
+    (quote
+     ("#b58900" "#2aa198" "#dc322f" "#6c71c4" "#859900" "#cb4b16" "#268bd2"))))
+ '(highlight-symbol-foreground-color "#93a1a1")
+ '(highlight-tail-colors
+   (quote
+    (("#073642" . 0)
+     ("#546E00" . 20)
+     ("#00736F" . 30)
+     ("#00629D" . 50)
+     ("#7B6000" . 60)
+     ("#8B2C02" . 70)
+     ("#93115C" . 85)
+     ("#073642" . 100))))
+ '(magit-diff-use-overlays nil)
+ '(magit-use-overlays nil)
+ '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
+ '(term-default-bg-color "#002b36")
+ '(term-default-fg-color "#839496")
+ '(tool-bar-mode nil)
+ '(weechat-color-list
+   (quote
+    (unspecified "#002b36" "#073642" "#990A1B" "#dc322f" "#546E00" "#859900" "#7B6000" "#b58900" "#00629D" "#268bd2" "#93115C" "#d33682" "#00736F" "#2aa198" "#839496" "#657b83"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
