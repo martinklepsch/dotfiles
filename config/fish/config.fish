@@ -4,8 +4,11 @@ alias c 'clear'
 alias hl 'less -R'
 alias paththis 'set PATH (pwd) $PATH'
 
+# Mac OS X helper utilities
 alias hide-desktop 'defaults write com.apple.finder CreateDesktop false; killall Finder'
 alias show-desktop 'defaults write com.apple.finder CreateDesktop true; killall Finder'
+alias better-dns 'sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 208.67.222.222 208.67.220.220'
+alias awdl 'sudo ifconfig awdl0' # See: https://medium.com/@mariociabarra/wifried-ios-8-wifi-performance-issues-3029a164ce94
 
 
 # shorten often used commands
