@@ -30,6 +30,7 @@ alias ovd 'overcast digitalocean'
 alias ovr 'overcast run'
 
 # USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
+set PATH $HOME/.bin $PATH
 set PATH "/usr/local/sbin" $PATH
 set PATH "/usr/sbin" $PATH
 set PATH "/sbin" $PATH
@@ -40,6 +41,8 @@ rbenv rehash >/dev/null ^&1
 # Perl Stuff
 set PATH "/usr/bin/vendor_perl" $PATH
 set PATH "/usr/bin/core_perl" $PATH
+# Java Stuff
+set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
 
 set -g -x fish_greeting ''
 set -g -x EDITOR vim
@@ -93,18 +96,6 @@ set __fish_git_prompt_char_upstream_behind '-'
 
 function fish_prompt
   set last_status $status
-
-  # echo
-
-  # set_color magenta
-  # printf '%s' (whoami)
-  # set_color normal
-  # printf ' at '
-
-  # set_color yellow
-  # printf '%s' (hostname|cut -d . -f 1)
-  # set_color normal
-  # printf ' in '
 
   set_color $fish_color_cwd
   printf '%s' (prompt_pwd)
