@@ -15,6 +15,7 @@
                      sass-mode
                      key-chord
                      evil
+                     evil-org
                      evil-leader
                      exec-path-from-shell
                      smartparens
@@ -29,6 +30,7 @@
                      git-gutter
                      gist
                      golden-ratio
+                     sublime-themes
                      grandshell-theme
                      cyberpunk-theme
                      tronesque-theme
@@ -193,6 +195,8 @@
 (require 'evil)
 (evil-mode t)
 
+(require 'evil-org)
+
 (evil-declare-key 'normal direx:direx-mode-map (kbd "r")   'direx:refresh-whole-tree)
 (evil-declare-key 'normal direx:direx-mode-map (kbd "o")   'direx:find-item-other-window)
 (evil-declare-key 'normal direx:direx-mode-map (kbd "f")   'direx:find-item)
@@ -267,6 +271,7 @@
      ("#073642" . 100))))
  '(magit-diff-use-overlays nil)
  '(magit-use-overlays nil)
+ '(org-agenda-files (quote ("~/journal.org" "~/testing.org")))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
