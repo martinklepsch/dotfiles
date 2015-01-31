@@ -99,6 +99,7 @@
 (add-hook 'term-mode-hook (lambda () (setq show-trailing-whitespace nil)))
 (setq-default visible-bell 'top-bottom)
 (setq-default default-tab-width 2)
+(setq js-indent-level 2)
 (setq-default indent-tabs-mode nil)
 
 (set-frame-font "M+ 1mn-15")
