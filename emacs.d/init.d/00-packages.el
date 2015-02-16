@@ -13,16 +13,16 @@
         ;; Evil
         evil evil-org evil-leader
         ;; Navigating
-        direx flx-ido helm helm-ag helm-projectile projectile
+        expand-region direx flx-ido helm helm-ag helm-projectile projectile
         ;; Git & Github
         magit gist
         ;; Utils
-        exec-path-from-shell key-chord company
+        symon exec-path-from-shell key-chord company
         ;; Visuals
         git-gutter rainbow-delimiters golden-ratio sublime-themes
         grandshell-theme cyberpunk-theme tronesque-theme
         noctilux-theme solarized-theme zenburn-theme
-        color-theme-sanityinc-tomorrow))
+        color-theme-sanityinc-tomorrow gruvbox-theme))
 
 ;; fetch the list of packages available
 (unless package-archive-contents
