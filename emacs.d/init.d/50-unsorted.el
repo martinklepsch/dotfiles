@@ -83,17 +83,6 @@
 (sp-pair "'" nil :actions :rem)
 ; https://github.com/Fuco1/smartparens/wiki/Example-configuration
 
-(setq org-agenda-files (quote ("~/journal.org" "~/testing.org")))
-(setq org-startup-indented t)
-(setq org-default-notes-file "~/testing.org");(concat org-directory "/notes.org"))
-(setq org-capture-templates
-      '(("p" "Day Plan" entry (file+datetree "~/journal.org")
-         "* %?\n")
-        ("j" "Journal Entry" entry (file+datetree "~/journal.org")
-         "* %<%H:%M> %?")
-        ("t" "Todo" entry (file+headline "~/gtd.org" "Tasks")
-         "* TODO %?")))
-
 (require 'golden-ratio)
 (golden-ratio-mode 1)
 

@@ -95,6 +95,10 @@ set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
 
+function applypr
+   curl -L $argv[1] | git am
+end
+
 function fish_prompt
   set last_status $status
 
@@ -108,3 +112,5 @@ function fish_prompt
 end
 
 overcast aliases  | .
+
+[ -f /usr/local/share/autojump/autojump.fish ]; and . /usr/local/share/autojump/autojump.fish
