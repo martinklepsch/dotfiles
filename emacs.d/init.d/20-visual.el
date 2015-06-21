@@ -13,7 +13,7 @@
           (lambda () (setq show-trailing-whitespace nil)))
 (setq-default visible-bell 'top-bottom)
 
-(set-frame-font "M+ 1mn-15")
+(set-frame-font "M+ 1mn-14")
 (setq solarized-use-variable-pitch nil)
 (setq solarized-height-minus-1 1.0)
 (setq solarized-height-plus-1 1.0)
