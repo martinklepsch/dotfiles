@@ -11,6 +11,8 @@ alias better-dns 'sudo networksetup -setdnsservers Wi-Fi 8.8.8.8 8.8.4.4 208.67.
 alias awdl 'sudo ifconfig awdl0' # See: https://medium.com/@mariociabarra/wifried-ios-8-wifi-performance-issues-3029a164ce94
 alias sprunge 'curl -F \'sprunge=<-\' http://sprunge.us'
 
+# Setup Vi Mode
+fish_vi_mode
 
 # shorten often used commands
 alias g 'git'
@@ -94,7 +96,6 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
-
 function applypr
    curl -L $argv[1] | git am
 end
@@ -102,7 +103,13 @@ end
 function fish_prompt
   set last_status $status
 
-  set_color $fish_color_cwd
+  switch $fish_bind_mode
+    case "insert"
+        set_color $fish_color_cwd
+    case "default"
+        set_color red
+  end
+
   printf '%s' (prompt_pwd)
   set_color normal
 
