@@ -48,7 +48,7 @@ set PATH "/usr/bin/core_perl" $PATH
 set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
 
 set -g -x fish_greeting ''
-set -g -x EDITOR vim
+set -g -x EDITOR 'em --wait'
 set -g -x XDG_CONFIG_HOME ~/.config
 set -g -x COMMAND_MODE unix2003
 set -g -x RUBYOPT rubygems

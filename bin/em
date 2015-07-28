@@ -1,6 +1,14 @@
+#!/usr/bin/env fish
 function em
+  if [ $argv[1] = "--wait" ]
+    set files $argv[2..-1]
+  else
+    set files $argv
+    set clientflags "--no-wait"
+  end
+
   if test -z (pgrep Emacs)
-    env LANG=C open -a Emacs $argv
+    env LANG=C open -a Emacs $files
     echo "Emacs: starting up"
     return
   end
@@ -14,5 +22,7 @@ function em
     socket (getconf DARWIN_USER_TEMP_DIR)emacs"$uid"/server
   end
 
-  client -n -s $socket $argv
+  client $clientflags -s $socket $files
 end
+
+em $argv

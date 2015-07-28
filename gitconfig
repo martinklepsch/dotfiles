@@ -1,7 +1,7 @@
 [gui]
 
 [core]
-  editor = vim
+  editor = em --wait
   excludesfile = /Users/martin/.gitignore
 
 [color]
