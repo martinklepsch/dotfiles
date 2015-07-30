@@ -13,6 +13,11 @@ alias sprunge 'curl -F \'sprunge=<-\' http://sprunge.us'
 
 # Setup Vi Mode
 fish_vi_mode
+function my_vi_bindings
+  fish_vi_key_bindings
+  bind -M insert -m default kj backward-char force-repaint
+end
+set -g fish_key_bindings my_vi_bindings
 
 # shorten often used commands
 alias g 'git'
