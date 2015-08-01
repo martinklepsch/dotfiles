@@ -38,6 +38,7 @@
   sync = "!git stash; git pr; git p; git stash pop"
   pr = pull --rebase
   p = push
+  pu = "!git push --set-upstream origin $(git currentbranch)"
   ds = diff --staged
   cm = commit -m
   co = checkout
