@@ -9,7 +9,7 @@
       '(;; Lisp + Clojure tooling
         geiser inf-clojure smartparens ; cider
         ;; lang-modes
-        clojure-mode markdown-mode php-mode sass-mode lua-mode
+        clojure-mode markdown-mode php-mode sass-mode lua-mode yaml-mode
         ;; Evil
         evil evil-org evil-leader
         ;; Navigating
