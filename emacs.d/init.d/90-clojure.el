@@ -10,12 +10,20 @@
 (require 'rainbow-delimiters nil)
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 
-;; not using cider anymore...
 (defun cider-nrepl-reset ()
   (interactive)
   (save-some-buffers)
   (cider-switch-to-relevant-repl-buffer)
   (insert "(user/reset)")
   (cider-repl-return))
+
+(defun boot-repl ()
+  (interactive) (inf-clojure "boot repl"))
+
+(defun boot-repl-client ()
+  (interactive) (inf-clojure "boot repl --client"))
+
+(defun lein-repl ()
+  (interactive) (inf-clojure "lein repl"))
 
 (setq inf-clojure-program "boot repl")
