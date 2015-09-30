@@ -14,14 +14,18 @@ function em
   end
 
   echo "Emacs: running"
-  alias client "/usr/local/bin/emacsclient"
+  set -l emacsclient_path "/Users/martin/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+
+  alias client  $emacsclient_path
   set -l uid    (id -u)
   set -l socket $TMPDIR/emacs$uid/server
 
   if not test -e $socket
-    socket (getconf DARWIN_USER_TEMP_DIR)emacs"$uid"/server
+    echo "Socket does not exist"
+    set -l socket (getconf DARWIN_USER_TEMP_DIR)emacs"$uid"/server
   end
 
+  #echo  "$emacsclient_path $clientflags -s $socket $files"
   client $clientflags -s $socket $files
 end
 
