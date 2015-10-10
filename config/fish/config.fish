@@ -22,13 +22,13 @@ set -g fish_key_bindings my_vi_bindings
 # shorten often used commands
 alias g 'git'
 
-alias e  'em' # script laying in .bin
-alias ef 'e ~/.config/fish/config.fish'
-alias ea 'e ~/.config/awesome/rc.lua'
-alias eg 'e ~/.gitconfig'
-alias et 'e ~/.tmux.conf'
-alias ev 'e ~/.vim/vimrc'
-alias ee 'e ~/.emacs.d/init.el'
+alias ef 'em ~/.config/fish/config.fish'
+alias ea 'em ~/.config/awesome/rc.lua'
+alias eg 'em ~/.gitconfig'
+alias et 'em ~/.tmux.conf'
+alias ev 'em ~/.vim/vimrc'
+alias ee 'em ~/.emacs.d/init.el'
+alias eo 'em ~/Dropbox/org/testing.org'
 alias be 'bundle exec'
 
 alias tma 'tmux attach -t'
