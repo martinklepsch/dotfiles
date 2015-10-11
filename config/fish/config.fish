@@ -33,6 +33,7 @@ alias be 'bundle exec'
 
 alias tma 'tmux attach -t'
 alias tmn 'tmux new -s'
+alias tmn. 'tmux new -s (basename $PWD)'
 
 alias ovd 'overcast digitalocean'
 alias ovr 'overcast run'
