@@ -2,27 +2,35 @@
 (package-initialize)
 
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
 ; list the packages you want
 (setq package-list
-      '(;; Lisp + Clojure tooling
-        geiser inf-clojure smartparens ; cider
-        ;; lang-modes
-        clojure-mode markdown-mode php-mode sass-mode lua-mode yaml-mode
-        ;; Evil
-        evil evil-org evil-leader
-        ;; Navigating
-        expand-region direx flx-ido helm helm-ag helm-projectile projectile
-        ;; Git & Github
-        magit gist
-        ;; Utils
-        symon exec-path-from-shell key-chord company
-        ;; Visuals
-        git-gutter rainbow-delimiters golden-ratio sublime-themes
-        grandshell-theme cyberpunk-theme tronesque-theme
-        noctilux-theme solarized-theme zenburn-theme
-        color-theme-sanityinc-tomorrow gruvbox-theme))
+      '(use-package
+         ;; OCaml
+         merlin tuareg
+         ;; Lisp + Clojure tooling
+         racket-mode inf-clojure smartparens ; cider geiser
+         ;; lang-modes
+         clojure-mode markdown-mode php-mode sass-mode lua-mode yaml-mode
+         ;; Evil
+         evil evil-org evil-leader
+         ;; Navigating
+         expand-region direx flx-ido helm helm-ag helm-projectile projectile
+         ;; Git & Github
+         magit gist
+         ;; Utils
+         symon exec-path-from-shell key-chord ;company
+         ;; Visuals
+         git-gutter rainbow-delimiters golden-ratio sublime-themes
+         grandshell-theme cyberpunk-theme tronesque-theme
+         noctilux-theme solarized-theme zenburn-theme
+         color-theme-sanityinc-tomorrow gruvbox-theme))
+
+(setq use-package-always-ensure t)
+(require 'use-package)
+(use-package nix-mode
+  :mode "\\.nix\\'")
 
 ;; fetch the list of packages available
 (unless package-archive-contents

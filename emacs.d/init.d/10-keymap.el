@@ -10,7 +10,7 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "." 'eval-buffer
-  "r" 'cider-nrepl-reset
+  "r" 'inf-clojure-switch-to-repl
   "a" 'helm-projectile-ag
   "," 'helm-projectile-find-file
   "p" 'helm-projectile-switch-project

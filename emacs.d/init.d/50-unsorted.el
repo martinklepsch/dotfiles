@@ -7,6 +7,11 @@
 ;; Automatically save buffers before compiling
 (setq compilation-ask-about-save nil)
 
+;; No EOF newlines by default
+(setq next-line-add-newlines nil)
+(setq require-final-newline nil)
+(setq mode-require-final-newline nil)
+
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -68,7 +73,7 @@
 
 ;; (global-set-key (kbd "C-6") 'switch-to-previous-buffer)
 
-(add-hook 'after-init-hook 'global-company-mode)
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 (add-hook 'clojure-mode-hook    'hs-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)

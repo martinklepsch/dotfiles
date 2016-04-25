@@ -11,7 +11,7 @@
 (setq-default show-trailing-whitespace t)
 (add-hook 'term-mode-hook
           (lambda () (setq show-trailing-whitespace nil)))
-(setq-default visible-bell 'top-bottom)
+;; (setq-default visible-bell 'top-bottom)
 
 (set-frame-font "M+ 1mn-14")
 (setq solarized-use-variable-pitch nil)

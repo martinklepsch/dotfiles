@@ -17,6 +17,9 @@
   (insert "(user/reset)")
   (cider-repl-return))
 
+(defun boot-dev ()
+  (interactive) (inf-clojure "boot dev"))
+
 (defun boot-repl ()
   (interactive) (inf-clojure "boot repl"))
 
@@ -25,5 +28,13 @@
 
 (defun lein-repl ()
   (interactive) (inf-clojure "lein repl"))
+
+(use-package clojure-mode
+  :config (define-clojure-indent
+            (fact 'defun)
+            (facts 'defun)
+            (future-fact 'defun)
+            (future-facts 'defun)
+            (fact-group 'defun)))
 
 (setq inf-clojure-program "boot repl")
