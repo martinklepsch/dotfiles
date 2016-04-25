@@ -1,8 +1,14 @@
-# Useful aliases {{{
+# Usefult aliases {{{
 
 alias c 'clear'
 alias hl 'less -R'
-alias paththis 'set PATH (pwd) $PATH'
+function paththis
+  set -xg PATH (pwd) $PATH
+end
+
+function f
+  fzf > $TMPDIR/fzf.result; and em (cat $TMPDIR/fzf.result)
+end 
 
 # Mac OS X helper utilities
 alias hide-desktop 'defaults write com.apple.finder CreateDesktop false; killall Finder'
@@ -32,29 +38,52 @@ alias eo 'em ~/Dropbox/org/testing.org'
 alias be 'bundle exec'
 
 alias tma 'tmux attach -t'
+alias tml 'tmux list-sessions'
 alias tmn 'tmux new -s'
 alias tmn. 'tmux new -s (basename $PWD)'
+
+alias boot-local '/Users/martin/code/boot/bin/boot.sh'
+function boot23
+  set -xg BOOT_VERSION "2.3.0"
+  eval boot $argv
+end
+function boot23s
+  set -xg BOOT_VERSION "2.3.1-SNAPSHOT";
+  eval /Users/martin/code/boot/bin/boot.sh $argv
+end
 
 alias ovd 'overcast digitalocean'
 alias ovr 'overcast run'
 
+set -x LC_ALL en_US.UTF-8
+set -x LANG en_US.UTF-8
 # USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
-set PATH $HOME/.bin $PATH
-set PATH "/usr/local/sbin" $PATH
-set PATH "/usr/sbin" $PATH
-set PATH "/sbin" $PATH
+# set -x NIX_PATH nixpkgs=$HOME/code/nixpkgs
+# set -x PATH $HOME/.nix-profile/bin $PATH
+set -x PATH $HOME/.bin $PATH
+# set -x ANSIBLE_HOME $HOME/code/ansible
+# set -x PATH $ANSIBLE_HOME/bin $PATH
+# set -x PYTHONPATH $ANSIBLE_HOME/lib $PYTHONPATH
+# set PATH "/usr/local/sbin" $PATH
+# set PATH "/usr/sbin" $PATH
+# set PATH "/sbin" $PATH
 # Ruby Stuff
-set PATH $HOME/.rbenv/bin $PATH
-set PATH $HOME/.rbenv/shims $PATH
-rbenv rehash >/dev/null ^&1
+# set PATH $HOME/.rbenv/bin $PATH
+# set PATH $HOME/.rbenv/shims $PATH
+# rbenv rehash >/dev/null ^&1
+
 # Perl Stuff
-set PATH "/usr/bin/vendor_perl" $PATH
-set PATH "/usr/bin/core_perl" $PATH
+# set PATH "/usr/bin/vendor_perl" $PATH
+# set PATH "/usr/bin/core_perl" $PATH
+
 # Java Stuff
-set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
+# set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
+# set -x JAVA_HOME (/usr/libexec/java_home -v 1.8.0_60)
+set -x BOOT_JAVA_COMMAND /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin/java
+set -x BOOT_JVM_OPTIONS "-Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xverify:none"
 
 set -g -x fish_greeting ''
-set -g -x EDITOR 'em --wait'
+set -g -x EDITOR 'vim'
 set -g -x XDG_CONFIG_HOME ~/.config
 set -g -x COMMAND_MODE unix2003
 set -g -x RUBYOPT rubygems
@@ -124,6 +153,14 @@ function fish_prompt
   set_color normal
 end
 
-overcast aliases  | .
+if [ -f "/usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.fish" ]
+  . "/usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.fish"
+end
 
-[ -f /usr/local/share/autojump/autojump.fish ]; and . /usr/local/share/autojump/autojump.fish
+# OPAM configuration
+set -gx PATH "/Users/martin/.opam/system/bin" $PATH;
+set -gx OCAML_TOPLEVEL_PATH "/Users/martin/.opam/system/lib/toplevel";
+set -gx PERL5LIB "/Users/martin/.opam/system/lib/perl5:$PERL5LIB";
+set -gx MANPATH $MANPATH "/Users/martin/.opam/system/man";
+set -gx OPAMUTF8MSGS "1";
+set -gx CAML_LD_LIBRARY_PATH "/Users/martin/.opam/system/lib/stublibs:/usr/local/lib/ocaml/stublibs";
