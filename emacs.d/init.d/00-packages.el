@@ -12,7 +12,7 @@
          ;; Lisp + Clojure tooling
          racket-mode inf-clojure smartparens ; cider geiser
          ;; lang-modes
-         clojure-mode markdown-mode php-mode sass-mode lua-mode yaml-mode
+         clojure-mode markdown-mode php-mode sass-mode lua-mode yaml-mode fish-mode
          ;; Evil
          evil evil-org evil-leader
          ;; Navigating
