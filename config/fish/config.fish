@@ -42,7 +42,7 @@ alias tml 'tmux list-sessions'
 alias tmn 'tmux new -s'
 alias tmn. 'tmux new -s (basename $PWD)'
 
-alias boot-local '/Users/martin/code/boot/bin/boot.sh'
+alias boot-local '$HOME/code/boot/bin/boot.sh'
 function boot23
   set -xg BOOT_VERSION "2.3.0"
   eval boot $argv
@@ -158,9 +158,9 @@ if [ -f "/usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.fish" ]
 end
 
 # OPAM configuration
-set -gx PATH "/Users/martin/.opam/system/bin" $PATH;
-set -gx OCAML_TOPLEVEL_PATH "/Users/martin/.opam/system/lib/toplevel";
-set -gx PERL5LIB "/Users/martin/.opam/system/lib/perl5:$PERL5LIB";
-set -gx MANPATH $MANPATH "/Users/martin/.opam/system/man";
+set -gx PATH "$HOME/.opam/system/bin" $PATH;
+set -gx OCAML_TOPLEVEL_PATH "$HOME/.opam/system/lib/toplevel";
+set -gx PERL5LIB "$HOME/.opam/system/lib/perl5:$PERL5LIB";
+set -gx MANPATH $MANPATH "$HOME/.opam/system/man";
 set -gx OPAMUTF8MSGS "1";
-set -gx CAML_LD_LIBRARY_PATH "/Users/martin/.opam/system/lib/stublibs:/usr/local/lib/ocaml/stublibs";
+set -gx CAML_LD_LIBRARY_PATH "$HOME/.opam/system/lib/stublibs:/usr/local/lib/ocaml/stublibs";

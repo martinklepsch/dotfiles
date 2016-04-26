@@ -14,7 +14,7 @@ function em
   end
 
   echo "Emacs: running"
-  set -l emacsclient_path "/Users/martin/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+  set -l emacsclient_path "$HOME/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
 
   alias client  $emacsclient_path
   set -l uid    (id -u)
