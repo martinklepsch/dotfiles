@@ -1,0 +1,9 @@
+#!/usr/bin/env fish/
+
+function install
+  ln -s ~/etc/bin        ~/.bin
+  ln -s ~/etc/emacs.d    ~/.emacs.d
+  ln -s ~/etc/config     ~/.config
+  ln -s ~/etc/tmux.conf  ~/.tmux.conf
+  ln -s ~/etc/gitconfig  ~/.gitconfig
+end
