@@ -2,8 +2,6 @@
 irssi/config
 config/fish/fish_history
 config/fish/fishd.nitrogen
-emacs.d/auto-save-list/
-emacs.d/elpa/
-emacs.d/backups/
-emacs.d/projectile*
-emacs.d/places
+emacs.d/*
+!emacs.d/init.el
+!emacs.d/init.d
