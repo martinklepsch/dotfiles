@@ -8,11 +8,12 @@
 (setq package-list
       '(use-package
          ;; OCaml
-         merlin tuareg
+         merlin tuareg utop
          ;; Lisp + Clojure tooling
-         racket-mode inf-clojure smartparens ; cider geiser
+         inf-clojure smartparens ; cider geiser
          ;; lang-modes
-         clojure-mode markdown-mode php-mode sass-mode lua-mode yaml-mode fish-mode
+         clojure-mode markdown-mode php-mode sass-mode scss-mode lua-mode fish-mode
+         yaml-mode applescript-mode racket-mode
          ;; Evil
          evil evil-org evil-leader
          ;; Navigating
