@@ -1,6 +1,3 @@
-[submodule "vim"]
-	path = vim
-	url = git://github.com/mklappstuhl/.vim.git
 [submodule "dot-files"]
 	path = bin/dot-files
 	url = git://github.com/mklappstuhl/dot-files.git
