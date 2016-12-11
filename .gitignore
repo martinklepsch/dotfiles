@@ -5,3 +5,15 @@ config/fish/fishd.nitrogen
 emacs.d/*
 !emacs.d/init.el
 !emacs.d/init.d
+config/fish/fish_read_history
+config/fish/fishd.4c8d79f2d804
+
+config/.exercism.json
+config/hub
+
+config/fish/functions/centriq*
+config/fish/functions/paygarden*
+config/fish/functions/oc*
+
+boot/cache
+boot/credentials*
