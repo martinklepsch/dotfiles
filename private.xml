@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!-- More Examples: http://osxnotes.net/karabiner.html -->
+<root>
+<item>
+    <name>Remap Caps Lock to Hyper</name>
+    <appendix>OS X doesn't have a Hyper. This maps caps lock (actually F19) to Control + Shift + Option + Command.</appendix>
+
+    <identifier>caps_lock_to_hyper</identifier>
+
+    <autogen>
+        --KeyToKey--
+        KeyCode::F19,
+
+        KeyCode::COMMAND_L,
+        ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L
+    </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_SHELL_inspiration_shot</name>
+    <url type="shell">
+      <![CDATA[ screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png ]]>
+    </url>
+  </vkopenurldef>
+
+  <name>Change Hyper-I to take screenshot and save to ~/Dropbox/inspiration</name>
+  <identifier>private.inspiration-shot</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::I,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_SHELL_inspiration_shot
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Slack</name>
+    <url>file:///Applications/Slack.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-S to open Slack</name>
+  <identifier>private.open-slack</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::S,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Slack
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Riot</name>
+    <url>file:///Applications/Riot.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-R to open Riot</name>
+  <identifier>private.open-riot</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::R,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Riot
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Safari</name>
+    <url>file:///Applications/Safari.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-X to open Safari</name>
+  <identifier>private.open-safari</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::X,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Safari
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Chrome</name>
+    <url>file:///Users/martin/Applications/Google%20Chrome.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-X to open Chrome</name>
+  <identifier>private.open-chrome</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::X,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Chrome
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Emacs</name>
+    <url>file:///Applications/Emacs.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-E to open Emacs</name>
+  <identifier>private.open-emacs</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::E,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Emacs
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Atom</name>
+    <url>file:///Applications/Atom.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-E to open Atom</name>
+  <identifier>private.open-atom</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::E,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Atom
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_iTerm</name>
+    <url>file:///Applications/iTerm.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-T to open iTerm</name>
+  <identifier>private.open-iterm</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::T,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_iTerm
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Telegram</name>
+    <url>file:///Applications/Telegram.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-C to open Telegram</name>
+  <identifier>private.open-telegram</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::C,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Telegram
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Textual</name>
+    <url>file:///Applications/Textual.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-D to open Textual</name>
+  <identifier>private.open-textual</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::D,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Textual
+  </autogen>
+</item>
+
+<item>
+  <vkopenurldef>
+    <name>KeyCode::VK_OPEN_URL_APP_Deckset</name>
+    <url>file:///Applications/Deckset.app</url>
+  </vkopenurldef>
+
+  <name>Change Hyper-A to open Deckset</name>
+  <identifier>private.open-deckset</identifier>
+  <autogen>
+    __KeyToKey__
+    KeyCode::A,
+    ModifierFlag::OPTION_L | ModifierFlag::SHIFT_L | ModifierFlag::CONTROL_L | ModifierFlag::COMMAND_L,
+    KeyCode::VK_OPEN_URL_APP_Deckset
+  </autogen>
+</item>
+
+<item>
+  <name>Disable CMD-(SHIFT)-TAB</name>
+  <identifier>private.disable-alt-tab</identifier>
+  <autogen>__KeyToKey__ KeyCode::TAB, VK_COMMAND | ModifierFlag::NONE, KeyCode::VK_NONE</autogen>
+  <autogen>__KeyToKey__ KeyCode::TAB, VK_COMMAND | VK_SHIFT | ModifierFlag::NONE, KeyCode::VK_NONE</autogen>
+</item>
+
+<item>
+    <!-- http://stevelosh.com/blog/2012/10/a-modern-space-cadet/#better-shifting -->
+    <name>Use the correct shift keys.</name>
+    <identifier>private.correct-shift-keys</identifier>
+
+    <autogen>--KeyToKey-- KeyCode::Q, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::W, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::E, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::R, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::T, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::A, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::S, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::D, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::F, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::G, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::Z, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::X, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::C, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::V, ModifierFlag::SHIFT_L, KeyCode::VK_NONE</autogen>
+
+    <autogen>--KeyToKey-- KeyCode::Y,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::U,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::I,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::O,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::P,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::H,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::J,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::K,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::L,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::SEMICOLON, ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::N,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::M,         ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::COMMA,     ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::DOT,       ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+    <autogen>--KeyToKey-- KeyCode::QUOTE,     ModifierFlag::SHIFT_R, KeyCode::VK_NONE</autogen>
+</item>
+<item>
+  <name>Shifts to Parentheses</name>
+  <appendix>Shifts, when pressed alone, type parentheses.  When used with other keys they're normal shifts.</appendix>
+
+  <identifier>private.shifts-to-parens</identifier>
+
+  <!-- This is the basic mapping. -->
+  <autogen>--KeyOverlaidModifier-- KeyCode::SHIFT_R, ModifierFlag::SHIFT_R | ModifierFlag::NONE, KeyCode::SHIFT_R, KeyCode::KEY_0, ModifierFlag::SHIFT_L</autogen>
+  <autogen>--KeyOverlaidModifier-- KeyCode::SHIFT_L, ModifierFlag::SHIFT_L | ModifierFlag::NONE, KeyCode::SHIFT_L, KeyCode::KEY_9, ModifierFlag::SHIFT_R</autogen>
+
+  <!--
+      Remap the "rolls" of () and )( because it's too easy to hit one
+      before finishing the other, and there's no other reason to be
+      pressing both shift keys at once anyway
+  -->
+  <autogen>--KeyToKey-- KeyCode::SHIFT_L, ModifierFlag::SHIFT_R, KeyCode::KEY_0, ModifierFlag::SHIFT_L, KeyCode::KEY_9, ModifierFlag::SHIFT_L</autogen>
+  <autogen>--KeyToKey-- KeyCode::SHIFT_R, ModifierFlag::SHIFT_L, KeyCode::KEY_9, ModifierFlag::SHIFT_L, KeyCode::KEY_0, ModifierFlag::SHIFT_L</autogen>
+
+  <!--
+      Remap Rshift+Space to ') ', because when typing an end paren and
+      then a space I tend to hit space before I let go of rshift.
+  -->
+  <autogen>--KeyToKey-- KeyCode::SPACE, ModifierFlag::SHIFT_R, KeyCode::KEY_0, ModifierFlag::SHIFT_L, KeyCode::SPACE</autogen>
+</item>
+</root>
