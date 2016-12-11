@@ -1,7 +1,7 @@
 [gui]
 
 [core]
-  editor = em --wait
+  whitespace = trailing-space,space-before-tab
   excludesfile = /Users/martin/.gitignore
 
 [color]
@@ -42,16 +42,20 @@
   ds = diff --staged
   cm = commit -m
   co = checkout
-  d = diff
+  d = diff --color --color-words --abbrev
   dp = "!git fetch production; git l production/master..master"
   duff = diff
   puff = pull --ff --ff-only
   ap = add -p
-  ab = "for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative) %1B[0;m%(refname:short)' refs/heads/"
+  ab = "!git for-each-ref --sort=-committerdate --format='%1B[32m%(committerdate:iso8601) %1B[34m%(committerdate:relative) %1B[0;m%(refname:short)' refs/heads/ | head -n 14"
+  stashl = stash list --date=local
+  contributors = shortlog -s -n --all
 [push]
   default = tracking
-[merge]
-  ff = false
 [filter "media"]
   clean = git-media-clean %f
   smudge = git-media-smudge %f
+[filter "lfs"]
+  smudge = git-lfs smudge %f
+  required = true
+  clean = git-lfs clean %f
