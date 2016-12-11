@@ -1,4 +1,11 @@
 ;; Directories and file names
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq mk-emacs-init-file
       (or load-file-name buffer-file-name))
 (setq mk-emacs-config-dir
@@ -32,6 +39,7 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(compilation-message-face (quote default))
+ '(css-indent-offset 2)
  '(cua-global-mark-cursor-color "#2aa198")
  '(cua-normal-cursor-color "#839496")
  '(cua-overwrite-cursor-color "#b58900")
@@ -61,6 +69,9 @@
  '(org-agenda-files
    (quote
     ("/Users/martin/Dropbox/org/journal.org" "/Users/martin/Dropbox/org/testing.org")))
+ '(safe-local-variable-values
+   (quote
+    ((cider-cljs-lein-repl . "(do (use 'figwheel-sidecar.repl-api) (start-figwheel!) (cljs-repl))"))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
  '(term-default-bg-color "#002b36")
  '(term-default-fg-color "#839496")
