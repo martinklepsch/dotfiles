@@ -10,7 +10,7 @@
          ;; OCaml
          merlin tuareg utop
          ;; Lisp + Clojure tooling
-         inf-clojure smartparens ; cider geiser
+         inf-clojure smartparens parinfer; cider geiser
          ;; lang-modes
          clojure-mode markdown-mode php-mode sass-mode scss-mode lua-mode fish-mode
          yaml-mode applescript-mode racket-mode
