@@ -26,15 +26,13 @@
 (defun boot-repl-client ()
   (interactive) (inf-clojure "boot repl --client"))
 
+(defun boot-planck ()
+  (interactive) (inf-clojure "planck"))
+
 (defun lein-repl ()
   (interactive) (inf-clojure "lein repl"))
 
-(use-package clojure-mode
-  :config (define-clojure-indent
-            (fact 'defun)
-            (facts 'defun)
-            (future-fact 'defun)
-            (future-facts 'defun)
-            (fact-group 'defun)))
+(defun lein-connect ()
+  (interactive) (inf-clojure "lein repl :connect"))
 
 (setq inf-clojure-program "boot repl")
