@@ -1,0 +1,12 @@
+#!/usr/bin/env osascript
+
+on run argv
+  tell application "System Events"
+    set frontApp to name of first application process whose frontmost is true
+    if frontApp is "iTerm" then
+      return "focused"
+    else
+      return "not-focused"
+    end if
+  end tell
+end run
