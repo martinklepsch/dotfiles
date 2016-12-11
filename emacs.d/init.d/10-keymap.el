@@ -15,6 +15,7 @@
   "," 'helm-projectile-find-file
   "p" 'helm-projectile-switch-project
   "t" 'direx-project:jump-to-project-root
+  "i" 'parinfer-toggle-mode
   "c" 'comment-or-uncomment-region
   "x" 'org-capture
   "l" 'cider-jump-to-var
