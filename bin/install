@@ -92,6 +92,10 @@ function install
     printf "$error readlink is required\n"
     return 1
   end
+
+  # TODO figure out some getopt stuff to allow installing only selected configs
+  # http://stackoverflow.com/questions/16048757/fish-function-option-param-parser
+
   ## Directories
   install1 $base/atom    ~/.atom
   install1 $base/bin     ~/.bin
