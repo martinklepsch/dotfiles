@@ -1,0 +1,44 @@
+"*":
+  core:
+    closeEmptyWindows: false
+    disabledPackages: [
+      "minimap"
+      "indent-guide-improved"
+    ]
+    packagesWithKeymapsDisabled: [
+      "lisp-paredit"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
+    ]
+  editor:
+    invisibles: {}
+    preferredLineLength: 120
+  "exception-reporting":
+    userId: "7fc7913f-c639-ea73-65f2-3a7c2554122f"
+  "git-diff":
+    showIconsInEditorGutter: true
+  "golden-ratio": {}
+  "lisp-paredit":
+    strict: false
+  minimap:
+    absoluteMode: true
+  "project-manager":
+    alwaysOpenInSameWindow: true
+  "proto-repl":
+    leinPath: "/Users/martin/.nix-profile/bin/lein"
+    showInlineResults: true
+  swackets: {}
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
+".clojure.source":
+  editor:
+    autoIndentOnPaste: false
+    preferredLineLength: 120
+".diff.source":
+  editor:
+    preferredLineLength: 120
