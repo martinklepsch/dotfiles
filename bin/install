@@ -1,9 +1,103 @@
-#!/usr/bin/env fish/
+#!/usr/bin/env fish
+
+# How to overwrite previously printed line
+# (in both cases hallo gets printed)
+# echo -e "test\rhallo"
+# printf "test\rhallo"
+
+# Filling lines with padding characters:
+# http://stackoverflow.com/questions/4409399/padding-characters-in-printf
+# Basic alternative using overwriting as above
+# echo -e "---------------------------- [UP]\r$PROC_NAME "
+
+function fish_config_autowrite_message
+  echo "Fish creates temporary files in \$XDG_CONFIG_HOME"
+  echo "because they are recreated all the time this can be"
+  echo "an issue when trying to link ~/.config"
+  echo
+  echo "A reasonable workaround is setting \$XDG_CONFIG_HOME"
+  echo "to something like /tmp/xdg-config-temp"
+
+end
+
+function delay
+  sleep 0.7
+end
+
+function tildify
+  set -l path $argv[1]
+  set -l without_home (string replace $HOME "" $argv[1])
+  echo "~$without_home"
+end
+
+function install1
+  set -l source $argv[1]
+  set -l destination $argv[2]
+  set -l in_progress "⏳ "
+  set -l success "✅ "
+  set -l warn "⚠️ "
+  set -l error "🔴 "
+
+  # potential verbose output
+  # echo "source $source"
+  # echo "destination $destination"
+  # echo "existing_source" (readlink $destination)
+
+  set_color white;
+  printf "%s Processing %s" $in_progress (tildify $destination)
+  delay
+
+  # link exists
+  if test -L $destination
+    set -l existing_source (readlink $destination)
+    # printf "\r%s Symlink exists at %s\n" $warn (tildify $destination)
+    # echo "Destination of existing link $existing_source"
+
+    if test $existing_source = $source
+      printf "\r%s Correct link present for %s\n" $success (tildify $destination)
+    else
+      set_color yellow;
+      printf "\r%s Different link exists for %s: %s\n" $warn (tildify $destination) $existing_source
+    end
+
+  # regular file exists
+  else if test -e $destination
+    set_color yellow;
+    printf "\r%s Regular file exists at %s\n" $warn (tildify $destination)
+    if test "~/.config" = (tildify $destination)
+      fish_config_autowrite_message
+    end
+
+  # no link or file, proceed with install
+  else
+    set_color green;
+    printf "\r%s Installing %s to %s" $in_progress (tildify $source) (tildify $destination)
+    delay
+    ln -s $source $destination
+    printf "\r%s Installed %s to %s          \n" $success (tildify $source) (tildify $destination)
+  end
+end
 
 function install
-  ln -s ~/etc/bin        ~/.bin
-  ln -s ~/etc/emacs.d    ~/.emacs.d
-  ln -s ~/etc/config     ~/.config
-  ln -s ~/etc/tmux.conf  ~/.tmux.conf
-  ln -s ~/etc/gitconfig  ~/.gitconfig
+  set -l base ~/etc
+
+  if not test (which readlink)
+    set_color red;
+    printf "$error readlink is required\n"
+    return 1
+  end
+  ## Directories
+  install1 $base/bin     ~/.bin
+  install1 $base/boot    ~/.boot
+  install1 $base/config  ~/.config
+  install1 $base/emacs.d ~/.emacs.d
+
+  ## Regular files
+  install1 $base/agignore     ~/.agignore
+  install1 $base/tmux.conf    ~/.tmux.conf
+  install1 $base/gitconfig    ~/.gitconfig
+  install1 $base/vimrc        ~/.vimrc
+  install1 $base/private.xml  ~/Library/Application\ Support/Karabiner/private.xml
 end
+
+install
