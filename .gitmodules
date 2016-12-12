@@ -1,3 +1,0 @@
-[submodule "dot-files"]
-	path = bin/dot-files
-	url = git://github.com/mklappstuhl/dot-files.git
