@@ -15,13 +15,19 @@ function fish_config_autowrite_message
   echo "because they are recreated all the time this can be"
   echo "an issue when trying to link ~/.config"
   echo
-  echo "A reasonable workaround is setting \$XDG_CONFIG_HOME"
-  echo "to something like /tmp/xdg-config-temp"
+  echo "A reasonable workaround is temporarily setting"
+  echo "\$XDG_CONFIG_HOME to /tmp/xdg-config-temp"
 
 end
 
 function delay
   sleep 0.7
+end
+
+function my_readlink
+  # GNU alternative would be
+  # echo (readlink -f $argv[1])
+  echo (stat -f "%Y" $argv[1])
 end
 
 function tildify
@@ -49,7 +55,7 @@ function install1
 
   # link exists
   if test -L $destination
-    set -l existing_source (readlink $destination)
+    set -l existing_source (my_readlink $destination)
     # printf "\r%s Symlink exists at %s\n" $warn (tildify $destination)
     # echo "Destination of existing link $existing_source"
 
@@ -87,6 +93,7 @@ function install
     return 1
   end
   ## Directories
+  install1 $base/atom    ~/.atom
   install1 $base/bin     ~/.bin
   install1 $base/boot    ~/.boot
   install1 $base/config  ~/.config
