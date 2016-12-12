@@ -64,7 +64,7 @@ function install1
   else if test -e $destination
     set_color yellow;
     printf "\r%s Regular file exists at %s\n" $warn (tildify $destination)
-    if test "~/.config" = (tildify $destination)
+    if test "$HOME/.config" = $destination
       fish_config_autowrite_message
     end
 
@@ -74,7 +74,7 @@ function install1
     printf "\r%s Installing %s to %s" $in_progress (tildify $source) (tildify $destination)
     delay
     ln -s $source $destination
-    printf "\r%s Installed %s to %s          \n" $success (tildify $source) (tildify $destination)
+    printf "\r%s Installed %s to %s \n" $success (tildify $source) (tildify $destination)
   end
 end
 
