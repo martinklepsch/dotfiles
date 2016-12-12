@@ -19,6 +19,7 @@ boot/cache
 boot/credentials*
 
 atom/.apm
+atom/.node-gyp
 atom/blob-store
 atom/compile-cache
 atom/packages
