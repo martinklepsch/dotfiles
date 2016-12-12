@@ -17,3 +17,10 @@ config/fish/functions/oc*
 
 boot/cache
 boot/credentials*
+
+atom/.apm
+atom/blob-store
+atom/compile-cache
+atom/packages
+atom/recovery
+atom/storage
