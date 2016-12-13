@@ -102,16 +102,16 @@ let g:ctrlp_working_path_mode = 2
 map <leader>r :RainbowParenthesesToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" PLUGINS & PATHOGEN
+""" PLUGINS & PATHOGEN (all disabled for now)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off " required!
+" filetype off " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" set rtp+=~/.vim/bundle/vundle/
+" call vundle#rc()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+" Bundle 'gmarik/vundle'
 
 " original repos on github
 " Bundle 'tpope/vim-fugitive'
@@ -120,27 +120,27 @@ Bundle 'gmarik/vundle'
 " Bundle 'tpope/vim-rails'
 " Bundle 'tpope/vim-bundler'
 " Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'slim-template/vim-slim'
-Bundle 'mhinz/vim-signify'
-Bundle 'mattn/gist-vim'
+" Bundle 'altercation/vim-colors-solarized'
+" Bundle 'mileszs/ack.vim'
+" Bundle 'kien/ctrlp.vim'
+" Bundle 'slim-template/vim-slim'
+" Bundle 'mhinz/vim-signify'
+" Bundle 'mattn/gist-vim'
 
 " clojure related stuff
 " Bundle 'paredit.vim'
 " Bundle 'tpope/vim-leiningen'
 " Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-classpath'
-Bundle 'guns/vim-clojure-static'
-Bundle 'kien/rainbow_parentheses.vim'
+" Bundle 'tpope/vim-classpath'
+" Bundle 'guns/vim-clojure-static'
+" Bundle 'kien/rainbow_parentheses.vim'
 
 
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 
 
-filetype plugin indent on     " required!
+" filetype plugin indent on     " required!
 "
 " Brief help
 " :BundleList          - list configured bundles
@@ -156,15 +156,14 @@ filetype plugin indent on     " required!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When vimrc is edited, reload it
 autocmd! bufwritepost vimrc source ~/.vim/vimrc
-autocmd! bufwritepost snips.vim source ~/.vim/snips.vim
-source ~/.vim/snips.vim
+
+" autocmd! bufwritepost snips.vim source ~/.vim/snips.vim
+" source ~/.vim/snips.vim
 
 set background=dark
 if has('gui_running')
 	colorscheme solarized
   set guioptions=
-else
-	colorscheme lucius
 endif
 syntax on
 set number
@@ -204,8 +203,8 @@ augroup END
 let g:ctrlp_map = '<leader>,'
 let g:ctrlp_dont_split = 'NERD_tree_2'
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """ FILETYPE SPECIFIC STUFF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
