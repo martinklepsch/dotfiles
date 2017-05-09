@@ -42,7 +42,8 @@
   ds = diff --staged
   cm = commit -m
   co = checkout
-  d = diff --color --color-words --abbrev
+  d = diff --color --abbrev
+  dw = diff --color --abbrev --color-words
   dp = "!git fetch production; git l production/master..master"
   duff = diff
   puff = pull --ff --ff-only
