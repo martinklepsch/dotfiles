@@ -27,19 +27,12 @@
 # Atom Flight Manual:
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
 
-'atom-text-editor.vim-mode.insert-mode':
-  'k j': 'vim-mode:activate-normal-mode'
+
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'j k': 'vim-mode-plus:activate-normal-mode' # jk to escape
 
 'atom-text-editor.vim-mode.normal-mode':
   ', w': 'core:save'
-
-'atom-text-editor':
-  '=': 'editor:auto-indent'
-  # disable arrow keys
-  'left': "core:nop"
-  'right': "core:nop"
-  'up': "core:nop"
-  'down': "core:nop"
 
 '.platform-darwin atom-text-editor[data-grammar~="clojure"].vim-mode.visual-mode':
   'enter': 'lisp-paredit:newline'

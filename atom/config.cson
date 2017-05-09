@@ -4,6 +4,7 @@
     disabledPackages: [
       "minimap"
       "indent-guide-improved"
+      "vim-mode-plus"
     ]
     packagesWithKeymapsDisabled: [
       "lisp-paredit"
@@ -21,13 +22,13 @@
   "git-diff":
     showIconsInEditorGutter: true
   "golden-ratio": {}
-  "lisp-paredit":
-    strict: false
+  "lisp-paredit": {}
   minimap:
     absoluteMode: true
   "project-manager":
     alwaysOpenInSameWindow: true
   "proto-repl":
+    bootArgs: "--no-colors repl --server wait"
     leinPath: "/Users/martin/.nix-profile/bin/lein"
     showInlineResults: true
   swackets: {}
