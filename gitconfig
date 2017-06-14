@@ -31,6 +31,7 @@
 
 [alias]
   l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  mine = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit  --author=Martin --all --since=3.days.ago
   report = "!git l --since='7 days ago'"
   currentbranch = !git branch --contains HEAD | grep '*' | tr -s ' ' | cut -d ' ' -f2
   root = rev-parse --show-toplevel
