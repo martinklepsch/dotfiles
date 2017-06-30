@@ -6,32 +6,37 @@
     },
     "profiles": [
         {
-          "complex_modifications": {
-            "rules": [
-              {"manipulators": [
-                {"description": "Change caps_lock to command+control+option+shift.",
-                 "type": "basic",
-                 "from": {"key_code": "caps_lock",
-                          "modifiers": {"optional": ["any"]}},
-                 "to": [{"key_code": "left_control",
-                         "modifiers": ["left_command", "left_shift", "left_option"]}]},
-                {"description": "map left shift to opening parenthesis",
-                 "type": "basic",
-                 "from": {"key_code": "left_shift",
-                          "modifiers": {"optional": ["any"]}},
-                 "to_if_alone": [{"key_code": "9",
-                                  "modifiers": ["left_shift"]}],
-                 "to": [{"key_code": "left_shift",
-                         "modifiers": []}]},
-                {"description": "map right shift to closing parenthesis",
-                 "type": "basic",
-                 "from": {"key_code": "right_shift",
-                          "modifiers": {"optional": ["any"]}},
-                 "to_if_alone": [{"key_code": "0",
-                                  "modifiers": ["right_shift"]}],
-                 "to": [{"key_code": "right_shift",
-                         "modifiers": []}]}]}]},
-          "devices": [],
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
+                "rules": [
+                  {"description": "Change caps_lock to command+control+option+shift.",
+                   "manipulators": [
+                     {"from": {"key_code": "caps_lock",
+                               "modifiers": {"optional": ["any"]}},
+                      "to": [{"key_code": "left_control",
+                              "modifiers": ["left_command", "left_shift", "left_option"]}],
+                      "type": "basic"}]},
+                  {"description": "map left shift to opening parenthesis",
+                   "manipulators": [
+                     {"from": {"key_code": "left_shift",
+                              "modifiers": {"optional": ["any"]}},
+                     "to": [{"key_code": "left_shift",
+                             "modifiers": []}],
+                     "to_if_alone": [{"key_code": "9",
+                                      "modifiers": ["left_shift"]}],
+                      "type": "basic"}]},
+                  {"description": "map right shift to closing parenthesis",
+                   "manipulators": [
+                     {"from": {"key_code": "right_shift",
+                                "modifiers": {"optional": ["any"]}},
+                       "to": [{"key_code": "right_shift",
+                               "modifiers": []}],
+                       "to_if_alone": [{"key_code": "0",
+                                        "modifiers": ["right_shift"]}],
+                      "type": "basic"}]}]},
+            "devices": [],
             "fn_function_keys": {
                 "f1": "vk_consumer_brightness_down",
                 "f10": "mute",
