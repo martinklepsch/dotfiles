@@ -10,9 +10,12 @@
 -- Single keybinding for app launch
 singleapps = {
   {'t', 'iTerm'},
-  {'x', 'Google Chrome'},
+  {'d', 'Todoist'},
+  -- {'x', 'Google Chrome'},
+  {'x', 'Firefox'},
   {'e', 'Emacs'},
-  -- {'e', 'Atom'},
+  -- {'e', 'Xcode'},
+  {'n', 'Atom'},
   {'c', 'Telegram'},
   {'s', 'Slack'},
   {'r', 'Riot'},
