@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+open "$1" -W -a /Applications/iA\ Writer.app
