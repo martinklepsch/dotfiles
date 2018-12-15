@@ -142,26 +142,26 @@ function applypr
    curl -L $argv[1] | git am
 end
 
-function fish_prompt
-  set last_status $status
+if status --is-interactive
+  function fish_prompt
+    set last_status $status
 
-  switch $fish_bind_mode
-    case "insert"
+    switch $fish_bind_mode
+      case "insert"
         set_color $fish_color_cwd
-    case "default"
+      case "default"
         set_color red
+    end
+
+    printf '%s' (prompt_pwd)
+    set_color normal
+
+    printf '%s' (timetrap_prompt)
+
+    printf '%s ' (__fish_git_prompt)
+
+    set_color normal
   end
-
-  printf '%s' (prompt_pwd)
-  set_color normal
-
-  printf '%s ' (__fish_git_prompt)
-
-  set_color normal
-end
-
-if [ -f "/usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.fish" ]
-  . "/usr/local/Cellar/autojump/22.3.0/share/autojump/autojump.fish"
 end
 
 # OPAM configuration
