@@ -38,13 +38,13 @@ set -g fish_key_bindings my_vi_bindings
 # shorten often used commands
 alias g 'git'
 
-alias ef 'em ~/.config/fish/config.fish'
-alias ea 'em ~/.config/awesome/rc.lua'
-alias eg 'em ~/.gitconfig'
-alias et 'em ~/.tmux.conf'
-alias ev 'em ~/.vim/vimrc'
-alias ee 'em ~/.emacs.d/init.el'
-alias eo 'em ~/Dropbox/org/testing.org'
+alias ef 'vim ~/.config/fish/config.fish'
+alias ea 'vim ~/.config/awesome/rc.lua'
+alias eg 'vim ~/.gitconfig'
+alias et 'vim ~/.tmux.conf'
+alias ev 'vim ~/.vim/vimrc'
+alias ee 'vim ~/.emacs.d/init.el'
+alias eo 'vim ~/Dropbox/org/testing.org'
 alias be 'bundle exec'
 
 alias tma 'tmux attach -t'
@@ -67,7 +67,7 @@ set -x LANG en_US.UTF-8
 # USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
 # set -x NIX_PATH nixpkgs=$HOME/code/nixpkgs
 # set -x PATH $HOME/.nix-profile/bin $PATH
-set -x PATH $HOME/.bin (yarn global bin) $PATH
+set -x PATH $HOME/.bin $PATH
 # set -x ANSIBLE_HOME $HOME/code/ansible
 # set -x PATH $ANSIBLE_HOME/bin $PATH
 # set -x PYTHONPATH $ANSIBLE_HOME/lib $PYTHONPATH
@@ -86,15 +86,22 @@ set -x PATH $HOME/.bin (yarn global bin) $PATH
 # Java Stuff
 # set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
 # set -x JAVA_HOME (/usr/libexec/java_home -v 1.8.0_60)
-set -x BOOT_JAVA_COMMAND /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin/java
+# set -x BOOT_JAVA_COMMAND /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin/java
+alias j7 'set -gx JAVA_HOME (/usr/libexec/java_home -v 1.7.0_80)'
+alias j8 'set -gx JAVA_HOME (/usr/libexec/java_home -v 1.8.0_181)'
+alias j9 'set -gx JAVA_HOME (/usr/libexec/java_home -v 9.0.1)'
+alias j10 'set -gx JAVA_HOME (/usr/libexec/java_home -v 10.0.1)'
+
+set -gx GOPATH ~/code/08-go
+set -gx PATH $GOPATH/bin $PATH
+
 set -x BOOT_JVM_OPTIONS "-Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xverify:none"
 
-set -g -x fish_greeting ''
-set -g -x EDITOR 'vim'
-set -g -x XDG_CONFIG_HOME ~/.config
-set -g -x COMMAND_MODE unix2003
-set -g -x RUBYOPT rubygems
-set -g -x DOCKER_HOST tcp://localhost:4243
+set -gx fish_greeting ''
+set -gx EDITOR 'vim'
+set -gx XDG_CONFIG_HOME ~/.config
+set -gx COMMAND_MODE unix2003
+set -gx RUBYOPT rubygems
 
 
 alias ...   'cd ../..'
@@ -114,12 +121,14 @@ alias ll3 'tree --dirsfirst -ChFupDaL 3'
 alias l  'l1'
 alias ll 'll1'
 
-set normal (set_color normal)
-set magenta (set_color magenta)
-set yellow (set_color yellow)
-set green (set_color green)
-set red (set_color red)
-set gray (set_color -o black)
+if status --is-interactive
+  set normal (set_color normal)
+  set magenta (set_color magenta)
+  set yellow (set_color yellow)
+  set green (set_color green)
+  set red (set_color red)
+  set gray (set_color -o black)
+end
 
 # Fish git prompt
 # set __fish_git_prompt_showdirtystate 'yes'
@@ -139,7 +148,10 @@ set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
 function applypr
-   curl -L $argv[1] | git am
+   set f (mktemp)
+   echo "Downloading patch to $f"
+   curl -sL $argv[1] -o $f
+   git am -3 $f
 end
 
 if status --is-interactive
@@ -165,10 +177,14 @@ if status --is-interactive
 end
 
 # OPAM configuration
-# set -gx PATH "$HOME/.opam/system/bin" $PATH;
-# set -gx OCAML_TOPLEVEL_PATH "$HOME/.opam/system/lib/toplevel";
-# set -gx PERL5LIB "$HOME/.opam/system/lib/perl5:$PERL5LIB";
-# set -gx MANPATH $MANPATH "$HOME/.opam/system/man";
-# set -gx OPAMUTF8MSGS "1";
-# set -gx CAML_LD_LIBRARY_PATH "$HOME/.opam/system/lib/stublibs:/usr/local/lib/ocaml/stublibs";
-# eval (opam config env)
+# if test (type opam)
+#  opam config env | source
+# end
+
+if test (type pass)
+  set -gx PASSWORD_STORE_DIR "$HOME/pass"
+end
+
+if test (type direnv)
+  direnv hook fish | source
+end
