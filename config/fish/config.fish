@@ -2,12 +2,14 @@
 
 alias c 'clear'
 alias hl 'less -R'
+alias d 'sudo docker'
+alias ia 'open -a "iA Writer"'
 function paththis
   set -xg PATH (pwd) $PATH
 end
 
 function f
-  fzf > $TMPDIR/fzf.result; and em (cat $TMPDIR/fzf.result)
+  fzf > $TMPDIR/fzf.result; and eval $EDITOR (cat $TMPDIR/fzf.result)
 end
 
 function md5-suffix
@@ -102,7 +104,6 @@ set -gx EDITOR 'vim'
 set -gx XDG_CONFIG_HOME ~/.config
 set -gx COMMAND_MODE unix2003
 set -gx RUBYOPT rubygems
-
 
 alias ...   'cd ../..'
 alias ....  'cd ../../..'
