@@ -42,7 +42,7 @@
   p = push
   pu = "!git push --set-upstream origin $(git currentbranch)"
   ds = diff --staged
-  cm = commit -m
+  cm = commit -S -m
   co = checkout
   d = diff --color --abbrev
   dw = diff --color --abbrev --color-words
@@ -62,3 +62,5 @@
   smudge = git-lfs smudge %f
   required = true
   clean = git-lfs clean %f
+[commit]
+  gpgsign = true
