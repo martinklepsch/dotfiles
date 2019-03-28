@@ -8,9 +8,9 @@
 (setq compilation-ask-about-save nil)
 
 ;; No EOF newlines by default
-(setq next-line-add-newlines nil)
-(setq require-final-newline nil)
-(setq mode-require-final-newline nil)
+;; (setq next-line-add-newlines nil)
+;; (setq require-final-newline nil)
+;; (setq mode-require-final-newline nil)
 
 ;; Always ask for y/n keypress instead of typing out 'yes' or 'no'
 (defalias 'yes-or-no-p 'y-or-n-p)

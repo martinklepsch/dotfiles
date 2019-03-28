@@ -4,20 +4,20 @@
 (setq evil-want-C-w-in-emacs-state t)
 (setq evil-want-C-u-scroll t)
 (setq evil-want-C-i-jump nil)
+(setq evil-toggle-key "C-`") ;; never need this, don't know how to unbind
 
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key
   "." 'eval-buffer
-  "r" 'inf-clojure-switch-to-repl
   "a" 'helm-projectile-ag
   "," 'helm-projectile-find-file
-  "p" 'helm-projectile-switch-project
+  "p s" 'helm-projectile-switch-project
+  "p i c" 'projectile-invalidate-cache
   "t" 'direx-project:jump-to-project-root
-  "i" 'parinfer-toggle-mode
   "c" 'comment-or-uncomment-region
-  "x" 'org-capture
+  "i" 'spec-instrument
   "l" 'cider-jump-to-var
   "g" 'golden-ratio-mode
   "w" 'save-buffer
@@ -27,8 +27,6 @@
 
 (require 'evil)
 (evil-mode t)
-
-(require 'evil-org)
 
 (evil-declare-key 'normal direx:direx-mode-map (kbd "r")   'direx:refresh-whole-tree)
 (evil-declare-key 'normal direx:direx-mode-map (kbd "o")   'direx:find-item-other-window)
@@ -46,5 +44,5 @@
 (key-chord-mode 1)
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
 (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
-;(key-chord-define-global "" 'helm-mini)
+;; (key-chord-define-global "" 'helm-mini)
 ;; (key-chord-define-global "cqc" 'inf-clojure-eval-last-sexp)
