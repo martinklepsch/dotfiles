@@ -4,6 +4,7 @@ alias c 'clear'
 alias hl 'less -R'
 alias d 'sudo docker'
 alias ia 'open -a "iA Writer"'
+alias cdicloud 'cd /Users/martinklepsch/Library/Mobile\ Documents/com~apple~CloudDocs/'
 function paththis
   set -xg PATH (pwd) $PATH
 end
@@ -40,6 +41,8 @@ set -g fish_key_bindings my_vi_bindings
 # shorten often used commands
 alias g 'git'
 
+
+alias ec 'git -C ~/etc ls-files | fzf | xargs $EDITOR'
 alias ef 'vim ~/.config/fish/config.fish'
 alias ea 'vim ~/.config/awesome/rc.lua'
 alias eg 'vim ~/.gitconfig'
@@ -100,7 +103,7 @@ set -gx PATH $GOPATH/bin $PATH
 set -x BOOT_JVM_OPTIONS "-Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xverify:none"
 
 set -gx fish_greeting ''
-set -gx EDITOR 'vim'
+set -gx EDITOR 'nvim'
 set -gx XDG_CONFIG_HOME ~/.config
 set -gx COMMAND_MODE unix2003
 set -gx RUBYOPT rubygems
@@ -121,6 +124,9 @@ alias ll3 'tree --dirsfirst -ChFupDaL 3'
 
 alias l  'l1'
 alias ll 'll1'
+
+alias lua 'rlwrap lua'
+alias fennel 'rlwrap fennel'
 
 if status --is-interactive
   set normal (set_color normal)
@@ -169,7 +175,7 @@ if status --is-interactive
     printf '%s' (prompt_pwd)
     set_color normal
 
-    printf '%s' (timetrap_prompt)
+    printf '%s' (tlog_prompt)
 
     printf '%s ' (__fish_git_prompt)
 
