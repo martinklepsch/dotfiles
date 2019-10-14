@@ -104,8 +104,11 @@ function install
   install1 $base/config  ~/.config
   install1 $base/emacs.d ~/.emacs.d
   install1 $base/hammerspoon  ~/.hammerspoon
+  install1 $base/spacemacs.d    ~/.spacemacs.d
 
   ## Regular files
+  #
+  # install1 $base/spacemacs    ~/.spacemacs
   install1 $base/agignore     ~/.agignore
   install1 $base/tmux.conf    ~/.tmux.conf
   install1 $base/gitconfig    ~/.gitconfig
