@@ -1,3 +1,4 @@
+" Plugin List {{{
 call plug#begin('~/.vim/plugged')
 
 " Plug 'Olical/conjure', { 'tag': 'v2.0.0', 'do': 'bin/compile'  }
@@ -6,6 +7,10 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'roman/golden-ratio'
@@ -13,15 +18,18 @@ Plug 'jrdoane/vim-clojure-highlight'
 Plug 'guns/vim-clojure-static'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'rakr/vim-two-firewatch'
+Plug 'luochen1990/rainbow'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'dense-analysis/ale'
+Plug 'itchyny/lightline.vim'
 
-call plug#end()
+Plug 'rafi/awesome-vim-colorschemes'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-colorscheme-switcher'
 
-" https://github.com/guns/vim-clojure-highlight#rainbow-parentheses-and-other-syntax-extensions
-autocmd Syntax clojure EnableSyntaxExtension
-autocmd VimEnter *       RainbowParenthesesToggle
-autocmd Syntax   clojure RainbowParenthesesLoadRound
-autocmd Syntax   clojure RainbowParenthesesLoadSquare
-autocmd Syntax   clojure RainbowParenthesesLoadBraces
+call plug#end() "}}}
 
 syntax on
 filetype plugin indent on
