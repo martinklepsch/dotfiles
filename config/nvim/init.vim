@@ -31,8 +31,18 @@ Plug 'xolox/vim-colorscheme-switcher'
 
 call plug#end() "}}}
 
-syntax on
-filetype plugin indent on
+" Base Config {{{
+colorscheme space-vim-dark
+set noswapfile
+set foldmethod=indent
+set bg=dark
+set hlsearch
+set ignorecase
+set cursorline
+set confirm
+set termguicolors
+let g:netrw_dirhistmax = 0 " https://stackoverflow.com/questions/9850360/what-is-netrwhist
+match ErrorMsg '\s\+$'"}}}
 
 let mapleader = " "
 nnoremap <Leader>a :Rg<CR>
