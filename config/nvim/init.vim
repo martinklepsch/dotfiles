@@ -44,11 +44,6 @@ set termguicolors
 let g:netrw_dirhistmax = 0 " https://stackoverflow.com/questions/9850360/what-is-netrwhist
 match ErrorMsg '\s\+$'"}}}
 
-augroup vim
-	autocmd!
-	autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
 " function! g:FoldLispTopForm(lnum)
 "   let curr = getline(a:lnum)
 "   let next = getline(a:lnum+1)
