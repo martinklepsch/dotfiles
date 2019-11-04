@@ -82,14 +82,16 @@ nnoremap gsv :so $MYVIMRC<CR>
 nnoremap <Leader><Leader> :Commands<CR>
 nnoremap <Leader>a :Rg<CR>
 nnoremap <Leader>p :GFiles<CR>
-nnoremap <Leader>b :Buffers<CR>"}}}
+nnoremap <Leader>b :Buffers<CR>
+"}}}
 
 " Fugitive mappings{{{
 nmap <Leader>gb :Gblame<CR>
 nmap <Leader>gd :Gdiff<CR>
 nmap <Leader>gc :Gcommit<CR>
 nmap <Leader>gs :Gstatus<CR>
-nmap <Leader>gS :Gstatus<CR><C-w>T"}}}
+nmap <Leader>gS :Gstatus<CR><C-w>T
+"}}}
 
 " GitGutter Mappings {{{
 " (from https://github.com/SevereOverfl0w/.files/blob/304610fca3437f4d22c672cb6d5d6e81f004664c/nvim/dein-plugin/git.vim#L16-L26)
