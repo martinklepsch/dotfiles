@@ -1,8 +1,11 @@
 " Plugin List {{{
 call plug#begin('~/.vim/plugged')
 
-" Plug 'Olical/conjure', { 'tag': 'v2.0.0', 'do': 'bin/compile'  }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+" Plug 'Olical/conjure', { 'tag': 'v2.1.1', 'do': 'bin/compile'  }
+" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'clojure-vim/acid.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'liquidz/vim-iced', {'for': 'clojure'}
+
 
 Plug 'tpope/vim-salve'
 Plug 'tpope/vim-projectionist'
@@ -10,6 +13,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
@@ -40,6 +44,7 @@ set hlsearch
 set ignorecase
 set cursorline
 set confirm
+set hidden
 set termguicolors
 let g:netrw_dirhistmax = 0 " https://stackoverflow.com/questions/9850360/what-is-netrwhist
 match ErrorMsg '\s\+$'"}}}
@@ -72,6 +77,7 @@ inoremap kj <ESC>
 tnoremap kj <C-\><C-n>
 nnoremap <Leader>w :w<CR>
 noremap <Leader>y "*y
+nmap <Leader>f zfaF
 nnoremap <C-u> 10k
 nnoremap <C-d> 10j
 nnoremap gev :e $MYVIMRC<CR>
