@@ -10,7 +10,11 @@ function paththis
 end
 
 function f
-  fzf > $TMPDIR/fzf.result; and eval $EDITOR (cat $TMPDIR/fzf.result)
+  if test -d .git
+    git ls-files | uniq | fzf | xargs $EDITOR
+  else
+    fzf | xargs $EDITOR
+  end
 end
 
 function md5-suffix
@@ -41,15 +45,14 @@ set -g fish_key_bindings my_vi_bindings
 # shorten often used commands
 alias g 'git'
 
-
-alias ec 'git -C ~/etc ls-files | fzf | xargs $EDITOR'
-alias ef 'vim ~/.config/fish/config.fish'
-alias ea 'vim ~/.config/awesome/rc.lua'
-alias eg 'vim ~/.gitconfig'
-alias et 'vim ~/.tmux.conf'
-alias ev 'vim ~/.vim/vimrc'
-alias ee 'vim ~/.emacs.d/init.el'
-alias eo 'vim ~/Dropbox/org/testing.org'
+alias ec 'pushd ~/etc; git ls-files | fzf | xargs $EDITOR; popd'
+alias ef '$EDITOR ~/.config/fish/config.fish'
+alias ea '$EDITOR ~/.config/awesome/rc.lua'
+alias eg '$EDITOR ~/.gitconfig'
+alias et '$EDITOR ~/.tmux.conf'
+alias ev '$EDITOR ~/.config/nvim/init.vim'
+alias ee '$EDITOR ~/.emacs.d/init.el'
+alias eo '$EDITOR ~/Dropbox/org/testing.org'
 alias be 'bundle exec'
 
 alias tma 'tmux attach -t'
@@ -73,6 +76,8 @@ set -x LANG en_US.UTF-8
 # set -x NIX_PATH nixpkgs=$HOME/code/nixpkgs
 # set -x PATH $HOME/.nix-profile/bin $PATH
 set -x PATH $HOME/.bin $PATH
+set -x PATH $HOME/code/02-oss/Fennel $PATH
+set -x PATH $HOME/code/03-personal/tlog/_build $PATH
 # set -x ANSIBLE_HOME $HOME/code/ansible
 # set -x PATH $ANSIBLE_HOME/bin $PATH
 # set -x PYTHONPATH $ANSIBLE_HOME/lib $PYTHONPATH
@@ -92,6 +97,7 @@ set -x PATH $HOME/.bin $PATH
 # set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
 # set -x JAVA_HOME (/usr/libexec/java_home -v 1.8.0_60)
 # set -x BOOT_JAVA_COMMAND /Library/Java/JavaVirtualMachines/jdk1.8.0_60.jdk/Contents/Home/bin/java
+
 alias j7 'set -gx JAVA_HOME (/usr/libexec/java_home -v 1.7.0_80)'
 alias j8 'set -gx JAVA_HOME (/usr/libexec/java_home -v 1.8.0_181)'
 alias j9 'set -gx JAVA_HOME (/usr/libexec/java_home -v 9.0.1)'
