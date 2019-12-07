@@ -15,7 +15,8 @@ singleapps = {
   {'x', 'Safari'},
   -- {'e', 'Visual Studio Code'},
   -- {'e', 'Xcode'},
-  {'e', 'Emacs'},
+  -- {'e', 'Emacs'},
+  {'e', 'Alacritty'},
   {'n', 'Bear'},
   {'m', 'Mail'},
   {'c', 'Telegram'},
@@ -37,6 +38,10 @@ hs.hotkey.bind(
    "i",
    nil,
    function() hs.execute("screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png"); end)
+
+-- https://github.com/scottwhudson/Lunette/
+hs.loadSpoon("Lunette")
+spoon.Lunette:bindHotkeys()
 
 -- Sequential keybindings, e.g. Hyper-a,f for Finder
 -- a = hs.hotkey.modal.new({}, "F16")
