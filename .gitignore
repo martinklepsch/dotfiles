@@ -3,6 +3,7 @@ irssi/config
 config/fish/fish_history
 config/fish/fishd.nitrogen
 emacs.d/*
+emacs.d.bak/*
 !emacs.d/init.el
 !emacs.d/init.d
 config/fish/fish_read_history
