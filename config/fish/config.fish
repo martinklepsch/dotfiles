@@ -93,6 +93,9 @@ set -x PATH $HOME/code/03-personal/tlog/_build $PATH
 # set PATH "/usr/bin/vendor_perl" $PATH
 # set PATH "/usr/bin/core_perl" $PATH
 
+# Node Stuff
+status --is-interactive; and source (nodenv init -|psub)
+
 # Java Stuff
 # set -x JAVA_HOME (/usr/libexec/java_home -v 1.8)
 # set -x JAVA_HOME (/usr/libexec/java_home -v 1.8.0_60)
@@ -102,6 +105,7 @@ alias j7 'set -gx JAVA_HOME (/usr/libexec/java_home -v 1.7.0_80)'
 alias j8 'set -gx JAVA_HOME (/usr/libexec/java_home -v 1.8.0_181)'
 alias j9 'set -gx JAVA_HOME (/usr/libexec/java_home -v 9.0.1)'
 alias j10 'set -gx JAVA_HOME (/usr/libexec/java_home -v 10.0.1)'
+alias j11 'set -gx JAVA_HOME (/usr/libexec/java_home -v 11.0.6)'
 
 set -gx GOPATH ~/code/08-go
 set -gx PATH $GOPATH/bin $PATH
