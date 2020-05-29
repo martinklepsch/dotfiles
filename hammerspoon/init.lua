@@ -1,5 +1,6 @@
 -- A global variable for the Hyper Mode
 -- k = hs.hotkey.modal.new({"cmd","alt","shift","ctrl"}, nil)
+hyper = {"cmd","alt","shift","ctrl"}
 
 -- Trigger existing hyper key shortcuts
 
@@ -26,18 +27,13 @@ singleapps = {
 }
 
 for i, app in ipairs(singleapps) do
-   hs.hotkey.bind(
-      {"cmd","alt","shift","ctrl"},
-      app[1],
-      nil,
-      function() hs.application.launchOrFocus(app[2]); end)
+   hs.hotkey.bind(hyper, app[1], nil, function() hs.application.launchOrFocus(app[2]); end)
 end
 
-hs.hotkey.bind(
-   {"cmd","alt","shift","ctrl"},
-   "i",
-   nil,
-   function() hs.execute("screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png"); end)
+insp = function()
+	hs.execute("screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png");
+end
+hs.hotkey.bind(hyper, "i", nil, insp)
 
 -- https://github.com/scottwhudson/Lunette/
 hs.loadSpoon("Lunette")
