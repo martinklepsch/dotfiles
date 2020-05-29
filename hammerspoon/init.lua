@@ -36,6 +36,8 @@ insp = function()
 end
 hs.hotkey.bind(hyper, "i", nil, insp)
 
+hs.loadSpoon("SpoonInstall")
+spoon.SpoonInstall.use_syncinstall = true
 -- https://github.com/scottwhudson/Lunette/
 hs.loadSpoon("Lunette")
 spoon.Lunette:bindHotkeys()
@@ -50,10 +52,30 @@ spoon.Lunette:bindHotkeys()
 -- for i, app in ipairs(apps) do
 --   a:bind({}, app[1], function() launch(app[2]); a:exit(); end)
 -- end
+DefaultBrowser = "com.brave.Browser"
+IcebreakerBrowser = "com.google.Chrome"
+Zoom = "us.zoom.xos"
 
 -- pressedA = function() a:enter() end
 -- releasedA = function() end
 -- k:bind({}, 'a', nil, pressedA, releasedA)
+spoon.SpoonInstall:andUse("URLDispatcher", {
+	config = {
+		url_patterns = {
+			{ "sentry.*icebreaker", IcebreakerBrowser },
+			{ "github.*icebreaker", IcebreakerBrowser },
+			{ "github.*icebreaker", IcebreakerBrowser },
+			{ "https://.*asana.com",  IcebreakerBrowser },
+			{ "https://geekbot.com",  IcebreakerBrowser },
+			{ "datastudio.google.com", IcebreakerBrowser },
+			{ "analytics.amplitude.com", IcebreakerBrowser },
+			{ "loom.com", IcebreakerBrowser },
+			{ "https://zoom.us/j*",  Zoom },
+		},
+		default_handler = DefaultBrowser
+	},
+	start = true
+})
 
 -- Shortcut to reload config
 
