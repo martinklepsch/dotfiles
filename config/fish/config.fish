@@ -185,7 +185,9 @@ if status --is-interactive
     printf '%s' (prompt_pwd)
     set_color normal
 
-    printf '%s' (tlog_prompt)
+    # I once accidentially deleted the file defining tlog_prompt
+    # https://twitter.com/martinklepsch/status/1266455561400397831
+    # printf '%s' (tlog_prompt)
 
     printf '%s ' (__fish_git_prompt)
 
