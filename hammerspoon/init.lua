@@ -140,13 +140,23 @@ local iconAscii = [[ASCII:
 ............
 ]]
 
-local automationMenu = hs.menubar.new():setIcon(iconAscii)
+local log = hs.logger.new('mymodule','debug')
+log.i('Initializing') -- will print "[mymodule] Initializing" to the console
+
+setup_browsers = function (work_mode)
+  log.i("Setting work_mode", work_mode)
+end
 local work_mode = false
+function switch_work_mode()
+  work_mode = not work_mode
+  setup_browsers(work_mode)
+end
 function menuTable()
   return {
-    { title = "work mode", fn = function() work_mode = not work_mode end , checked = work_mode} ,
+    { title = "work mode", fn = switch_work_mode , checked = work_mode} ,
     -- separator { title = "-" },
   }
 end
 
+local automationMenu = hs.menubar.new():setIcon(iconAscii)
 automationMenu:setMenu(menuTable)
