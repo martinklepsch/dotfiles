@@ -23,3 +23,6 @@ atom/compile-cache
 atom/packages
 atom/recovery
 atom/storage
+
+hammerspoon/Spoons/
+config/karabiner/automatic_backups/
