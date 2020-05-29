@@ -1,3 +1,4 @@
+--- vim: ts=2 sw=2 et
 -- A global variable for the Hyper Mode
 -- k = hs.hotkey.modal.new({"cmd","alt","shift","ctrl"}, nil)
 hyper = {"cmd","alt","shift","ctrl"}
@@ -28,11 +29,11 @@ singleapps = {
 }
 
 for i, app in ipairs(singleapps) do
-   hs.hotkey.bind(hyper, app[1], nil, function() hs.application.launchOrFocus(app[2]); end)
+  hs.hotkey.bind(hyper, app[1], nil, function() hs.application.launchOrFocus(app[2]); end)
 end
 
 insp = function()
-	hs.execute("screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png");
+  hs.execute("screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png");
 end
 hs.hotkey.bind(hyper, "i", nil, insp)
 
@@ -60,21 +61,21 @@ Zoom = "us.zoom.xos"
 -- releasedA = function() end
 -- k:bind({}, 'a', nil, pressedA, releasedA)
 spoon.SpoonInstall:andUse("URLDispatcher", {
-	config = {
-		url_patterns = {
-			{ "sentry.*icebreaker", IcebreakerBrowser },
-			{ "github.*icebreaker", IcebreakerBrowser },
-			{ "github.*icebreaker", IcebreakerBrowser },
-			{ "https://.*asana.com",  IcebreakerBrowser },
-			{ "https://geekbot.com",  IcebreakerBrowser },
-			{ "datastudio.google.com", IcebreakerBrowser },
-			{ "analytics.amplitude.com", IcebreakerBrowser },
-			{ "loom.com", IcebreakerBrowser },
-			{ "https://zoom.us/j*",  Zoom },
-		},
-		default_handler = DefaultBrowser
-	},
-	start = true
+  config = {
+    url_patterns = {
+      { "sentry.*icebreaker", IcebreakerBrowser },
+      { "github.*icebreaker", IcebreakerBrowser },
+      { "github.*icebreaker", IcebreakerBrowser },
+      { "https://.*asana.com",  IcebreakerBrowser },
+      { "https://geekbot.com",  IcebreakerBrowser },
+      { "datastudio.google.com", IcebreakerBrowser },
+      { "analytics.amplitude.com", IcebreakerBrowser },
+      { "loom.com", IcebreakerBrowser },
+      { "https://zoom.us/j*",  Zoom },
+    },
+    default_handler = DefaultBrowser
+  },
+  start = true
 })
 
 -- Shortcut to reload config
@@ -142,10 +143,10 @@ local iconAscii = [[ASCII:
 local automationMenu = hs.menubar.new():setIcon(iconAscii)
 local work_mode = false
 function menuTable()
-	return	{
-		{ title = "work mode", fn = function() work_mode = not work_mode end , checked = work_mode} ,
-		-- separator { title = "-" },
-	}
+  return {
+    { title = "work mode", fn = function() work_mode = not work_mode end , checked = work_mode} ,
+    -- separator { title = "-" },
+  }
 end
 
 automationMenu:setMenu(menuTable)
