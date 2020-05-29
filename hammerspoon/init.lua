@@ -160,3 +160,13 @@ end
 
 local automationMenu = hs.menubar.new():setIcon(iconAscii)
 automationMenu:setMenu(menuTable)
+
+-- FENNEL WHOOOT
+-- This currently requires fennel.lua to be placed adjacent to this file
+-- I'd love to replace this with an autoinstaller a la fisher & vim-plug
+local fennel = require "fennel"
+
+-- allow requiring of fennel modules
+table.insert(package.loaders or package.searchers, fennel.searcher)
+
+fennel.dofile("init.fnl", { allowedGlobals = false })
