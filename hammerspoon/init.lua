@@ -116,3 +116,36 @@ local mouseCircleTimer = nil
 --   k.triggered = true
 -- end
 -- k:bind('', 'l', nil, lfun)
+--
+--
+
+-- not really what I want but something
+-- https://chris.zarate.org/create-custom-macos-menu-bar-apps-using-hammerspoon
+-- https://github.com/GeneralSarsby/asciiIcons/issues/1
+local iconAscii = [[ASCII:
+............
+............
+....AD......
+..F.....PQ..
+..I.........
+..........G.
+..........H.
+.K..........
+.N..........
+.........L..
+..BC.....M..
+......SR....
+............
+............
+]]
+
+local automationMenu = hs.menubar.new():setIcon(iconAscii)
+local work_mode = false
+function menuTable()
+	return	{
+		{ title = "work mode", fn = function() work_mode = not work_mode end , checked = work_mode} ,
+		-- separator { title = "-" },
+	}
+end
+
+automationMenu:setMenu(menuTable)
