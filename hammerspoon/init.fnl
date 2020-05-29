@@ -2,7 +2,6 @@
 (global logger (hs.logger.new "fennel" "debug"))
 (local {:application app :hotkey hotkey} hs) ; destructuring
 
-; hs.logger:i("test")
 ; use the SpoonInstall Spoon easy installing+loading of Spoons
 ; (hs.loadSpoon :SpoonInstall)
 ; (local install (. spoon :SpoonInstall))
@@ -26,3 +25,25 @@
              (fn reload []
                (let [x (hs.reload)]
                  (logger.i "reload return" x))))
+
+; Single keybinding for app launch
+(local singleapps
+  {:t "iTerm"
+   :d "Todoist"
+   :v "Google Chrome"
+   :x "Brave Browser"
+   :e "Alacritty"
+   :n "Bear"
+   :m "Mail"
+   :c "Telegram"
+   :s "Slack"
+   :r "Riot"
+   ; :x "Safari"
+   ; :e "Visual Studio Code"
+   ; :e "Xcode"
+   ; :e "Emacs"
+   ; :n "Notion"
+   })
+
+(each [key app (pairs singleapps)]
+  (hotkey.bind hyper key nil (fn [] (hs.application.launchOrFocus app))))

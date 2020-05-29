@@ -7,31 +7,6 @@ hyper = {"cmd","alt","shift","ctrl"}
 
 -- k:bind({}, 'm', nil, function() hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'm') end)
 
--- OR build your own
-
--- Single keybinding for app launch
-singleapps = {
-  {'t', 'iTerm'},
-  {'d', 'Todoist'},
-  {'v', 'Google Chrome'},
-  {'x', 'Brave Browser'},
-  -- {'x', 'Safari'},
-  -- {'e', 'Visual Studio Code'},
-  -- {'e', 'Xcode'},
-  -- {'e', 'Emacs'},
-  {'e', 'Alacritty'},
-  {'n', 'Bear'},
-  {'m', 'Mail'},
-  {'c', 'Telegram'},
-  {'s', 'Slack'},
-  {'r', 'Riot'},
-  -- {'n', 'Notion'},
-}
-
-for i, app in ipairs(singleapps) do
-  hs.hotkey.bind(hyper, app[1], nil, function() hs.application.launchOrFocus(app[2]); end)
-end
-
 insp = function()
   hs.execute("screencapture -i ~/Dropbox/inspiration/shot_`date '+%Y-%m-%d_%H-%M-%S'`.png");
 end
