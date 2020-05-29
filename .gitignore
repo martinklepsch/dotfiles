@@ -8,6 +8,7 @@ emacs.d.bak/*
 !emacs.d/init.d
 config/fish/fish_read_history
 config/fish/fishd.*
+config/fisher
 
 config/.exercism.json
 config/hub
