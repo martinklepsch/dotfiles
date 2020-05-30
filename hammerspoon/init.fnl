@@ -15,9 +15,9 @@
 ; (: spoon.WindowHalfsAndThirds :bindHotkeys
 ;    (. spoon :WindowHalfsAndThirds :defaultHotkeys))
 
-; launch/focus/activate kitty terminal
 (local hyper [:cmd :alt :shift :ctrl])
 
+; launch/focus/activate kitty terminal
 (hotkey.bind [:cmd :ctrl] :t
              "😾 terminal"
              (partial app.open "terminal"))
@@ -59,6 +59,18 @@
 
 (install_bindings bindings_state)
 
+; modal productivity
+; distraction strategy: disconnect desire and action
+; -> log stuff and review instead of instantly looking at it
+; -> have super easy interface to capture stuff and resurface at relevant time (i.e. when switching to a different mode)
+; modes: custom purpose environments
+; -> bind keys to apps diffently (show message about work mode when pressed)
+; -> tip: try to use consistent mappings across modes
+; -> track time active in different modes
+; -> provide a quick switcher to switch between mode (menu bar could display text as reminder)
+; -> run more or less arbitrary stuff to enter and switch between work modes
+;    -> block distracting websites
+;    -> open specific websites
 
 ; work mode menubar app
 (local automation_menu (hs.menubar.new))
