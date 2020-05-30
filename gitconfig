@@ -2,7 +2,7 @@
 
 [core]
   whitespace = trailing-space,space-before-tab
-  excludesfile = /Users/martin/.gitignore
+  excludesfile = ~/.gitignore
 
 [color]
   status = auto
