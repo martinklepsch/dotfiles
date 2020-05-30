@@ -113,7 +113,6 @@ function install
   install1 $base/tmux.conf    ~/.tmux.conf
   install1 $base/gitconfig    ~/.gitconfig
   install1 $base/gitignore    ~/.gitignore
-  install1 $base/vimrc        ~/.vimrc
 end
 
 install
