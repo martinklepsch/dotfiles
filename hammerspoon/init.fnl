@@ -1,3 +1,5 @@
+(local view (require :fennelview))
+(global pp (fn [x] (print (view x))))
 (set hs.logger.defaultLogLevel "info")
 (global logger (hs.logger.new "fennel" "debug"))
 (local {:application app :hotkey hotkey} hs) ; destructuring
