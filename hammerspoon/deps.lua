@@ -4,6 +4,7 @@
 deps = {
   -- probably should not be using master branches here
   ["fennel.lua"] = "https://github.com/bakpakin/Fennel/blob/master/fennel.lua",
+  ["fennelview.lua"] = "https://raw.githubusercontent.com/bakpakin/Fennel/master/fennelview.lua",
   ["moses.lua"] = "https://raw.githubusercontent.com/Yonaba/Moses/master/moses.lua"
 }
 
