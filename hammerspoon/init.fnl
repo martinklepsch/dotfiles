@@ -28,24 +28,49 @@
                (let [x (hs.reload)]
                  (logger.i "reload return" x))))
 
-; Single keybinding for app launch
-(local singleapps
-  {:t "iTerm"
-   :d "Todoist"
-   :v "Google Chrome"
-   :x "Brave Browser"
-   :e "Alacritty"
-   :n "Bear"
-   :m "Mail"
-   :c "Telegram"
-   :s "Slack"
-   :r "Riot"
-   ; :x "Safari"
-   ; :e "Visual Studio Code"
-   ; :e "Xcode"
-   ; :e "Emacs"
-   ; :n "Notion"
-   })
+(fn app [name]
+  (fn [] (hs.application.launchOrFocus name)))
 
-(each [key app (pairs singleapps)]
-  (hotkey.bind hyper key nil (fn [] (hs.application.launchOrFocus app))))
+(fn bindings_spec [off_work_mode]
+  [{:handler (app "iTerm") :key :t}
+   {:handler (app "Brave Browser") :key :x}
+   {:handler (app "Todoist") :key :d}
+   {:handler (app "Alacritty") :key :e}
+   {:handler (app "Bear") :key :n}
+   {:handler (app "Telegram") :key :c}
+   (when (not off_work_mode)
+     {:handler (app "Google Chrome") :key :v})
+   (when (not off_work_mode)
+     {:handler (app "Slack") :key :s})
+   ])
+
+(var bindings_state (bindings_spec false))
+
+(fn install_bindings [bindings]
+  ;; delete installed hotkeys
+  (each [_ {:hotkey hk} (ipairs bindings_state)]
+    (when hk (print "disabling") (hk:delete)))
+  ;; clear state
+  (set bindings_state bindings)
+  ;; install new bindings
+  (each [n bi (ipairs bindings)]
+    (print (. bi :app) (. bi :key) (. bi :hotkey))
+    (tset bi :hotkey (hotkey.bind hyper (. bi :key) nil (. bi :handler)))))
+
+(install_bindings bindings_state)
+
+
+; work mode menubar app
+(local automation_menu (hs.menubar.new))
+(var off_work_mode false)
+
+(fn switch_work_mode []
+  (set off_work_mode (not off_work_mode))
+  (: automation_menu :setTitle (if off_work_mode "off work" "work"))
+  (install_bindings (bindings_spec off_work_mode)))
+
+(fn menu_table []
+  [{:title "off work mode" :fn switch_work_mode :checked off_work_mode}])
+
+(: automation_menu :setTitle "work")
+(: automation_menu :setMenu menu_table)
