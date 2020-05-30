@@ -115,10 +115,9 @@ local iconAscii = [[ASCII:
 ............
 ]]
 
+require "deps"
 
 -- FENNEL WHOOOT
--- This currently requires fennel.lua to be placed adjacent to this file
--- I'd love to replace this with an autoinstaller a la fisher & vim-plug
 local fennel = require "fennel"
 
 -- allow requiring of fennel modules
