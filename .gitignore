@@ -26,6 +26,8 @@ atom/recovery
 atom/storage
 
 hammerspoon/Spoons/
+hammerspoon/fennel.lua
+hammerspoon/moses.lua
 config/karabiner/automatic_backups/
 
 config/gcloud
