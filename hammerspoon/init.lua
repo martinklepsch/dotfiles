@@ -46,7 +46,8 @@ spoon.SpoonInstall:andUse("URLDispatcher", {
       { "datastudio.google.com", IcebreakerBrowser },
       { "analytics.amplitude.com", IcebreakerBrowser },
       { "loom.com", IcebreakerBrowser },
-      { "https://zoom.us/j*",  Zoom },
+      { "https?://zoom.us/j/",  Zoom },
+      { "https?://%w+.zoom.us/j/",  Zoom },
     },
     default_handler = DefaultBrowser
   },
