@@ -114,7 +114,17 @@ nmap <Leader>gS :Gstatus<CR><C-w>T
 "}}}
 
 " Lazygit mappings{{{
-nmap <Leader>g :FloatermNew lazygit<CR>
+function LazyGit()
+	echom &columns
+	if (&columns > 180)
+		FloatermNew lazygit
+	else
+		FloatermNew --width=0.9 --height=0.9 lazygit
+	endif
+endfunction
+
+nmap <Leader>g :call LazyGit()<CR>
+
 "}}}
 
 " indent forms after slurping
