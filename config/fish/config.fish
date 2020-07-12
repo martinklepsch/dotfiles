@@ -9,6 +9,7 @@ end
 
 alias c 'clear'
 alias hl 'less -R'
+alias lg 'lazygit'
 alias d 'sudo docker'
 alias ia 'open -a "iA Writer"'
 alias cdicloud 'cd /Users/martinklepsch/Library/Mobile\ Documents/com~apple~CloudDocs/'
