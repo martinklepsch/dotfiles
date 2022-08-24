@@ -25,6 +25,8 @@ function f
   end
 end
 
+bind \cb interactive-checkout
+
 function md5-suffix
   set -l path $argv[1]
   set -l suffix $argv[2]
