@@ -1,0 +1,6 @@
+{:main [{:des "Left shift to opening paren"
+         :rules [[:left_shift  :left_shift nil {:alone :!S9}]]}
+        {:des "Right shift to closing paren"
+         :rules [[:right_shift  :right_shift nil {:alone :!S0}]]}
+        {:des "Hyper Caps Lock"
+         :rules [[:caps_lock :!CSOleft_control nil {}]]}]}
