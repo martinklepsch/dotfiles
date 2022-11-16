@@ -20,15 +20,16 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-surround'
-Plug '/usr/local/opt/fzf'
+Plug 'machakann/vim-sandwich'
 Plug 'junegunn/fzf.vim'
-Plug 'voldikss/vim-floaterm'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'roman/golden-ratio'
 Plug 'jrdoane/vim-clojure-highlight'
 Plug 'guns/vim-clojure-static'
-Plug 'rakr/vim-two-firewatch'
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
@@ -38,7 +39,13 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'xolox/vim-misc'
+Plug 'rakr/vim-two-firewatch'
 Plug 'xolox/vim-colorscheme-switcher'
+
+Plug 'hashivim/vim-terraform'
+Plug 'cespare/vim-toml'
+
+Plug 'editorconfig/editorconfig-vim'
 
 call plug#end() "}}}
 
@@ -54,6 +61,7 @@ set cursorline
 set confirm
 set hidden
 set termguicolors
+set nofixendofline
 let g:netrw_dirhistmax = 0 " https://stackoverflow.com/questions/9850360/what-is-netrwhist
 match ErrorMsg '\s\+$'"}}}
 
@@ -69,15 +77,25 @@ match ErrorMsg '\s\+$'"}}}
 " endfunction
 
 " autocmd FileType clojure,lisp,scheme setlocal foldmethod=expr foldexpr=g:FoldLispTopForm(v:lnum)
+augroup commentary_config
+  autocmd!
+  autocmd FileType lisp,clojure,racket setlocal commentstring=;;\ %s
+augroup END
 
 " Plugin Config {{{
 "
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 " https://github.com/borkdude/clj-kondo/blob/master/doc/editor-integration.md#vim--neovim
 let g:ale_linters = {'clojure': ['clj-kondo']}
 
 let g:conjure_log_direction = "horizontal"
+let g:conjure#client#clojure#nrepl#connection#auto_repl#enabled = v:false
 let g:floaterm_autoclose = 1
+
+let g:fzf_layout = { 'down': '60%' }
+
+" https://github.com/bbatsov/clojure-style-guide#arguments-indentation
+let g:clojure_align_subforms = 1
 
 " }}}
 
@@ -101,31 +119,27 @@ nnoremap gsv :so $MYVIMRC<CR>
 " FZF.vim mappings{{{
 nnoremap <Leader><Leader> :Commands<CR>
 nnoremap <Leader>a :Rg<CR>
+nnoremap <Leader>A :Rg <C-R><C-W><CR>
 nnoremap <Leader>p :GFiles . ':!:_site/*'<CR>
 nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>m :Marks<CR>
+nnoremap <Leader>l :Lines<CR>
 "}}}
 
 " Fugitive mappings{{{
-nmap <Leader>gb :Gblame<CR>
-nmap <Leader>gd :Gdiff<CR>
-nmap <Leader>gc :Gcommit<CR>
-nmap <Leader>gs :Gstatus<CR>
-nmap <Leader>gS :Gstatus<CR><C-w>T
+nmap <Leader>gb :Git blame<CR>
+nmap <Leader>gd :Git diff<CR>
+nmap <Leader>gc :Git commit<CR>
+nmap <Leader>gs :Git status<CR>
+nmap <Leader>gS :Git status<CR><C-w>T
 "}}}
 
 " Lazygit mappings{{{
-function LazyGit()
-	echom &columns
-	if (&columns > 180)
-		FloatermNew lazygit
-	else
-		FloatermNew --width=0.9 --height=0.9 lazygit
-	endif
-endfunction
-
-nmap <Leader>g :call LazyGit()<CR>
-
+" nmap <Leader>g :term lg<CR>i
 "}}}
+"
+xmap <Leader>t sai{{t "<CR>"}}<CR>
 
 " indent forms after slurping
 nnoremap >) >)==
+nnoremap <leader>cs :call cljstyle#fix()<cr>
