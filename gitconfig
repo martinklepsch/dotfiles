@@ -19,11 +19,12 @@
   user = martinklepsch
 
 [diff]
-  tool = vimdiff
-[pager]
-  diff = less
+        tool = difftastic
 [difftool]
-  prompt = false
+        prompt = false
+[difftool "difftastic"]
+        cmd = difft "$LOCAL" "$REMOTE"
+
 [sendemail]
   smtpserver = smtp.gmail.com
   smtpserverport = 587
@@ -31,6 +32,7 @@
   smtpuser = martinklepsch@googlemail.com
 
 [alias]
+  dft = difftool
   l = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
   mine = log --color --graph --pretty=format:'- %s %Cgreen(%cd)%Creset' --abbrev-commit  --author=Martin --all --since=6.days.ago --date=format:'%A %d'
   report = "!git l --since='7 days ago'"
@@ -39,14 +41,16 @@
   st = status
   sync = "!git stash; git pr; git p; git stash pop"
   pr = pull --rebase
+  pru = pull origin main --rebase
   p = push
   pu = "!git push --set-upstream origin $(git currentbranch)"
+  vpr = "!gh pr view --web"
   ds = diff --staged
-  cm = commit -S -m
+  cm = commit -m
   co = checkout
   d = diff --color --abbrev
   dw = diff --color --abbrev --color-words
-  dp = "!git fetch production; git l production/master..master"
+  bu = pull origin deploy/dev --rebase
   duff = diff
   puff = pull --ff --ff-only
   ap = add -p
@@ -59,12 +63,28 @@
   clean = git-media-clean %f
   smudge = git-media-smudge %f
 [filter "lfs"]
-  smudge = git-lfs smudge %f
+  smudge = git-lfs smudge -- %f
   required = true
-  clean = git-lfs clean %f
+  clean = git-lfs clean -- %f
+  process = git-lfs filter-process
 [commit]
-  gpgsign = true
+  ;gpgsign = true
   verbose = true
 
 [ghq]
   root = ~/code
+
+[pager]
+	difftool = true
+
+; [interactive]
+;     diffFilter = delta --color-only
+
+; [delta]
+;     features = side-by-side line-numbers decorations
+;     whitespace-error-style = 22 reverse
+
+; [delta "decorations"]
+;     commit-decoration-style = bold yellow box ul
+;     file-style = bold yellow ul
+;     file-decoration-style = none
