@@ -1,4 +1,4 @@
-#!/usr/bin/env fish
+#!/opt/homebrew/bin/fish
 
 # How to overwrite previously printed line
 # (in both cases hallo gets printed)
