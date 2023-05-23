@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-pass_dir=${PASSWORD_STORE_DIR//\//\\\/}
-# also works pass_dir=$(echo $PASSWORD_STORE_DIR | sed "s/\//\\\\\//g")
-
-tree -Ffi $PASSWORD_STORE_DIR | grep '.gpg' | sed 's/.gpg$//g' | sed "s/$pass_dir\///" | fzf | xargs pass
