@@ -98,13 +98,13 @@ function install
   # http://stackoverflow.com/questions/16048757/fish-function-option-param-parser
 
   ## Directories
-  install1 $base/atom    ~/.atom
+  # install1 $base/atom    ~/.atom
+  # install1 $base/emacs.d ~/.emacs.d
+  # install1 $base/spacemacs.d    ~/.spacemacs.d
+  # install1 $base/boot    ~/.boot
   install1 $base/bin     ~/.bin
-  install1 $base/boot    ~/.boot
   install1 $base/config  ~/.config
-  install1 $base/emacs.d ~/.emacs.d
   install1 $base/hammerspoon  ~/.hammerspoon
-  install1 $base/spacemacs.d    ~/.spacemacs.d
 
   ## Regular files
   #
