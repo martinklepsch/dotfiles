@@ -12,9 +12,10 @@ alias hl 'less -R'
 alias lg 'lazygit'
 alias d 'sudo docker'
 alias ia 'open -a "iA Writer"'
+alias op-signin 'set -gx OP_SESSION_my (op signin my --raw)'
 alias cdicloud 'cd /Users/martinklepsch/Library/Mobile\ Documents/com~apple~CloudDocs/'
 function paththis
-  set -xg PATH (pwd) $PATH
+  fish_add_path (pwd)
 end
 
 function f
@@ -54,6 +55,7 @@ alias sprunge 'curl -F \'sprunge=<-\' http://sprunge.us'
 
 # shorten often used commands
 alias g 'git'
+alias view-pr 'gh pr view --web'
 
 alias ec 'pushd ~/etc; git ls-files | fzf | xargs $EDITOR; popd'
 alias ef '$EDITOR ~/.config/fish/config.fish'
@@ -85,23 +87,12 @@ set -x LANG en_US.UTF-8
 # USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
 # set -x NIX_PATH nixpkgs=$HOME/code/nixpkgs
 # set -x PATH $HOME/.nix-profile/bin $PATH
-set -x PATH $HOME/.bin $PATH
-set -x PATH $HOME/code/02-oss/Fennel $PATH
-set -x PATH $HOME/code/03-personal/tlog/_build $PATH
-# set -x ANSIBLE_HOME $HOME/code/ansible
-# set -x PATH $ANSIBLE_HOME/bin $PATH
-# set -x PYTHONPATH $ANSIBLE_HOME/lib $PYTHONPATH
-# set PATH "/usr/local/sbin" $PATH
-# set PATH "/usr/sbin" $PATH
-# set PATH "/sbin" $PATH
-# Ruby Stuff
-# set PATH $HOME/.rbenv/bin $PATH
-# set PATH $HOME/.rbenv/shims $PATH
-# rbenv rehash >/dev/null ^&1
-
-# Perl Stuff
-# set PATH "/usr/bin/vendor_perl" $PATH
-# set PATH "/usr/bin/core_perl" $PATH
+fish_add_path $HOME/.bin
+fish_add_path $HOME/code/02-oss/Fennel
+fish_add_path $HOME/code/03-personal/tlog/_build
+fish_add_path $HOME/.exo/bin
+fish_add_path /usr/local/bin
+fish_add_path /usr/local/sbin
 
 # Node Stuff
 status --is-interactive; and source (nodenv init -|psub)
@@ -134,13 +125,13 @@ alias ..... 'cd ../../../..'
 
 alias md 'mkdir -p'
 
-alias l1 'tree --dirsfirst -ChFL 1'
-alias l2 'tree --dirsfirst -ChFL 2'
-alias l3 'tree --dirsfirst -ChFL 3'
+alias l1 'tree --du --dirsfirst -ChFL 1'
+alias l2 'tree --du --dirsfirst -ChFL 2'
+alias l3 'tree --gitignore --dirsfirst -ChFL 3'
 
-alias ll1 'tree --dirsfirst -ChFupDaL 1'
-alias ll2 'tree --dirsfirst -ChFupDaL 2'
-alias ll3 'tree --dirsfirst -ChFupDaL 3'
+alias ll1 'tree --du --dirsfirst -ChFupDaL 1'
+alias ll2 'tree --du --dirsfirst -ChFupDaL 2'
+alias ll3 'tree --du --dirsfirst -ChFupDaL 3'
 
 alias l  'l1'
 alias ll 'll1'

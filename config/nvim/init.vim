@@ -20,9 +20,11 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-rhubarb'
 Plug 'machakann/vim-sandwich'
+Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -30,7 +32,6 @@ Plug 'roman/golden-ratio'
 Plug 'jrdoane/vim-clojure-highlight'
 Plug 'guns/vim-clojure-static'
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'luochen1990/rainbow'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'ntpeters/vim-better-whitespace'
@@ -46,6 +47,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'cespare/vim-toml'
 
 Plug 'editorconfig/editorconfig-vim'
+Plug 'github/copilot.vim'
 
 call plug#end() "}}}
 
