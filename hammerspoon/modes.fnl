@@ -1,3 +1,7 @@
+(local {:pp pp} (require :pp))
+(local {:application app :hotkey hotkey} hs)
+(local {:set set_bindings} (require :bindings))
+
 ; modal productivity
 ; distraction strategy: disconnect desire and action
 ; -> log stuff and review instead of instantly looking at it
@@ -13,19 +17,31 @@
 
 ; work mode menubar app
 (local automation_menu (hs.menubar.new))
-(local {:set set_bindings} (require :bindings))
 (var !!mode :off)
 
-(fn set_mode [new_mode]
-  (print "Setting mode" new_mode)
-  (set !!mode new_mode)
-  (: automation_menu :setTitle new_mode)
-  (set_bindings (= :work new_mode)))
+(fn run_hook [mode]
+  (set_bindings mode)
+  (when (= :music mode)
+    ; (each [_ app (ipairs (app.runningApplications))]
+    ;   (when (= 1 (: app :kind))
+    ;     (: app :kill)))
+    (when (app.find "Dash")
+      (: (app.find "Dash") :kill))
+    (when (app.find "Google Chrome")
+      (: (app.find "Google Chrome") :kill))
+    (app.launchOrFocus "Ableton Live 11 Suite")
+    (app.launchOrFocus "Safari")))
+
+(fn set_mode [mode]
+  (print "Setting mode" mode)
+  (set !!mode mode)
+  (: automation_menu :setTitle mode)
+  (run_hook mode))
 
 (fn menu_table [mode]
   [(if (= :off mode)
      {:title "do work" :fn #(set_mode :work) :checked false}
-     {:title "stop work" :fn #(set_mode :work) :checked false})
+     {:title "turn off" :fn #(set_mode :off) :checked false})
    (when (not (= :music mode))
      {:title "make music" :fn #(set_mode :music) :checked false}) ])
 
