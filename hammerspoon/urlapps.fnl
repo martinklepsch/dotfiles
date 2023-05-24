@@ -1,4 +1,4 @@
-(local DefaultBrowser "com.brave.Browser")
+(local DefaultBrowser "company.thebrowser.Browser")
 (local IcebreakerBrowser "com.google.Chrome")
 (local Zoom "us.zoom.xos")
 

@@ -17,10 +17,10 @@
 
 (fn bindings_spec [mode]
   [{:handler #(launch-app "iTerm") :key :t}
-   {:handler #(launch-app "Brave Browser") :key :x}
+   {:handler #(launch-app "Arc") :key :x}
    (if (= :music mode)
      {:handler #(launch-app "Freeform") :key :e}
-     {:handler #(launch-app "Alacritty") :key :e})
+     {:handler #(launch-app "kitty") :key :e})
    {:handler open-daily-note :key :d}
    {:handler #(launch-app "1Password 7") :key :p}
    {:handler #(launch-app "portal") :key :l}
