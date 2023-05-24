@@ -3,7 +3,7 @@
 -- vim: sw=2 tw=2 et
 deps = {
   -- probably should not be using master branches here
-  ["fennel.lua"] = "https://github.com/bakpakin/Fennel/blob/master/fennel.lua",
+  ["fennel.lua"] = "https://git.sr.ht/~technomancy/fennel/blob/1.3.0/bootstrap/fennel.lua",
   ["fennelview.lua"] = "https://raw.githubusercontent.com/bakpakin/Fennel/master/fennelview.lua",
   ["moses.lua"] = "https://raw.githubusercontent.com/Yonaba/Moses/master/moses.lua"
 }
