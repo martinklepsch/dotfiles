@@ -22,6 +22,11 @@
 (local wake_watcher (hs.caffeinate.watcher.new on_caffeinate_ev))
 (wake_watcher:start)
 
+(spoon.SpoonInstall:installSpoonFromZipURL
+  "https://github.com/scottwhudson/Lunette/raw/v0.3.1/Spoons/Lunette.spoon.zip")
+(hs.loadSpoon "Lunette")
+(spoon.Lunette:bindHotkeys)
+
 (: (require :dev) :init)
 (: (require :urlapps) :init)
 (: (require :bindings) :init)

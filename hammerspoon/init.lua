@@ -14,9 +14,6 @@ hs.hotkey.bind(hyper, "i", nil, insp)
 
 hs.loadSpoon("SpoonInstall")
 spoon.SpoonInstall.use_syncinstall = true
--- https://github.com/scottwhudson/Lunette/
-hs.loadSpoon("Lunette")
-spoon.Lunette:bindHotkeys()
 
 require "deps"
 
