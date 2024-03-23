@@ -1,0 +1,37 @@
+#!/usr/bin/env bb
+;; vim: ft=clojure
+
+(require '[babashka.pods :as pods]
+         '[babashka.process :as p]
+         '[clojure.string :as string]
+         '[clojure.walk :as walk])
+
+(pods/load-pod 'retrogradeorbit/bootleg "0.1.9")
+
+(require '[pod.retrogradeorbit.bootleg.utils :as utils])
+
+(def html
+  (apply str (map string/trim (string/split (slurp *in*) #"\\n" ))))
+
+(def hiccup
+  (utils/convert-to html :hiccup))
+
+(def cleaned-hiccup
+ (walk/postwalk
+  (fn [x]
+    (cond
+     (and (string? x) (string/blank? (string/trim x)))
+     nil
+
+     (string? x)
+     (string/trim x)
+
+     (and (coll? x) (not (map-entry? x)))
+     (into (empty x) (remove nil? x))
+
+     :else
+     x))
+  hiccup))
+
+@(p/process {:in (pr-str cleaned-hiccup)
+             :out :inherit} "zprint")
