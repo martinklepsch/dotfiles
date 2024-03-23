@@ -1,1 +1,16 @@
 karabiner/karabiner.json
+
+.wrangler/
+Roland Cloud/
+caddy/
+coc/
+firebase/
+gh/
+htop/
+iterm2/
+jgit/
+lazygit/
+packer/
+polylith/
+rclone/
+yarn/
