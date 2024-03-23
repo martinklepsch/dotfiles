@@ -162,7 +162,6 @@ xmap <Leader>t sai{{t "<CR>"}}<CR>
 
 " indent forms after slurping
 nnoremap >) >)==
-nnoremap <leader>cs :call cljstyle#fix()<cr>
 
 command MigrationTimeStamp r !date -u '+\%Y-\%m-\%d--\%H-\%M'
 command PasteAsHiccup r !pbpaste | html2hiccup
