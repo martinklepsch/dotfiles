@@ -72,16 +72,6 @@ alias tml 'tmux list-sessions'
 alias tmn 'tmux new -s'
 alias tmn. 'tmux new -s (basename $PWD)'
 
-alias boot-local '$HOME/code/boot/bin/boot.sh'
-function boot23
-  set -xg BOOT_VERSION "2.3.0"
-  eval boot $argv
-end
-function boot23s
-  set -xg BOOT_VERSION "2.3.1-SNAPSHOT";
-  eval /Users/martin/code/boot/bin/boot.sh $argv
-end
-
 set -x LC_ALL en_US.UTF-8
 set -x LANG en_US.UTF-8
 # USER: set important paths here to put at the front of $PATH if you want to override system-wide settings
@@ -110,8 +100,6 @@ alias j11 'set -gx JAVA_HOME (/usr/libexec/java_home -v 11.0.6)'
 
 set -gx GOPATH ~/code/08-go
 set -gx PATH $GOPATH/bin $PATH
-
-set -x BOOT_JVM_OPTIONS "-Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xverify:none"
 
 set -gx fish_greeting ''
 set -gx EDITOR 'nvim'
