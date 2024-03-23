@@ -1,5 +1,6 @@
 (local DefaultBrowser "company.thebrowser.Browser")
 (local IcebreakerBrowser "com.google.Chrome")
+(local SafariBrowser "com.apple.Safari")
 (local Zoom "us.zoom.xos")
 
 (fn init []
@@ -18,9 +19,11 @@
                              [ "getcloudapp.com" IcebreakerBrowser ]
                              [ "loom.com" IcebreakerBrowser ]
                              [ "figma.com" IcebreakerBrowser ]
-                             [ "docs.google.com" IcebreakerBrowser ]
+                             ;; [ "docs.google.com" IcebreakerBrowser ]
                              [ "https?://zoom.us/j/" Zoom ]
-                             [ "https?://%w+.zoom.us/j/" Zoom ]]}}))
+                             [ "https?://%w+.zoom.us/j/" Zoom ]
+                             ;; Open dynogee previews in specific Safari window for screen recording
+                             [ "https://dynogee.com/preview" SafariBrowser ]]}}))
 
 {:init init}
 
