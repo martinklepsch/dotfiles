@@ -19,11 +19,13 @@
   user = martinklepsch
 
 [diff]
-        tool = difftastic
+  tool = difftastic
 [difftool]
-        prompt = false
+  prompt = false
 [difftool "difftastic"]
-        cmd = difft "$LOCAL" "$REMOTE"
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
 
 [sendemail]
   smtpserver = smtp.gmail.com
@@ -88,3 +90,5 @@
 ;     commit-decoration-style = bold yellow box ul
 ;     file-style = bold yellow ul
 ;     file-decoration-style = none
+[init]
+	defaultBranch = main
