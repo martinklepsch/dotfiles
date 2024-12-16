@@ -10,9 +10,18 @@ config/fish/fish_read_history
 config/fish/fishd.*
 config/fisher
 
+# fisher install decors/fish-ghq
+config/fish/functions/__ghq_repository_search.fish
+config/fish/conf.d/ghq_key_bindings.fish
+config/fish/completions/ghq.fish
+
 config/.exercism.json
 config/hub
 config/direnv
+config/zed
+config/raycast
+config/inngest
+config/op
 
 boot/cache
 boot/credentials*
