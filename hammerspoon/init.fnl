@@ -30,5 +30,5 @@
 (: (require :dev) :init)
 (: (require :urlapps) :init)
 (: (require :bindings) :init)
-(: (require :modes) :init)
+;; (: (require :modes) :init)
 (: (require :usbwatch) :init)

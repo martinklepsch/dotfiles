@@ -12,29 +12,45 @@
 (fn launch-app [name]
   (hs.application.launchOrFocus name))
 
+(fn cycle-chat []
+  (let [front (hs.application.frontmostApplication)]
+    (if (= "WhatsApp" (: front :name))
+      (launch-app "Messages")
+      (= "Telegram" (: front :name))
+      (launch-app "WhatsApp")
+      ;; :else
+      (launch-app "Telegram"))))
+
 (fn open-daily-note []
-  (hs.osascript.applescriptFromFile "/Users/martinklepsch/.bin/daily-note.scpt"))
+  ;; #_(hs.osascript.applescriptFromFile "/Users/martinklepsch/.bin/daily-note.scpt")
+  ;; (os.execute "open \"obsidian://open?vault=4491b0e1c7f829b7&daily\"")
+  (os.execute "open 'obsidian://advanced-uri?vault=4491b0e1c7f829b7&commandid=periodic-notes%253Aopen-daily-note'"))
+
+(fn open-weekly-note []
+  ;; #_(hs.osascript.applescriptFromFile "/Users/martinklepsch/.bin/daily-note.scpt")
+  ;; (os.execute "open \"obsidian://open?vault=4491b0e1c7f829b7&daily\"")
+  (os.execute "open 'obsidian://advanced-uri?vault=4491b0e1c7f829b7&commandid=periodic-notes%253Aopen-weekly-note'"))
+
 
 (fn bindings_spec [mode]
   [{:handler #(launch-app "iTerm") :key :t}
-   {:handler #(launch-app "Arc") :key :x}
+   {:handler #(launch-app "Google Chrome") :key :x}
    (if (= :music mode)
      {:handler #(launch-app "Freeform") :key :e}
      {:handler #(launch-app "kitty") :key :e})
    {:handler open-daily-note :key :d}
+   {:handler open-weekly-note :key :w}
    {:handler #(launch-app "1Password 7") :key :p}
    {:handler #(launch-app "portal") :key :l}
    ; {:handler #(launch-app "kitty") :key :e}
    ; {:handler #(launch-app "Notion") :key :n}
    {:handler #(launch-app "Notes") :key :n}
-   {:handler #(launch-app "Telegram") :key :c}
-   (if (= :work mode)
-     {:handler #(launch-app "Figma") :key :f}
-     {:handler #(launch-app "Freeform") :key :f})
+   {:handler #(cycle-chat) :key :c}
+   {:handler #(launch-app "Figma") :key :f}
+   {:handler #(launch-app "Obsidian") :key :o}
    (when (= :work mode)
      {:handler #(launch-app "Google Chrome") :key :v})
-   (when (= :work mode)
-     {:handler #(launch-app "Slack") :key :s})])
+   {:handler #(launch-app "Slack") :key :s}])
 
 (fn install_bindings [bindings]
   ;; delete installed hotkeys
@@ -48,6 +64,13 @@
   (each [n bi (ipairs bindings)]
     ;; (print (. bi :app) (. bi :key) (. bi :hotkey))
     (tset bi :hotkey (hotkey.bind hyper (. bi :key) nil (. bi :handler)))))
+
+; (fn search_notes []
+;   (let [notes (hs.application.find "Notes")]
+;     (pp notes)
+;     (hs.eventtap.keyStroke [:cmd :alt] :f nil notes)))
+
+; (hotkey.bind hyper :k nil search_notes)
 
 ;; API
 {:init (fn [] (install_bindings (bindings_spec false)))

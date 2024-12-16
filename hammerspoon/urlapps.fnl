@@ -1,4 +1,4 @@
-(local DefaultBrowser "company.thebrowser.Browser")
+(local DefaultBrowser "com.google.Chrome")
 (local IcebreakerBrowser "com.google.Chrome")
 (local SafariBrowser "com.apple.Safari")
 (local Zoom "us.zoom.xos")
