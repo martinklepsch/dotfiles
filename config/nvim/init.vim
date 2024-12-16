@@ -128,6 +128,9 @@ inoremap kj <ESC>
 tnoremap kj <C-\><C-n>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>r :wa<CR>:ConjureEval (integrant.repl/reset)<CR>
+" save with cmd+s
+nnoremap <D-s> :w<CR>
+inoremap <D-s> <Esc>:w<CR>a
 noremap <Leader>y "*y
 nmap <Leader>f zfaF
 nnoremap <C-u> 10k
@@ -169,3 +172,4 @@ command PasteAsHiccup r !pbpaste | html2hiccup
 set sw=2 et
 
 lua require("cljstyle")
+lua require("cmds")
