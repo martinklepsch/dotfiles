@@ -10,16 +10,20 @@ end
 alias c 'clear'
 alias hl 'less -R'
 alias lg 'lazygit'
+alias og 'ogpk -p'
 alias d 'sudo docker'
 alias ia 'open -a "iA Writer"'
 alias op-signin 'set -gx OP_SESSION_my (op signin my --raw)'
 alias cdicloud 'cd /Users/martinklepsch/Library/Mobile\ Documents/com~apple~CloudDocs/'
+
 function paththis
   fish_add_path (pwd)
 end
 
+# source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
 function f
-  if test -d .git
+  if git rev-parse --is-inside-work-tree
     git ls-files | uniq | fzf | xargs $EDITOR
   else
     fzf | xargs $EDITOR
@@ -105,7 +109,6 @@ set -gx fish_greeting ''
 set -gx EDITOR 'nvim'
 set -gx XDG_CONFIG_HOME ~/.config
 set -gx COMMAND_MODE unix2003
-set -gx RUBYOPT rubygems
 
 alias ...   'cd ../..'
 alias ....  'cd ../../..'
@@ -138,8 +141,9 @@ end
 
 # Fish git prompt
 # set __fish_git_prompt_showdirtystate 'yes'
-# set __fish_git_prompt_showstashstate 'yes'
 # set __fish_git_prompt_showuntrackedfiles 'yes'
+set __fish_git_prompt_show_informative_status 'yes'
+set __fish_git_prompt_showstashstate 'yes'
 set __fish_git_prompt_showupstream 'yes'
 set __fish_git_prompt_color_branch yellow
 set __fish_git_prompt_color_upstream_ahead green
@@ -149,7 +153,7 @@ set __fish_git_prompt_color_upstream_behind red
 set __fish_git_prompt_char_dirtystate '⚡'
 set __fish_git_prompt_char_stagedstate '→'
 # set __fish_git_prompt_char_untrackedfiles '☡'
-set __fish_git_prompt_char_stashstate '↩'
+# set __fish_git_prompt_char_stashstate '☡'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
