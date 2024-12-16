@@ -193,10 +193,6 @@ end
 #  opam config env | source
 # end
 
-if test (type pass)
-  set -gx PASSWORD_STORE_DIR "$HOME/pass"
-end
-
 if test (type direnv)
   direnv hook fish | source
 end
