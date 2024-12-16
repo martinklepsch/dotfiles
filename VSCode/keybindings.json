@@ -1,0 +1,33 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "k",
+        "command": "vscode-neovim.compositeEscape1",
+        "when": "neovim.mode == insert && editorTextFocus"
+    },
+    {
+        "key": "j",
+        "command": "vscode-neovim.compositeEscape2",
+        "when": "neovim.mode == insert && editorTextFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "cursorMove",
+        "args": {
+            "to": "down",
+            "by": "line",
+            "value": 10
+        },
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "cursorMove",
+        "args": {
+            "to": "up",
+            "by": "line",
+            "value": 10
+        },
+        "when": "editorTextFocus"
+    }
+]

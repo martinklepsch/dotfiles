@@ -1,0 +1,16 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "editor.minimap.enabled": false,
+    "vim.commandLineModeKeyBindingsNonRecursive": [
+
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["k", "j"],
+            "after": ["<Esc>"]
+        }
+    ],
+    "editor.fontFamily": "'M+ 1mn', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 15,
+    "editor.accessibilitySupport": "off"
+}
