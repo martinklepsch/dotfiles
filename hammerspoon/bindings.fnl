@@ -21,15 +21,20 @@
       ;; :else
       (launch-app "Telegram"))))
 
+(fn vault-id []
+  (if (= "mk-ohana" (os.getenv "USER"))
+    "e3d5cb44693b804f"
+    "4491b0e1c7f829b7"))
+
 (fn open-daily-note []
   ;; #_(hs.osascript.applescriptFromFile "/Users/martinklepsch/.bin/daily-note.scpt")
   ;; (os.execute "open \"obsidian://open?vault=4491b0e1c7f829b7&daily\"")
-  (os.execute "open 'obsidian://advanced-uri?vault=4491b0e1c7f829b7&commandid=periodic-notes%253Aopen-daily-note'"))
+  (os.execute (.. "open 'obsidian://advanced-uri?vault=" (vault-id) "&commandid=periodic-notes%253Aopen-daily-note'")))
 
 (fn open-weekly-note []
   ;; #_(hs.osascript.applescriptFromFile "/Users/martinklepsch/.bin/daily-note.scpt")
   ;; (os.execute "open \"obsidian://open?vault=4491b0e1c7f829b7&daily\"")
-  (os.execute "open 'obsidian://advanced-uri?vault=4491b0e1c7f829b7&commandid=periodic-notes%253Aopen-weekly-note'"))
+  (os.execute (.. "open 'obsidian://advanced-uri?vault=" (vault-id) "&commandid=periodic-notes%253Aopen-weekly-note'")))
 
 
 (fn bindings_spec [mode]
