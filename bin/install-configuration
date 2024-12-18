@@ -115,6 +115,8 @@ function install
   install1 $base/gitignore    ~/.gitignore
   install1 $base/VSCode/settings.json ~/Library/Application\ Support/Code/User/settings.json
   install1 $base/VSCode/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json
+
+  fisher install decors/fish-ghq
 end
 
 install
