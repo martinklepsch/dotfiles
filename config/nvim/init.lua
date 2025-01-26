@@ -37,78 +37,19 @@ require("lazy").setup({
   { "guns/vim-sexp" },
   { "tpope/vim-sexp-mappings-for-regular-people" },
   
-  -- Modern LSP Setup
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "folke/neodev.nvim", -- for better Lua development
-    },
-  },
-  
-  -- Modern Completion
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-    },
-  },
-  
   -- Git Integration
-  {
-    "lewis6991/gitsigns.nvim", -- Modern replacement for gitgutter
-    config = true,
-  },
   { "tpope/vim-fugitive" },
   { "tpope/vim-rhubarb" },
-  
-  -- Modern Statusline
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require('lualine').setup({
-        options = {
-          theme = 'gruvbox',
-          component_separators = '|',
-          section_separators = '',
-        },
-      })
-    end,
-  },
-  
-  -- Better syntax highlighting
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        ensure_installed = {
-          "lua", "vim", "vimdoc", "javascript", 
-          "typescript", "clojure", "query"
-        },
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    end,
-  },
+  { "airblade/vim-gitgutter" },
   
   -- Editing Enhancement
+  { "tpope/vim-sensible" },
   { "tpope/vim-commentary" },
-  {
-    "kylechui/nvim-surround", -- Modern surround
-    config = true,
-  },
+  { "tpope/vim-surround" },
   { "roman/golden-ratio" },
   { "ntpeters/vim-better-whitespace" },
   
-  -- Telescope setup
+  -- Telescope and Dependencies
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
@@ -126,7 +67,9 @@ require("lazy").setup({
       telescope.setup({
         defaults = {
           layout_strategy = 'vertical',
-          layout_config = { height = 0.6 },
+          layout_config = {
+            height = 0.6,  -- Similar to your FZF 60% height
+          },
           mappings = {
             i = {
               ["<esc>"] = actions.close,
@@ -135,123 +78,140 @@ require("lazy").setup({
           },
         },
       })
+      
+      -- Enable FZF native sorter
       telescope.load_extension('fzf')
     end
   },
   
-  -- Modern UI Enhancements
+  -- LSP Support
   {
-    "folke/which-key.nvim",
-    config = true,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    config = true,
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+      -- Completion Framework
+      "hrsh7th/nvim-cmp",
+      -- LSP completion source
+      "hrsh7th/cmp-nvim-lsp",
+      -- Useful completion sources
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      -- Snippets
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+    config = function()
+      -- Initialize Mason before setting up LSP
+      require("mason").setup({
+        ui = {
+          border = "rounded",
+          icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+          }
+        }
+      })
+      
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "clojure_lsp",  -- For Clojure
+        },
+        automatic_installation = true
+      })
+
+      -- Get the LSP configuration module
+      local lsp_config = require("core.lsp")
+      
+      -- Setup nvim-cmp
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      
+      cmp.setup({
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
+          ["<C-Space>"] = cmp.mapping.complete(),
+          ["<CR>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          },
+          ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+          ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, { "i", "s" }),
+        }),
+        sources = {
+          { name = "nvim_lsp" },
+          { name = "nvim_lua" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        },
+      })
+      
+      -- Update capabilities for LSP
+      lsp_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+      
+      -- Configure LSP servers
+      local lspconfig = require("lspconfig")
+      
+      -- Clojure LSP setup
+      lspconfig.clojure_lsp.setup({
+        on_attach = lsp_config.on_attach,
+        capabilities = lsp_config.capabilities,
+      })
+    end
   },
   
-  -- Modern Colorscheme
+  -- Linting (clj-kondo is now handled by clojure-lsp)
+  
+  -- Status Line
+  { "itchyny/lightline.vim" },
+  
+  -- Color Schemes
+  { "rafi/awesome-vim-colorschemes" },
+  { "rakr/vim-two-firewatch" },
+  
+  -- Treesitter
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate"
   },
+  
+  -- HCL Support
+  { "jvirtanen/vim-hcl" },
 })
 
--- LSP Configuration
-require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = { "clojure_lsp", "lua_ls" },
-})
-
-local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
--- Setup completion
-local cmp = require('cmp')
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'buffer' },
-    { name = 'path' },
-  })
-})
-
--- Configure LSP servers
-lspconfig.clojure_lsp.setup({
-  capabilities = capabilities,
-})
-
-lspconfig.lua_ls.setup({
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  }
-})
-
--- LSP Keybindings
-vim.api.nvim_create_autocmd('LspAttach', {
-  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
-  callback = function(ev)
-    local opts = { buffer = ev.buf }
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-    vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-  end,
-})
-
--- Base Configuration
-local opt = vim.opt
-
-opt.swapfile = false
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
-opt.foldlevelstart = 20
-opt.foldenable = false
-opt.background = "dark"
-opt.hlsearch = true
-opt.ignorecase = true
-opt.smartcase = true  -- Added smart case search
-opt.cursorline = true
-opt.confirm = true
-opt.hidden = true
-opt.termguicolors = true
-opt.fixendofline = false
-opt.shiftwidth = 2
-opt.expandtab = true
-opt.number = true     -- Added line numbers
-opt.relativenumber = true  -- Added relative line numbers
-opt.scrolloff = 8     -- Keep 8 lines above/below cursor
-opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
-opt.updatetime = 300  -- Faster completion
-opt.timeout = true
-opt.timeoutlen = 300  -- Faster which-key
+-- Load core configuration
+require("core.options")
 
 -- Set colorscheme
-vim.cmd([[colorscheme catppuccin]])
+vim.cmd([[colorscheme gruvbox]])
+
+-- Disable netrw history
+vim.g.netrw_dirhistmax = 0
 
 -- Show trailing whitespace as error
 vim.cmd([[match ErrorMsg '\s\+$']])
@@ -264,7 +224,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
--- Key Mappings (keeping your existing ones and adding new ones)
+-- Key Mappings
 local function map(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
@@ -273,7 +233,7 @@ local function map(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- Your existing mappings
+-- General Mappings
 map("i", "kj", "<ESC>")
 map("t", "kj", "<C-\\><C-n>")
 map("n", "<Leader>w", ":w<CR>")
@@ -287,7 +247,7 @@ map("n", "<C-d>", "10j")
 map("n", "gev", ":e $MYVIMRC<CR>")
 map("n", "gsv", ":so $MYVIMRC<CR>")
 
--- Telescope Mappings
+-- Telescope Mappings (replacing FZF)
 local telescope_builtin = require('telescope.builtin')
 map("n", "<Leader><Leader>", function() telescope_builtin.commands() end)
 map("n", "<Leader>a", function() telescope_builtin.live_grep() end)
