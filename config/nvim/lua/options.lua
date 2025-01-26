@@ -25,5 +25,14 @@ opt.background = "dark"
 opt.termguicolors = true
 opt.confirm = true
 
+-- Disable netrw history
+vim.g.netrw_dirhistmax = 0
+
+-- Show trailing whitespace as error
+vim.cmd([[match ErrorMsg '\s\+$']])
+
+-- Clojure specific settings
+vim.g.clojure_align_subforms = 1
+
 -- Return the module (optional but good practice)
 return {}
