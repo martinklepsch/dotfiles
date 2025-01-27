@@ -38,7 +38,7 @@
 
 
 (fn bindings_spec [mode]
-  [{:handler #(launch-app "iTerm") :key :t}
+  [{:handler #(launch-app "Ghostty") :key :t}
    {:handler #(launch-app "Google Chrome") :key :x}
    (if (= :music mode)
      {:handler #(launch-app "Freeform") :key :e}
