@@ -25,7 +25,9 @@
 (spoon.SpoonInstall:installSpoonFromZipURL
   "https://github.com/scottwhudson/Lunette/raw/v0.3.1/Spoons/Lunette.spoon.zip")
 (hs.loadSpoon "Lunette")
-(spoon.Lunette:bindHotkeys)
+(spoon.Lunette:bindHotkeys
+  {:nextThird false
+   :prevThird false})
 
 (: (require :dev) :init)
 (: (require :urlapps) :init)
