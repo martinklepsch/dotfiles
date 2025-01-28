@@ -1,4 +1,6 @@
 .DS_Store
+.calva
+.lsp
 irssi/config
 config/fish/fish_history
 config/fish/fishd.nitrogen
