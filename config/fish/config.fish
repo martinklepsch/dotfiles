@@ -15,6 +15,7 @@ alias d 'sudo docker'
 alias ia 'open -a "iA Writer"'
 alias op-signin 'set -gx OP_SESSION_my (op signin my --raw)'
 alias cdicloud 'cd /Users/martinklepsch/Library/Mobile\ Documents/com~apple~CloudDocs/'
+alias cdobsidian 'cd /Users/martinklepsch/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/Personal'
 
 function paththis
   fish_add_path (pwd)
