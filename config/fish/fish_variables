@@ -32,4 +32,4 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow\x1e\x2di
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/Users/martinklepsch/\x2ecodeium/windsurf/bin\x1e/opt/homebrew/opt/postgresql\x4016/bin\x1e/opt/homebrew/opt/ruby/bin\x1e/Users/martinklepsch/code/github\x2ecom/martinklepsch/flummi\x1e/Users/martinklepsch/code/github\x2ecom/gatheround/gatheround\x1e/Users/martinklepsch/code/03\x2dpersonal/tlog/_build\x1e/Users/martinklepsch/code/02\x2doss/Fennel\x1e/usr/local/bin\x1e/Users/martinklepsch/\x2ebin
+SETUVAR fish_user_paths:/Users/mk\x2dohana/\x2ebin\x1e/Users/martinklepsch/\x2ecodeium/windsurf/bin\x1e/opt/homebrew/opt/postgresql\x4016/bin\x1e/opt/homebrew/opt/ruby/bin\x1e/Users/martinklepsch/code/github\x2ecom/martinklepsch/flummi\x1e/Users/martinklepsch/code/github\x2ecom/gatheround/gatheround\x1e/Users/martinklepsch/code/03\x2dpersonal/tlog/_build\x1e/Users/martinklepsch/code/02\x2doss/Fennel\x1e/usr/local/bin\x1e/Users/martinklepsch/\x2ebin
