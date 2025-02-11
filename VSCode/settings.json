@@ -12,5 +12,6 @@
     ],
     "editor.fontFamily": "'M+ 1mn', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 15,
-    "editor.accessibilitySupport": "off"
+    "editor.accessibilitySupport": "off",
+    "editor.formatOnSave": true
 }
