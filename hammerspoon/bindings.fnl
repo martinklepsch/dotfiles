@@ -23,7 +23,7 @@
 
 (fn vault-id []
   (if (= "mk-ohana" (os.getenv "USER"))
-    "e3d5cb44693b804f"
+    "b0cf100d1371ef62"
     "4491b0e1c7f829b7"))
 
 (fn open-daily-note []
