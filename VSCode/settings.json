@@ -1,17 +1,31 @@
 {
     "workbench.colorTheme": "Default Dark Modern",
-    "editor.minimap.enabled": false,
-    "vim.commandLineModeKeyBindingsNonRecursive": [
-
-    ],
+    "vim.commandLineModeKeyBindingsNonRecursive": [],
     "vim.insertModeKeyBindings": [
         {
-            "before": ["k", "j"],
-            "after": ["<Esc>"]
+            "before": [
+                "k",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
         }
     ],
     "editor.fontFamily": "'M+ 1mn', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 15,
+    "editor.formatOnSave": true,
+    "editor.hover.enabled": true,
+    "editor.minimap.enabled": false,
     "editor.accessibilitySupport": "off",
-    "editor.formatOnSave": true
+    "git.blame.editorDecoration.enabled": true,
+    "editor.tabCompletion": "on",
+    "workbench.statusBar.visible": false,
+    "workbench.activityBar.location": "hidden",
+    "zenMode.hideActivityBar": true,
+    "zenMode.hideStatusBar": true,
+    "editor.lineNumbers": "off",
+    "breadcrumbs.enabled": false,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
 }
