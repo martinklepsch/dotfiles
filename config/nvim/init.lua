@@ -294,17 +294,64 @@ require("lazy").setup({
       })
     end
   },
-  
+  -- avante ai coding --
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    opts = {},
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "echasnovski/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "ibhagwan/fzf-lua", -- for file_selector provider fzf
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      -- "zbirenbaum/copilot.lua", -- for providers='copilot'
+      {
+        -- support for image pasting
+        "HakonHarnes/img-clip.nvim",
+        event = "VeryLazy",
+        opts = {
+          -- recommended settings
+          default = {
+            embed_image_as_base64 = false,
+            prompt_for_file_name = false,
+            drag_and_drop = {
+              insert_mode = true,
+            },
+            -- required for Windows users
+            use_absolute_path = true,
+          },
+        },
+      },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
   -- Color Schemes
   { "rafi/awesome-vim-colorschemes" },
   { "rakr/vim-two-firewatch" },
-  
+
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate"
   },
-  
+
   -- HCL Support
   { "jvirtanen/vim-hcl" },
 })
@@ -345,8 +392,8 @@ map("n", "<Leader>w", ":w<CR>")
 map("n", "<Leader>r", ":wa<CR>:ConjureEval (integrant.repl/reset)<CR>")
 map("n", "<D-s>", ":w<CR>")
 map("i", "<D-s>", "<Esc>:w<CR>a")
-map("n", "<Leader>y", '"*y')
-map("n", "<Leader>f", "zfaF")
+-- map("n", "<Leader>y", '"*y')
+-- map("n", "<Leader>f", "zfaF")
 map("n", "<C-u>", "10k")
 map("n", "<C-d>", "10j")
 map("n", "gev", ":e $MYVIMRC<CR>")
@@ -355,22 +402,22 @@ map("n", "gsv", ":so $MYVIMRC<CR>")
 -- Telescope Mappings (replacing FZF)
 local telescope_builtin = require('telescope.builtin')
 map("n", "<Leader><Leader>", function() telescope_builtin.commands() end)
-map("n", "<Leader>a", function() telescope_builtin.live_grep() end)
-map("n", "<Leader>A", function() telescope_builtin.grep_string() end)
-map("n", "<Leader>p", function() telescope_builtin.git_files() end)
-map("n", "<Leader>b", function() telescope_builtin.buffers() end)
-map("n", "<Leader>m", function() telescope_builtin.marks() end)
-map("n", "<Leader>l", function() telescope_builtin.current_buffer_fuzzy_find() end)
+-- map("n", "<Leader>a", function() telescope_builtin.live_grep() end)
+-- map("n", "<Leader>A", function() telescope_builtin.grep_string() end)
+-- map("n", "<Leader>p", function() telescope_builtin.git_files() end)
+-- map("n", "<Leader>b", function() telescope_builtin.buffers() end)
+-- map("n", "<Leader>m", function() telescope_builtin.marks() end)
+-- map("n", "<Leader>l", function() telescope_builtin.current_buffer_fuzzy_find() end)
 
 -- Fugitive Mappings
-map("n", "<Leader>gb", ":Git blame<CR>")
-map("n", "<Leader>gd", ":Git diff<CR>")
-map("n", "<Leader>gc", ":Git commit<CR>")
-map("n", "<Leader>gs", ":Git status<CR>")
-map("n", "<Leader>gS", ":Git status<CR><C-w>T")
+-- map("n", "<Leader>gb", ":Git blame<CR>")
+-- map("n", "<Leader>gd", ":Git diff<CR>")
+-- map("n", "<Leader>gc", ":Git commit<CR>")
+-- map("n", "<Leader>gs", ":Git status<CR>")
+-- map("n", "<Leader>gS", ":Git status<CR><C-w>T")
 
 -- Visual mode mappings
-map("x", "<Leader>t", 'sai{{t "<CR>"}}<CR>')
+-- map("x", "<Leader>t", 'sai{{t "<CR>"}}<CR>')
 
 -- Commands
 vim.api.nvim_create_user_command("MigrationTimeStamp", "r !date -u '+\\%Y-\\%m-\\%d--\\%H-\\%M'", {})
